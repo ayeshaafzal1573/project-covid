@@ -14,7 +14,7 @@ include('connection.php');
 
             adminFields.style.display = 'none';
             hospitalFields.style.display = 'none';
-            patientFields.style.display = 'none';
+            patientFields.style.display = '';
 
             if (role === 'Admin') {
                 adminFields.style.display = 'block';
