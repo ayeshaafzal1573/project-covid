@@ -28,8 +28,8 @@ include('connection.php');
 
             <label for="admin_password">Admin Password:</label>
             <input type="password" name="admin_password"><br><br>
-    <input type="submit" value="Register" name="submit">
-    
+            <input type="submit" value="Register" name="submit">
+
         </div>
 
         <!-- Hospital Fields -->
@@ -45,8 +45,7 @@ include('connection.php');
             </select>
             <label for="hospital_name">Password:</label>
             <input type="password" name="hospital_password"><br><br>
-<input type="submit" value="Register" name="submit">
-    
+            <button> <a href="hospital/approcess.php">Register</button></a>
         </div>
 
         <!-- Patient Fields -->
@@ -59,10 +58,10 @@ include('connection.php');
             <input type="text" name="email"><br><br>
             <label for="patient_password">Password:</label>
             <input type="password" name="patient_password"><br><br>
-        <input type="submit" value="Register" name="submit">
-    
+            <input type="submit" value="Register" name="submit">
+
         </div>
-        </form>
+    </form>
     <!-- PHP -->
     <?php
 

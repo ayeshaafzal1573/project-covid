@@ -75,7 +75,7 @@ include('connection.php');
             $result = mysqli_query($con, $query);
 
             if (mysqli_num_rows($result) == 1) {
-                header("Location: admin.php");
+                header("Location: admin/admin.php");
                 exit;
             } else {
                 $loginError = "Invalid username or password.";
@@ -86,14 +86,25 @@ include('connection.php');
             $hospitalName = $_POST["hospital_name"];
             $password = $_POST["hospital_password"];
 
-            $query = "SELECT * FROM hospital WHERE hospital_name = '$hospitalName' AND password = '$password'";
-            $result = mysqli_query($con, $query);
+            // Check if the hospital's approval status is not 'Rejected'
+            $approvalQuery = "SELECT approval_status FROM hospital WHERE hospital_name = '$hospitalName'";
+            $approvalResult = mysqli_query($con, $approvalQuery);
 
-            if (mysqli_num_rows($result) == 1) {
-                header("Location: hospital_dashboard.php");
-                exit;
-            } else {
-                $loginError = "Invalid hospital name or password.";
+            if (mysqli_num_rows($approvalResult) == 1) {
+                $approvalRow = mysqli_fetch_assoc($approvalResult);
+                $approvalStatus = $approvalRow["approval_status"];
+
+                if ($approvalStatus !== 'Rejected') {
+                    $loginQuery = "SELECT * FROM hospital WHERE hospital_name = '$hospitalName' AND password = '$password'";
+                    $loginResult = mysqli_query($con, $loginQuery);
+
+                    if (mysqli_num_rows($loginResult) == 1) {
+                        header("Location: hospital/hospital.php");
+                        exit;
+                    } else {
+                        $loginError = "Your registration request has been rejected by the admin.";
+                    }
+                }
             }
         }
         //Patient Login
