@@ -14,6 +14,11 @@ include('connection.php');
     <form method="POST">
         <label for="patient_name">Patient Name:</label>
         <input type="text" id="patient_name" name="patient_name"><br><br>
+        <select name="test_name">
+            <option hidden>Select Covid Test</option>
+            <option>PCR</option>
+            <option>Naats</option>
+        </select><br><br>
         <select name="hospital_selection">
             <option hidden>Hospital Name</option>
             <?php
@@ -33,16 +38,17 @@ include('connection.php');
     </form>
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $testname = $_POST["test_name"];
         $patient_name = $_POST["patient_name"];
         $hospital_id = $_POST["hospital_selection"];
         $app_date = $_POST["app_date"];
         $app_time = $_POST["app_time"];
         // Validate and sanitize data 
-        if (empty($patient_name) || empty($hospital_id) || empty($app_date) || empty($app_time)) {
+        if (empty($patient_name) || empty($hospital_id) || empty($testname) || empty($app_date) || empty($app_time)) {
             echo "Please fill in all fields.";
         } else {
             $query =
-                "INSERT INTO appointment (patient_id, hospital_id, app_date, app_time)VALUES((SELECT patient_id FROM patient WHERE patient_name = '$patient_name'),$hospital_id,'$app_date','$app_time')";
+                "INSERT INTO appointment (patient_id, hospital_id,test_name,app_date, app_time)VALUES((SELECT patient_id FROM patient WHERE patient_name = '$patient_name'),$hospital_id,'$testname','$app_date','$app_time')";
             //Connection Check
             if (mysqli_query($con, $query)) {
                 echo "Appointment booked successfully.";
