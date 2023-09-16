@@ -11,6 +11,7 @@
     <h1>Admin Panel</h1>
     <a href="patientrecord.php">Patient Record</a>
     <a href="result.php">Covid Result</a>
+    <a href="testdetails.php">Booking Details</a>
 
 </body>
 
