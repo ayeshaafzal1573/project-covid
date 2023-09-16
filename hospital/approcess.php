@@ -1,7 +1,7 @@
 <?php
 include("../connection.php");
 ?>
-
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,12 +11,7 @@ include("../connection.php");
 </head>
 
 <body>
-    <h1>Admin Panel</h1>
-    <a href="patientrecord.php">Patient Record</a>
-    <a href="result.php">Covid Result</a>
-    <a href="testdetails.php">Booking Details</a>
-    <a href="hospitaldetails.php">Hospital</a>
-
+    <h1>Wait Until Admin Approve Your Request</h1>
 </body>
 
 </html>

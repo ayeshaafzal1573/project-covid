@@ -11,22 +11,21 @@ include("../connection.php");
 </head>
 
 <body>
+    <h1>Hospital Details</h1>
     <table>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Email</th>
+            <th>Hospital ID</th>
+            <th>Hospital Name</th>
+            <th>Location</th>
         </tr>
         <?php
-        $query = "SELECT * FROM patient";
+        $query = "SELECT * FROM hospital";
         $result = mysqli_query($con, $query);
         foreach ($result as $row) {
             echo "<tr>";
-            echo "<td>$row[patient_id]</td>";
-            echo "<td>$row[patient_name]</td>";
-            echo "<td>$row[address]</td>";
-            echo "<td>$row[email]</td>";
+            echo "<td>{$row['hospital_id']}</td>";
+            echo "<td>{$row['hospital_name']}</td>";
+            echo "<td>{$row['location']}</td>";
             echo "</tr>";
         }
         ?>
