@@ -37,7 +37,7 @@ include('connection.php');
 
             <label for="hospital_password">Password:</label>
             <input type="password" name="hospital_password"><br><br>
-            <input type="submit" value="Login">
+            <input type="submit" value="Login" name="login_submit">
 
         </div>
 
@@ -81,32 +81,7 @@ include('connection.php');
                 $loginError = "Invalid username or password.";
             }
         }
-        //Hospital Login
-        elseif ($userType === "Hospital") {
-            $hospitalName = $_POST["hospital_name"];
-            $password = $_POST["hospital_password"];
 
-            // Check if the hospital's approval status is not 'Rejected'
-            $approvalQuery = "SELECT approval_status FROM hospital WHERE hospital_name = '$hospitalName'";
-            $approvalResult = mysqli_query($con, $approvalQuery);
-
-            if (mysqli_num_rows($approvalResult) == 1) {
-                $approvalRow = mysqli_fetch_assoc($approvalResult);
-                $approvalStatus = $approvalRow["approval_status"];
-
-                if ($approvalStatus !== 'Rejected') {
-                    $loginQuery = "SELECT * FROM hospital WHERE hospital_name = '$hospitalName' AND password = '$password'";
-                    $loginResult = mysqli_query($con, $loginQuery);
-
-                    if (mysqli_num_rows($loginResult) == 1) {
-                        header("Location: hospital/hospital.php");
-                        exit;
-                    } else {
-                        $loginError = "Your registration request has been rejected by the admin.";
-                    }
-                }
-            }
-        }
         //Patient Login
         elseif ($userType === "Patient") {
 
@@ -122,6 +97,26 @@ include('connection.php');
 
             } else {
                 $loginError = "Invalid email or password.";
+            }
+        }
+    }
+    ?>
+    <!-- Hospital Login -->
+    <?php
+
+    if (isset($_POST["login_submit"])) {
+        $hospitalName = $_POST["hospital_name"];
+        $password = $_POST["hospital_password"];
+        $query = "SELECT * FROM hospital WHERE hospital_name='$hospitalName' AND password='$password'";
+        $login_query = mysqli_query($con, $query);
+
+        if ($login_query && mysqli_num_rows($login_query) > 0) {
+            $check_login = mysqli_fetch_assoc($login_query);
+
+            if ($check_login['status'] == 1) {
+                echo "<script>alert('Login successful');</script>";
+            } else {
+                echo "<script>alert('Admin has rejected your request');</script>";
             }
         }
     }

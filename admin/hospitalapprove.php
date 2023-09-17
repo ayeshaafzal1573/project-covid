@@ -1,15 +1,53 @@
 <?php
-include('../connection.php');
+include("../connection.php");
 ?>
-<?php
-$query = "SELECT * FROM hospital";
-$result = mysqli_query($con, $query);
-while ($row = mysqli_fetch_array($result)) {
-    echo "<tr>";
-    echo "<td>" . $row['hospital_name'] . "</td>";
-    echo "<td>" . $row['location'] . "</td>";
-    echo "<td><a class='btn btn-success' id='link' href='hosp_approve.php?h_id=" . $row['hospital_id'] . "' type='submit' name='approve'>Approve</a></td>";
-    echo "<td><a class='btn btn-danger' id='link' href='hosp_reject.php?h_id=" . $row['hospital_id'] . "' type='submit' name='reject'>Reject</a></td>";
-    echo "</tr>";
-}
-?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Approval</title>
+</head>
+
+<body>
+    <table>
+
+
+        <thead>
+            <tr>
+                <th>NAME:</th>
+                <th>Location:</th>
+                <th>Action:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $fetch_hospital = mysqli_query($con, "SELECT * FROM hospital");
+
+            if ($fetch_hospital) {
+                while ($hospital = mysqli_fetch_assoc($fetch_hospital)) {
+                    echo "<tr>";
+                    echo "<td>{$hospital['hospital_name']}</td>";
+                    echo "<td>{$hospital['location']}</td>";
+
+                    echo "<td> 
+            <a href='hospital_active.php?id={$hospital['hospital_id']}'>
+                <button>Approve</button>
+            </a>
+            <a href='hospital_deactive.php?id={$hospital['hospital_id']}'>
+                <button>Reject</button>
+            </a>
+        </td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "Error: " . mysqli_error($con);
+            }
+            ?>
+
+        </tbody>
+    </table>
+</body>
+
+</html>
