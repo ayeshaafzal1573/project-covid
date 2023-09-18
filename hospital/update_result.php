@@ -5,8 +5,6 @@ include("../connection.php");
 session_start();
 ?>
 <?php
-// Assuming you have a database connection established earlier
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $patient_ids = $_POST["patient_id"];
     $hospital_ids = $_POST["hospital_id"];

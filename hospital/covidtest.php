@@ -37,6 +37,7 @@ session_start();
                echo "</tr>";
 
                while ($row = mysqli_fetch_assoc($result)) {
+                   var_dump($row);
                    echo "<tr>";
                    echo "<td>{$row['patient_name']}</td>";
                    echo "<td>{$row['hospital_name']}</td>";
