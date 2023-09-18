@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2023 at 02:30 AM
+-- Generation Time: Sep 18, 2023 at 09:03 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -39,22 +39,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `username`, `email`, `password`) VALUES
-(1, 'hey', 'hey@gmail.com', 'hey'),
-(2, 'put', 'put@krey.com', 'put'),
-(6, 'please', '', ''),
-(7, 'please', 'forgodsake', ''),
-(8, 'please', 'forgodsake', ''),
-(9, 'please', 'forgodsake', ''),
-(10, 'flappy', 'flappy@gmail.com', ''),
-(11, 'flappy', 'flappy@gmail.com', ''),
-(12, 'flappy', 'flappy@gmail.com', ''),
-(13, 'flappy', 'flappy@gmail.com', ''),
-(14, 'flappy', 'flappy@gmail.com', ''),
-(15, 'flappy', 'flappy@gmail.com', ''),
-(16, 'flappy', 'flappy@gmail.com', ''),
-(17, 'flappy', 'flappy@gmail.com', ''),
-(18, 'aisha', 'aisha@gmail.com', 'aisha123'),
-(19, 'aisha', 'aisha@gmail.com', 'aisha123');
+(25, 'admin', 'admin@gmail.com', 'admin123');
 
 -- --------------------------------------------------------
 
@@ -65,10 +50,20 @@ INSERT INTO `admin` (`admin_id`, `username`, `email`, `password`) VALUES
 CREATE TABLE `appointment` (
   `app_id` int(11) NOT NULL,
   `patient_id` int(11) DEFAULT NULL,
+  `test_name` varchar(255) NOT NULL,
   `hospital_id` int(11) DEFAULT NULL,
   `app_date` date DEFAULT NULL,
-  `status` enum('Approved','Pending') DEFAULT NULL
+  `app_time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`app_id`, `patient_id`, `test_name`, `hospital_id`, `app_date`, `app_time`) VALUES
+(4, 14, 'PCR', 7, '2023-08-28', '00:35:00'),
+(5, 14, 'PCR', 7, '2023-08-28', '00:35:00'),
+(6, 14, 'PCR', 7, '2006-02-01', '14:02:00');
 
 -- --------------------------------------------------------
 
@@ -84,6 +79,13 @@ CREATE TABLE `covid_test` (
   `result` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `covid_test`
+--
+
+INSERT INTO `covid_test` (`test_id`, `patient_id`, `hospital_id`, `test_date`, `result`) VALUES
+(1, NULL, NULL, NULL, 'positive');
+
 -- --------------------------------------------------------
 
 --
@@ -94,16 +96,19 @@ CREATE TABLE `hospital` (
   `hospital_id` int(11) NOT NULL,
   `hospital_name` varchar(255) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL
+  `password` varchar(255) DEFAULT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `hospital`
 --
 
-INSERT INTO `hospital` (`hospital_id`, `hospital_name`, `location`, `password`) VALUES
-(1, 'kucbhi', 'Karachi', 'kuchbhi'),
-(2, 'kucbhi', 'Karachi', 'kuchbhi');
+INSERT INTO `hospital` (`hospital_id`, `hospital_name`, `location`, `password`, `status`) VALUES
+(7, 'Agha Khan', 'Karachi', 'aghakhan', 0),
+(8, '', 'Karachi', '', 1),
+(9, '', '', NULL, 1),
+(11, '', '', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -124,13 +129,7 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`patient_id`, `patient_name`, `address`, `email`, `password`) VALUES
-(1, 'sunaina', 'sunainakaghar', 'sunaina@gmail.com', ''),
-(2, 'sunaina', 'sunainakaghar', 'sunaina@gmail.com', ''),
-(3, 'sunaina', 'sunainakaghar', 'sunaina@gmail.com', ''),
-(4, 'sunaina', 'sunainakaghar', 'sunaina@gmail.com', ''),
-(5, 'sunaina', 'sunainakaghar', 'sunaina@gmail.com', ''),
-(6, 'sunaina', 'sunainakaghar', 'sunaina@gmail.com', ''),
-(7, 'sunaina', 'sunainakaghar', 'sunaina@gmail.com', '');
+(14, 'aisha', 'stargate', 'aisha@gmail.com', 'aisha123');
 
 -- --------------------------------------------------------
 
@@ -242,31 +241,31 @@ ALTER TABLE `vaccination`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `covid_test`
 --
 ALTER TABLE `covid_test`
-  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `hospital`
 --
 ALTER TABLE `hospital`
-  MODIFY `hospital_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `hospital_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `patient_hospital`

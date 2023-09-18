@@ -1,6 +1,6 @@
 <?php
 //Database Connection
-include("../connection.php");
+include("connection.php");
 // Session Start
 session_start();
 ?>
@@ -77,10 +77,10 @@ session_start();
 
             if (mysqli_num_rows(mysqli_query($con, $query))) {
                 $fetch_id = "SELECT admin_id FROM admin WHERE username='$username'";
-                $result = mysqli_query($connection, $fetch_id);
+                $result = mysqli_query($con, $fetch_id);
                 $row = mysqli_fetch_array($result);
                 $_SESSION['admin_id'] = $row['admin_id'];
-                header("location:admin/admin.php");
+                header("location: admin/admin.php");
                 exit;
             } else {
                 $loginError = "Invalid username or password.";
@@ -89,17 +89,16 @@ session_start();
 
         //Patient Login
         elseif ($userType === "Patient") {
-
             $patientEmail = $_POST["patient_email"];
             $password = $_POST["patient_password"];
             $query = "SELECT * FROM patient WHERE email = '$patientEmail' AND password = '$password'";
 
             if (mysqli_num_rows(mysqli_query($con, $query))) {
                 $fetch_id = "SELECT patient_id FROM patient WHERE email='$patientEmail'";
-                $result = mysqli_query($connection, $fetch_id);
+                $result = mysqli_query($con, $fetch_id);
                 $row = mysqli_fetch_array($result);
                 $_SESSION['patient_id'] = $row['patient_id'];
-                header("location:patient/patient.php");
+                header("location: patient/patient.php");
                 exit;
             } else {
                 $loginError = "Invalid email or password.";

@@ -15,9 +15,9 @@ session_start();
 
 <body>
     <form method="POST">
-        <label for="patient_name">Patient Name:</label>
-        <input type="text" id="patient_name" name="patient_name"><br><br>
-        <select name="test_name">
+  <label for="patient_name">Patient ID:</label>
+<input type="text" id="patient_name" name="patient_name" value="<?php echo isset($_SESSION['patient_id']) ? $_SESSION['patient_id'] : ''; ?>"><br><br>
+<select name="test_name">
             <option hidden>Select Covid Test</option>
             <option>PCR</option>
             <option>Naats</option>
@@ -41,9 +41,10 @@ session_start();
     </form>
     <!-- PHP -->
     <?php
+   
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $testname = $_POST["test_name"];
-        $patient_name = $_GET["patient_name"];
+        $patient_name = $_POST["patient_name"];
         $hospital_id = $_POST["hospital_selection"];
         $app_date = $_POST["app_date"];
         $app_time = $_POST["app_time"];
@@ -62,6 +63,7 @@ session_start();
         }
     }
     ?>
+
     <!-- PHP -->
 </body>
 
