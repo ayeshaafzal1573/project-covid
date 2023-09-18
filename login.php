@@ -1,5 +1,6 @@
 <?php
 include('connection.php');
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -72,10 +73,13 @@ include('connection.php');
             $password = $_POST["admin_password"];
 
             $query = "SELECT * FROM admin WHERE username = '$username' AND password = '$password'";
-            $result = mysqli_query($con, $query);
 
-            if (mysqli_num_rows($result) == 1) {
-                header("Location: admin/admin.php");
+            if (mysqli_num_rows(mysqli_query($con, $query))) {
+                $fetch_id = "SELECT admin_id FROM admin WHERE username='$username'";
+                $result = mysqli_query($connection, $fetch_id);
+                $row = mysqli_fetch_array($result);
+                $_SESSION['admin_id'] = $row['admin_id'];
+                header("location:admin/admin.php");
                 exit;
             } else {
                 $loginError = "Invalid username or password.";
@@ -87,14 +91,15 @@ include('connection.php');
 
             $patientEmail = $_POST["patient_email"];
             $password = $_POST["patient_password"];
-
             $query = "SELECT * FROM patient WHERE email = '$patientEmail' AND password = '$password'";
-            $result = mysqli_query($con, $query);
 
-            if (mysqli_num_rows($result) == 1) {
-                header("Location: patient.php");
+            if (mysqli_num_rows(mysqli_query($con, $query))) {
+                $fetch_id = "SELECT patient_id FROM patient WHERE email='$patientEmail'";
+                $result = mysqli_query($connection, $fetch_id);
+                $row = mysqli_fetch_array($result);
+                $_SESSION['patient_id'] = $row['patient_id'];
+                header("location:patient/patient.php");
                 exit;
-
             } else {
                 $loginError = "Invalid email or password.";
             }
@@ -103,7 +108,6 @@ include('connection.php');
     ?>
     <!-- Hospital Login -->
     <?php
-
     if (isset($_POST["login_submit"])) {
         $hospitalName = $_POST["hospital_name"];
         $password = $_POST["hospital_password"];
@@ -114,13 +118,19 @@ include('connection.php');
             $check_login = mysqli_fetch_assoc($login_query);
 
             if ($check_login['status'] == 1) {
+
+                $_SESSION['hospital_id'] = $check_login['hospital_id'];
+
                 echo "<script>alert('Login successful');</script>";
+                header("location:hospital/hospital_dashboard.php");
+                exit;
             } else {
                 echo "<script>alert('Admin has rejected your request');</script>";
             }
         }
     }
     ?>
+
 
 </body>
 

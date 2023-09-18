@@ -26,10 +26,10 @@ include("../connection.php");
 
             $query = "SELECT a.app_date, a.app_time, ct.result, p.patient_name, h.hospital_name
                       FROM appointment AS a
-                      INNER JOIN covid_test AS ct ON a.patient_id = ct.patient_id AND a.hospital_id = ct.hospital_id AND a.app_date = ct.test_date
-                      INNER JOIN patient AS p ON a.patient_id = p.patient_id
+                      LEFT JOIN covid_test AS ct ON a.patient_id = ct.patient_id AND a.hospital_id = ct.hospital_id AND a.app_date = ct.test_date
+                      LEFT JOIN patient AS p ON a.patient_id = p.patient_id
                       INNER JOIN hospital AS h ON a.hospital_id = h.hospital_id
-                      WHERE a.patient_id = 14";
+                      WHERE a.patient_id = h.hospital_id";
 
             $result = mysqli_query($con, $query);
 

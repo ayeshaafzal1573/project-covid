@@ -1,5 +1,6 @@
 <?php
 include("../connection.php");
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +16,13 @@ include("../connection.php");
 
     <!-- dashboard -->
     <a href="patientappointment.php">My Appointment</a>
+    <?php
+
+    if (!isset($_SESSION['admin_id'])) {
+        header("Location: ../login.php");
+        exit;
+    }
+    ?>
 </body>
 
 </html>

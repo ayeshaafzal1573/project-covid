@@ -1,7 +1,7 @@
 <?php
 include("../connection.php");
+session_start();
 ?>
-
 <html lang="en">
 
 <head>
@@ -16,7 +16,13 @@ include("../connection.php");
     <a href="result.php">Covid Result</a>
     <a href="testdetails.php">Booking Details</a>
     <a href="hospitaldetails.php">Hospital</a>
+    <?php
 
+    if (!isset($_SESSION['admin_id'])) {
+        header("Location: ../login.php");
+        exit;
+    }
+    ?>
 </body>
 
 </html>
