@@ -39,7 +39,7 @@ include("../connection.php");
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $testname = $_POST["test_name"];
-        $patient_name = $_POST["patient_name"];
+        $patient_name = $_GET["patient_name"];
         $hospital_id = $_POST["hospital_selection"];
         $app_date = $_POST["app_date"];
         $app_time = $_POST["app_time"];
