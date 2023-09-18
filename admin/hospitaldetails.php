@@ -1,5 +1,8 @@
 <?php
+//Database Connection
 include("../connection.php");
+// Session Start
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +21,7 @@ include("../connection.php");
             <th>Hospital Name</th>
             <th>Location</th>
         </tr>
+        <!-- PHP -->
         <?php
         $query = "SELECT * FROM hospital";
         $result = mysqli_query($con, $query);
@@ -29,6 +33,7 @@ include("../connection.php");
             echo "</tr>";
         }
         ?>
+        <!-- PHP -->
     </table>
 </body>
 

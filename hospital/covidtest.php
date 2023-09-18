@@ -1,5 +1,8 @@
 <?php
+//Database Connection
 include("../connection.php");
+// Session Start
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +25,7 @@ include("../connection.php");
             </tr>
         </thead>
         <tbody>
+            <!-- PHP -->
             <?php
 
             $query = "SELECT a.app_date, a.app_time, ct.result, p.patient_name, h.hospital_name
@@ -44,6 +48,7 @@ include("../connection.php");
             }
 
             ?>
+            <!-- PHP -->
         </tbody>
     </table>
 </body>

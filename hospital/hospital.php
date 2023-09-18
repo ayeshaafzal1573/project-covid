@@ -1,5 +1,7 @@
 <?php
-include('connection.php');
+//Database Connection
+include("../connection.php");
+// Session Start
 session_start();
 ?>
 <!DOCTYPE html>
@@ -12,13 +14,15 @@ session_start();
 </head>
 
 <body>
-    <?php
 
+    <!-- PHP -->
+    <?php
     if (!isset($_SESSION['admin_id'])) {
         header("Location: ../login.php");
         exit;
     }
     ?>
+    <!-- PHP -->
 </body>
 
 </html>

@@ -1,5 +1,8 @@
 <?php
+//Database Connection
 include("../connection.php");
+// Session Start
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">

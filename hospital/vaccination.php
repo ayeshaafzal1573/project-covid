@@ -1,31 +1,9 @@
 <?php
-include('../connection.php');
-$query = "SELECT
-    v.vac_id,
-    v.vac_status,
-    p.patient_name,
-    h.hospital_name
-FROM
-    vaccination v
-LEFT JOIN
-    patient p
-ON
-    v.patient_id = p.patient_id
-LEFT JOIN
-    hospital h
-ON
-    v.hospital_id = h.hospital_id;
-";
-
-// Execute the query
-$result = mysqli_query($con, $query);
-
-// Check if the query was successful
-if (!$result) {
-    die("Database query failed: " . mysqli_error($con));
-}
+//Database Connection
+include("../connection.php");
+// Session Start
+session_start();
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -42,8 +20,11 @@ if (!$result) {
             <th>Hospital ID</th>
             <th>Vaccination Status</th>
         </tr>
-
+        <!-- PHP -->
         <?php
+        $query = "SELECT v.vac_id,v.vac_status,p.patient_name,h.hospital_name FROM vaccination LEFT JOIN
+        patient p ON v.patient_id = p.patient_id LEFT JOIN hospital h ON v.hospital_id = h.hospital_id;";
+        $result = mysqli_query($con, $query);
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
             echo "<td>" . $row['vac_id'] . "</td>";
@@ -52,9 +33,8 @@ if (!$result) {
             echo "<td>" . $row['vac_status'] . "</td>";
             echo "</tr>";
         }
-
         ?>
-
+        <!-- PHP -->
     </table>
 </body>
 

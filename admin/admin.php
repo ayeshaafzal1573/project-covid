@@ -1,5 +1,7 @@
 <?php
+//Database Connection
 include("../connection.php");
+// Session Start
 session_start();
 ?>
 <html lang="en">
@@ -16,6 +18,7 @@ session_start();
     <a href="result.php">Covid Result</a>
     <a href="testdetails.php">Booking Details</a>
     <a href="hospitaldetails.php">Hospital</a>
+    <!-- PHP -->
     <?php
 
     if (!isset($_SESSION['admin_id'])) {
@@ -23,6 +26,7 @@ session_start();
         exit;
     }
     ?>
+    <!-- PHP -->
 </body>
 
 </html>

@@ -1,5 +1,8 @@
 <?php
+//Database Connection
 include("../connection.php");
+// Session Start
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +25,7 @@ include("../connection.php");
             </tr>
         </thead>
         <tbody>
+            <!-- PHP -->
             <?php
             $fetch_hospital = mysqli_query($con, "SELECT * FROM hospital");
 
@@ -45,7 +49,7 @@ include("../connection.php");
                 echo "Error: " . mysqli_error($con);
             }
             ?>
-
+            <!-- PHP -->
         </tbody>
     </table>
 </body>

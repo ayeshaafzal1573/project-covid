@@ -1,5 +1,8 @@
 <?php
+//Database Connection
 include("../connection.php");
+// Session Start
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +39,7 @@ include("../connection.php");
         <input type="time" name="app_time" required><br><br>
         <input type="submit" value="Book An Appointment">
     </form>
+    <!-- PHP -->
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $testname = $_POST["test_name"];
@@ -58,6 +62,7 @@ include("../connection.php");
         }
     }
     ?>
+    <!-- PHP -->
 </body>
 
 </html>

@@ -1,5 +1,7 @@
 <?php
-include('connection.php');
+//Database Connection
+include("../connection.php");
+// Session Start
 session_start();
 ?>
 <!DOCTYPE html>
@@ -61,7 +63,6 @@ session_start();
         <?php
     }
     ?>
-    <script src="script.js"> </script>
     <!-- PHP -->
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -130,7 +131,8 @@ session_start();
         }
     }
     ?>
-
+    <!-- PHP -->
+    <script src="script.js"> </script>
 
 </body>
 

@@ -1,5 +1,7 @@
 <?php
+//Database Connection
 include("../connection.php");
+// Session Start
 session_start();
 ?>
 <!DOCTYPE html>
@@ -16,6 +18,7 @@ session_start();
 
     <!-- dashboard -->
     <a href="patientappointment.php">My Appointment</a>
+    <!-- PHP -->
     <?php
 
     if (!isset($_SESSION['admin_id'])) {
@@ -23,6 +26,7 @@ session_start();
         exit;
     }
     ?>
+    <!-- PHP -->
 </body>
 
 </html>

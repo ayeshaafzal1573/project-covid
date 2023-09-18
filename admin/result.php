@@ -1,5 +1,8 @@
 <?php
+//Database Connection
 include("../connection.php");
+// Session Start
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +23,7 @@ include("../connection.php");
             <th>Results</th>
             <th>Report</th>
         </tr>
+        <!-- PHP -->
         <?php
         $query = "SELECT * FROM covid_test";
         $result = mysqli_query($con, $query);
@@ -32,6 +36,7 @@ include("../connection.php");
             echo "</tr>";
         }
         ?>
+        <!-- PHP -->
     </table>
 </body>
 

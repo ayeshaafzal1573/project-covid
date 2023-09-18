@@ -1,6 +1,9 @@
-        <?php
-        include("../connection.php");
-        ?>
+<?php
+//Database Connection
+include("../connection.php");
+// Session Start
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +24,7 @@
             <th>Date</th>
             <th>Time</th>
         </tr>
-
+        <!-- PHP -->
         <?php
         $query = "SELECT a.app_id, p.patient_name, h.hospital_name,test_name, a.app_date, a.app_time
           FROM appointment a
@@ -40,7 +43,7 @@
             echo "</tr>";
         }
         ?>
-
+        <!-- PHP -->
     </table>
 </body>
 
