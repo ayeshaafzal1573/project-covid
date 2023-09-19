@@ -25,7 +25,7 @@ session_start();
         </tr>
         <!-- PHP -->
         <?php
-        $query = "SELECT * FROM covid_test";
+        $query = "SELECT * FROM appointment";
         $result = mysqli_query($con, $query);
         foreach ($result as $row) {
             echo "<tr>";
@@ -36,7 +36,7 @@ session_start();
             echo "</tr>";
         }
         ?>
-        <!-- PHP -->
+       <!-- PHP -->
     </table>
 </body>
 

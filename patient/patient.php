@@ -22,7 +22,7 @@ session_start();
     <!-- PHP -->
     <?php
 
-    if (!isset($_SESSION['admin_id'])) {
+    if (!isset($_SESSION['patient_id'])) {
         header("Location: ../login.php");
         exit;
     }
