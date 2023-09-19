@@ -56,6 +56,10 @@ session_start();
         </div>
 
     </form>
+    <div id="login-alert" style="display: none;">
+        <p id="alert-message"></p>
+    </div>
+
     <?php if (isset($loginError)) { ?>
         <p>
             <?php echo $loginError; ?>
@@ -83,7 +87,8 @@ session_start();
                 header("location: admin/admin.php");
                 exit;
             } else {
-                $loginError = "Invalid username or password.";
+                $loginError = "Invalid email or password.";
+                echo "<script>var loginSuccess = false;</script>";
             }
         }
 
@@ -102,6 +107,7 @@ session_start();
                 exit;
             } else {
                 $loginError = "Invalid email or password.";
+                echo "<script>var loginSuccess = false;</script>";
             }
         }
     }
@@ -130,8 +136,23 @@ session_start();
         }
     }
     ?>
+
     <!-- PHP -->
     <script src="script.js"> </script>
+    <script>
+        // JavaScript function to show the login alert
+        function showLoginAlert(message) {
+            var loginAlert = document.getElementById("login-alert");
+            var alertMessage = document.getElementById("alert-message");
+            alertMessage.innerText = message;
+            loginAlert.style.display = "block";
+        }
+
+        // Check if login was unsuccessful and display an alert
+        if (typeof loginSuccess !== 'undefined' && loginSuccess === false) {
+            showLoginAlert("Invalid email or password.");
+        }
+    </script>
 
 </body>
 
