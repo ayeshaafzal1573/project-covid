@@ -18,6 +18,7 @@ session_start();
 
     <!-- dashboard -->
     <a href="patientappointment.php">My Appointment</a>
+    <a href="report.php">Report</a>
     <!-- PHP -->
     <?php
 

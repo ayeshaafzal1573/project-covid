@@ -16,7 +16,7 @@ session_start();
 <body>
     <form method="POST">
   <label for="patient_name">Patient ID:</label>
-<input type="text" id="patient_name" name="patient_name" value="<?php echo isset($_SESSION['patient_id']) ? $_SESSION['patient_id'] : ''; ?>"><br><br>
+<input type="text" id="patient_name" name="patient_name"><br><br>
 <select name="test_name">
             <option hidden>Select Covid Test</option>
             <option>PCR</option>
