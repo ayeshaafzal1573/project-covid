@@ -1,23 +1,26 @@
 <?php
-//Database Connection
+// Database Connection
 include("../connection.php");
 // Session Start
 session_start();
+//if user loggout
+if (!isset($_SESSION['admin_id'])) {
+  header("Location: ../login.php");
+  exit;
+}
 ?>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="../css/style.css">
-
+  <title>Hospital Details</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" href="../images/corona_icon.png">
   <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 </head>
 
 <body>
@@ -45,7 +48,7 @@ session_start();
       </li>
       <li>
         <a href="crdetails.php">
-          <i class="zmdi zmdi-widgets"></i>Test Results </a>
+          <i class="zmdi zmdi-widgets"></i>Reports</a>
       </li>
       <li>
         <a href="testdetails.php">
@@ -55,32 +58,64 @@ session_start();
 
     </ul>
   </div>
+  </div>
+  </div>
+  </div>
+  <!-- SIDEBAR END -->
+  <!-- NAV STARTS -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <img src="../images/admin.jpg" alt="Admin Profile" class="adminpic">
+            <?php echo $_SESSION['admin_id']; ?> <span class="caret"></span>
+          </a>
 
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="zmdi zmdi-notifications text-danger"></i> Notifications</a></li>
+            <li><a href="../login.php">Logout</a></li>
 
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- NAV ENDS -->
+  <!-- TABLE STARTS -->
+  <div class="container-fluid" id="all-products">
+    <h1 class="text-center">Hospital Details</h1>
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Hospital ID</th>
+            <th>Hospital Name</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- PHP -->
+          <?php
+          $query = "SELECT * FROM hospital";
+          $result = mysqli_query($con, $query);
+          foreach ($result as $row) {
+            echo "<tr>";
+            echo "<td>{$row['hospital_id']}</td>";
+            echo "<td>{$row['hospital_name']}</td>";
+            echo "<td>{$row['location']}</td>";
+            echo "</tr>";
+          }
+          ?>
+          <!-- PHP END -->
+        </tbody>
+      </table>
+    </div>
   </div>
-  </div>
-  </div>
-  <table style="text-align: center; margin-left: 300px;">
-    <tr>
-      <th>Hospital ID</th>
-      <th>Hospital Name</th>
-      <th>Location</th>
-    </tr>
-    <!-- PHP -->
-    <?php
-    $query = "SELECT * FROM hospital";
-    $result = mysqli_query($con, $query);
-    foreach ($result as $row) {
-      echo "<tr>";
-      echo "<td>{$row['hospital_id']}</td>";
-      echo "<td>{$row['hospital_name']}</td>";
-      echo "<td>{$row['location']}</td>";
-      echo "</tr>";
-    }
-    ?>
-    <!-- PHP -->
-  </table>
-  <script src="https://cdn.usebootstrap.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- TABLE END -->
+  <!-- SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 
