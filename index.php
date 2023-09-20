@@ -1,25 +1,36 @@
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
+      <!-- basic -->
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+      <!-- site metas -->
+      <title>Covido</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <!-- style css -->
       <link rel="stylesheet" href="css/style.css">
+      <!-- Responsive-->
       <link rel="stylesheet" href="css/responsive.css">
+      <!-- fevicon -->
       <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
        <link rel="stylesheet" href="css/owl.carousel.min.css"> 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
       <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
-   </head>
+      </head>
    <!-- body -->
    <body class="main-layout">
       <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#"/></div>
-      </div>
+      
       <!-- end loader -->
       <!-- top -->
                     <!-- header -->
@@ -174,72 +185,9 @@
          </div>
       </div>
       <!-- end coronata -->
-   
-        <!-- protect -->
-      <div class="protect" id="action">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage text_align_center">
-                     <h2>How to Protect Yourself</h2>
-                     <p>when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
-                         as opposed to using  
-                     </p>
-                  </div>
-               </div>
-            </div>
-         </div>
-           <div class="protect_bg">
-         <div class="container">
-             <div class="row">
-               <div class="col-md-12">
-                  <!--  Demos -->
-                  <div class="owl-carousel owl-theme">
-                     <div class="item">
-                        <div class="protect_box text_align_center">
-                          <div class="desktop">
-                             <i><img src="images/pro1.png" alt="#"/></i>
-                           <h3> Wear Mask</h3>
-                           <span> Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a 
-                              search for</span>
-                          </div>
-                           <a class="read_more" href="protect.html">Read More</a>
-                        </div>
-                     </div>
-                     <div class="item">
-                          <div class="protect_box text_align_center">
-                          <div class="desktop">
-                             <i><img src="images/pro2.png" alt="#"/></i>
-                           <h3> Wash Your Hands</h3>
-                           <span> Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a 
-                              search for</span>
-                          </div>
-                           <a class="read_more" href="protect.html">Read More</a>
-                        </div>
-                     </div>
-                     <div class="item">
-                         <div class="protect_box text_align_center">
-                          <div class="desktop">
-                             <i><img src="images/pro3.png" alt="#"/></i>
-                           <h3> Stay at Home</h3>
-                           <span> Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a 
-                              search for</span>
-                          </div>
-                           <a class="read_more" href="protect.html">Read More</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-          </div>
-      </div>
-         </div>
-      </div>
-      <!-- end protect -->
       
      <!-- use in doctor page -->
 
-    <!-- cases
       <div class="cases">
          <div class="container-fluid">
             <div class="row">
@@ -290,7 +238,7 @@
                </div>
             </div>
          </div>
-      </div> -->
+      </div>
       <!-- end cases -->
        
       

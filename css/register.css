@@ -9,7 +9,7 @@ margin-left: 450px;
   width: 100%;
   border-radius: 12px;
   padding: 20px 30px 120px;
-  background: linear-gradient(to right, rgb(253, 37, 37) , rgb(100, 100, 96));
+  background: linear-gradient(to right, rgb(253, 37, 37) , #05254d);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
@@ -17,10 +17,10 @@ margin-left: 450px;
 .form.login {
   position: absolute;
   left: 50%;
-  bottom: -76%;
+  bottom: -86%;
   transform: translateX(-50%);
   width: calc(100% + 220px);
-  padding: 20px 140px;
+  
   border-radius: 50%;
   height: 100%;
   background: #fff;

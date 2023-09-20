@@ -285,11 +285,11 @@ body {
 
 
 .header-area  {
-     padding: 30px 6px;
+     padding: 25px 6px;
      color: #f1f1f1;
      width: 100%;
      z-index: 9999999;
-     height: 87px;
+     height: 77px;
      
      background:#ed242e;
      border-radius: 6px;
@@ -309,7 +309,7 @@ body {
     z-index: 999;
     margin: 0 auto;
     left: 0;
-    right: 26px;
+    right: 6px;
 }
 .site-navbar {
     display: flex;
@@ -423,10 +423,10 @@ body {
     background: #00132b;
     width: 80px;
     left: 0;
-    height: 87px;
+    height: 77px;
     top: 0;
     text-align: center;
-    line-height: 87px;
+    line-height: 77px;
     
 
 }
@@ -440,10 +440,10 @@ body {
     background: #00132b;
     width: 80px;
     right: 0;
-    height: 87px;
+    height: 77px;
     top: 0;
     text-align: center;
-    line-height: 87px;
+    line-height: 77px;
 
 }
 .right  a i {
