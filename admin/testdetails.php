@@ -56,7 +56,7 @@ session_start();
   </div>
   </div>
   </div>
-    <table>
+    <table style="margin-left: 300px;">
         <tr>
             <th>ID</th>
             <th>Patient Name</th>

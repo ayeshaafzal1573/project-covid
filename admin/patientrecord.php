@@ -8,12 +8,12 @@ session_start();
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-       <link rel="stylesheet" href="../css/style.css   ">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="assets/style.css   ">
 
-<link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,7 +22,7 @@ session_start();
 
 <body>
 
-    <!-- SIDEBAR -->
+  <!-- SIDEBAR -->
   <div id="sidebar">
     <header>
       <a href="#"><img src="../images/corona_icon.png" alt="" style="width:70px ; padding: 20px;"></a>
@@ -58,28 +58,64 @@ session_start();
   </div>
   </div>
   </div>
-    <table>
-        <tr>
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <img src="../images/admin.jpg" alt="Admin Profile" class="adminpic">
+    <?php echo $_SESSION['admin_id']; ?> <span class="caret"></span>
+        </a>
+
+        <ul class="dropdown-menu">
+          <li><a href="#"><i class="zmdi zmdi-notifications text-danger"></i> Notifications</a></li>
+          <li><a href="#">Logout</a></li>
+          <li><a href="#">Profile</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+  <div class="container-fluid" id="all-products">
+    <h1 class="text-center">Patient Record</h1>
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Email</th>
-        </tr>
-        <!-- PHP -->
-        <?php
-        $query = "SELECT * FROM patient";
-        $result = mysqli_query($con, $query);
-        foreach ($result as $row) {
+            <th>NAME</th>
+            <th>ADDRESS</th>
+            <th>EMAIL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+
+          $query = "SELECT * FROM patient";
+          $result = mysqli_query($con, $query);
+          foreach ($result as $row) {
             echo "<tr>";
             echo "<td>$row[patient_id]</td>";
             echo "<td>$row[patient_name]</td>";
             echo "<td>$row[address]</td>";
             echo "<td>$row[email]</td>";
             echo "</tr>";
-        }
-        ?>
-        <!-- PHP -->
-    </table>
+          }
+          ?>
+
+        </tbody>
+      </table>
+
+
+
+    </div>
+
+  </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

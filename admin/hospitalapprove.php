@@ -14,7 +14,55 @@ session_start();
 </head>
 
 <body>
-    <table>
+     <div class="container-fluid d-flex align-items-center" id="add-product" >
+            <div class="container">
+        
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="text-center mt-5">Add Product</h1>
+                <form method="post" enctype="multipart/form-data">
+                <?php if (!empty($infomsg)): ?>
+                  <div class="alert alert-success mt-4">
+                    <?php echo $infomsg; ?>
+                  </div>
+            <?php endif; ?>
+                    <div class="form-group justify-content-center">
+                        <input type="text" name="pname" class="form-control" placeholder="Product Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="pprice" class="form-control" placeholder="Product Price" required>
+                        </div>
+                        <div class="form-group">
+                            <select name="pcategory" class="form-control" required>
+                                <option value="" disabled selected>Select Category:</option>
+                                <option value="cat">Cat</option>
+                                <option value="dog">Dog</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="psub-category" class="form-control" required>
+                                <option value="" disabled selected>Select Sub-Category:</option>
+                                <option value="food">Food</option>
+                                <option value="accessory">Accessory</option>
+                                <option value="medicine">Medicine</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="file" name="pimage" class="form-control-file" required>
+                        </div>
+                    <div class="form-group">
+                        <input type="submit" name="add" class="btn" value="Add Product">
+                    </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+
+
+          </div>
+        </div>
+      </div>
+    <table style="margin-left: 300px;">
 
 
         <thead>

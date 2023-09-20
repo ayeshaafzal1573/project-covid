@@ -8,10 +8,10 @@ session_start();
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-     <link rel="stylesheet" href="../css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/style.css">
 
   <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet"
@@ -22,7 +22,7 @@ session_start();
 
 <body>
 
-    <!-- SIDEBAR -->
+  <!-- SIDEBAR -->
   <div id="sidebar">
     <header>
       <a href="#"><img src="../images/corona_icon.png" alt="" style="width:70px ; padding: 20px;"></a>
@@ -60,27 +60,27 @@ session_start();
   </div>
   </div>
   </div>
- <table style="text-align: center; margin-left: 200px;">
-        <tr>
-            <th>Hospital ID</th>
-            <th>Hospital Name</th>
-            <th>Location</th>
-        </tr>
-        <!-- PHP -->
-        <?php
-        $query = "SELECT * FROM hospital";
-        $result = mysqli_query($con, $query);
-        foreach ($result as $row) {
-            echo "<tr>";
-            echo "<td>{$row['hospital_id']}</td>";
-            echo "<td>{$row['hospital_name']}</td>";
-            echo "<td>{$row['location']}</td>";
-            echo "</tr>";
-        }
-        ?>
-        <!-- PHP -->
-    </table>
- <script src="https://cdn.usebootstrap.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <table style="text-align: center; margin-left: 300px;">
+    <tr>
+      <th>Hospital ID</th>
+      <th>Hospital Name</th>
+      <th>Location</th>
+    </tr>
+    <!-- PHP -->
+    <?php
+    $query = "SELECT * FROM hospital";
+    $result = mysqli_query($con, $query);
+    foreach ($result as $row) {
+      echo "<tr>";
+      echo "<td>{$row['hospital_id']}</td>";
+      echo "<td>{$row['hospital_name']}</td>";
+      echo "<td>{$row['location']}</td>";
+      echo "</tr>";
+    }
+    ?>
+    <!-- PHP -->
+  </table>
+  <script src="https://cdn.usebootstrap.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 

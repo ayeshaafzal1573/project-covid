@@ -9,8 +9,8 @@ session_start();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <title>Admin</title>
+  <link rel="stylesheet" href="assets/style.css">
 
   <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet"
@@ -20,7 +20,7 @@ session_start();
 </head>
 
 <body>
-<!-- SIDEBAR -->
+  <!-- SIDEBAR -->
   <div id="sidebar">
     <header>
       <a href="#"><img src="../images/corona_icon.png" alt="" style="width:70px ; padding: 20px;"></a>

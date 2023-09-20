@@ -1,0 +1,180 @@
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400&display=swap');
+
+#content {
+    width: 100%;
+    position: relative;
+    margin-right: 0;
+}
+
+/* Sidebar Styles */
+
+#sidebar {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #05254d;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    border-right: #fff 2px solid;
+    transition: all 0.5s ease;
+}
+
+#sidebar header {
+    font-size: 20px;
+    line-height: 52px;
+    border-bottom: 1.5px solid white;
+    text-align: center;
+
+}
+
+#sidebar header a {
+    color: white;
+    display: block;
+    text-decoration: none;
+    background: #05254d;
+}
+
+#sidebar header a:hover {
+    color: #fff;
+}
+
+#sidebar .nav li a:hover {
+    background: #0f4484;
+    color: white;
+
+}
+
+#sidebar header a img {
+    width: 90px;
+    height: 90px;
+}
+
+
+
+#sidebar .nav a {
+    background: #05254d;
+    border-bottom: 1px solid white;
+    color: white;
+    font-size: 14px;
+    padding: 16px 24px;
+}
+
+#sidebar .nav a:hover {
+    background: none;
+    color: #263238;
+}
+
+#sidebar .nav a i {
+    margin-right: 16px;
+}
+
+/* ALL PRODUCTS */
+#all-products .table {
+    justify-content: center;
+    align-items: center;
+margin-left: 200px;
+    width: 85%;
+    margin-top: 20px;
+    border: #05254d 3px solid;
+    border-radius: 10px;
+
+}
+
+#all-products .table td , th {
+    border: #05254d 3px solid;
+}
+
+#all-products .table tbody .btn-update {
+    background-color: #32b6fe;
+}
+
+#all-products h1 {
+    margin-left: 100px;
+    font-weight: 600;
+    text-align: center;
+
+}
+
+/* ADD PRDODUCT */
+#add-product {
+    margin-left: 400px;
+}
+
+#add-product h1 {
+    font-family: pacifio;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+
+}
+
+#add-product .btn {
+    background-color: palevioletred;
+    padding: 10px;
+    border: 0px;
+    transition: .5s, color .10s;
+    -webkit-transition: .5s, color .10s;
+    -moz-transition: .5s, color .10s;
+
+}
+
+#add-product .btn:hover {
+    box-shadow: 0 8px 8px 0 rgb(255, 88, 144);
+    transform: translate(0px, 5px);
+    -webkit-transform: translate(0px, 5px);
+    -moz-transform: translate(0px, 5px);
+}
+
+#add-product .form-group input {
+    border-radius: 5px;
+
+}
+
+#add-product .form-group input:focus {
+    border-color: #0e6fa3;
+
+}
+/* Styling for the admin profile picture */
+.adminpic {
+    width: 40px;
+    /* Increase the size for a better visual effect */
+    height: 40px;
+    border-radius: 50%;
+    /* Use 50% for a circular shape */
+    margin-right: 10px;
+    /* Add some spacing between the image and the name */
+}
+
+/* Style the dropdown menu */
+.dropdown-menu {
+    min-width: 150px;
+    /* Adjust the width as needed */
+    border-radius: 5px;
+    /* Rounded corners for the dropdown */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Add a subtle shadow */
+}
+
+/* Style the dropdown menu items */
+.dropdown-menu li {
+    padding: 10px 15px;
+}
+
+/* Style the dropdown menu links */
+.dropdown-menu li a {
+    color: #333;
+    /* Text color */
+    text-decoration: none;
+    /* Remove underline */
+}
+
+/* Hover effect on dropdown menu items */
+.dropdown-menu li a:hover {
+    background-color: #f5f5f5;
+    /* Background color on hover */
+}
