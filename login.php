@@ -5,17 +5,65 @@ include("connection.php");
 session_start();
 ?>
 <!DOCTYPE html>
-<html>
-
-<head>
-    <title>User Login</title>
-</head>
-
-<body>
-    <h2>User Login</h2>
-    <form method="post">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="css/register.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+       <link rel="stylesheet" href="css/owl.carousel.min.css"> 
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
+    </head>
+  <body>
+  <header class="header-area">
+            <div class="left">
+               <a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
+            </div>
+            <div class="right">
+               <a href="register.html"><i class="fa fa-user" aria-hidden="true"></i></a>
+            </div>
+            <div class="container" >
+               <div class="row d_flex">
+                  <div class="col-sm-3 logo_sm">
+                     <div class="logo">
+                        <a href="index.html"></a>
+                     </div>
+                  </div>
+                  <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-9">
+                     <div class="navbar-area" >
+                        <nav class="site-navbar">
+                           <ul>
+                              <li><a class="active" href="#home">Home</a></li>
+                              <li><a href="#about">About</a></li>
+                              <li><a href="index.html" class="logo_midle">Pandemix</a></li>
+                              <li><a href="#action">Actions</a></li>
+                              <li><a href="contact.html">Contact </a></li>
+                           </ul>
+                           <button class="nav-toggler">
+                           <span></span>
+                           </button>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </header>
+    <section class="wrapper">
+      <div class="form signup">
+        <header>Signup</header>
+      <form method="post">
         <label for="user_type">User Type:</label>
-        <select id="user_type" name="user_type" onchange="showFields(this.value)" required>
+        <select id="user_type" name="user_type" onchange="showFields(this.value)" required class="usertype">
             <option value="">Select User Type</option>
             <option value="Admin">Admin</option>
             <option value="Hospital">Hospital</option>
@@ -24,51 +72,44 @@ session_start();
 
         <!-- Admin Fields -->
         <div id="adminFields" style="display: none;">
-            <label for="username">Admin Username:</label>
-            <input type="text" name="username"><br><br>
-
-            <label for="admin_password">Admin Password:</label>
-            <input type="password" name="admin_password"><br><br>
+             <input type="text" name="username" placeholder="Admin Username"><br><br>
+            <input type="password" name="admin_password"  placeholder="Admin Password"><br><br>
             <input type="submit" value="Login">
 
         </div>
 
         <!-- Hospital Fields -->
         <div id="hospitalFields" style="display: none;">
-            <label for="hospital_name">Hospital Name:</label>
-            <input type="text" name="hospital_name"><br><br>
-
-            <label for="hospital_password">Password:</label>
-            <input type="password" name="hospital_password"><br><br>
+                      <input type="text" name="hospital_name"  placeholder="Hospital Name"><br><br>
+            <input type="password" name="hospital_password"  placeholder="Password"><br><br>
             <input type="submit" value="Login" name="login_submit">
 
         </div>
 
         <!-- Patient Fields -->
         <div id="patientFields" style="display: none;">
-            <label for="patient_email">Email:</label>
-            <input type="text" name="patient_email"><br><br>
-
-            <label for="patient_password">Password:</label>
-            <input type="password" name="patient_password"><br><br>
+            <input type="text" name="patient_email"  placeholder="Patient Email"><br><br>
+            <input type="password" name="patient_password"  placeholder="Password"><br><br>
             <input type="submit" value="Login">
 
         </div>
 
-    </form>
-    <div id="login-alert" style="display: none;">
-        <p id="alert-message"></p>
-    </div>
+        </form>
+      </div>
 
-    <?php if (isset($loginError)) { ?>
+      <div class="form login">
+        <header><a href="register.php">Register</header></a>
+        </div>
+
+ <!-- PHP -->
+ <?php if (isset($loginError)) { ?>
         <p>
             <?php echo $loginError; ?>
         </p>
         <?php
     }
     ?>
-    <!-- PHP -->
-    <?php
+ <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //variable of dropdown
         $userType = $_POST["user_type"];
@@ -113,7 +154,7 @@ session_start();
     }
     ?>
     <!-- Hospital Login -->
-    <?php
+ <?php
     if (isset($_POST["login_submit"])) {
         $hospitalName = $_POST["hospital_name"];
         $password = $_POST["hospital_password"];
@@ -138,8 +179,16 @@ session_start();
     ?>
 
     <!-- PHP -->
-    <script src="script.js"> </script>
-    <script>
+      <script>
+         loginHeader.addEventListener("click", () => {
+          wrapper.classList.add("active");
+        });
+        signupHeader.addEventListener("click", () => {
+          wrapper.classList.remove("active");
+        });
+      </script>
+      <script src="script.js"></script>
+      <script>
         // JavaScript function to show the login alert
         function showLoginAlert(message) {
             var loginAlert = document.getElementById("login-alert");
@@ -154,6 +203,6 @@ session_start();
         }
     </script>
 
-</body>
-
+    </section>
+  </body>
 </html>
