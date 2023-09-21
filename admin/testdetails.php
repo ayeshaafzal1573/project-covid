@@ -31,39 +31,39 @@ if (!isset($_SESSION['admin_id'])) {
       <a href="#"><img src="../images/corona_icon.png" alt="" style="width:70px ; padding: 20px;"></a>
     </header>
     <ul class="nav">
-            <li>
-                <a href="dashboard.php">
-                    <i class="fas fa-tachometer-alt"></i>Dashboard
-                </a>
-            </li>
-            <li>
-                <a href="patientrecord.php">
-                    <i class="fas fa-users"></i>Patients
-                </a>
-            </li>
-            <li>
-                <a href="hospitaldetails.php">
-                    <i class="fas fa-hospital"></i>Hospitals
-                </a>
-            </li>
-            <li>
-                <a href="crdetails.php">
-                    <i class="fas fa-chart-bar"></i>Reports
-                </a>
-            </li>
-            <li>
-                <a href="testdetails.php">
-                    <i class="fas fa-file-medical"></i>Patient Test Details
-                </a>
-            </li>
-            <li>
-                <a href="vaccine.php">
-                    <i class="fas fa-syringe"></i>Vaccine Availability
-                </a>
-            </li>
+      <li>
+        <a href="admin.php">
+          <i class="fas fa-tachometer-alt"></i>Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="patientrecord.php">
+          <i class="fas fa-users"></i>Patients
+        </a>
+      </li>
+      <li>
+        <a href="hospitaldetails.php">
+          <i class="fas fa-hospital"></i>Hospitals
+        </a>
+      </li>
+      <li>
+        <a href="crdetails.php">
+          <i class="fas fa-chart-bar"></i>Reports
+        </a>
+      </li>
+      <li>
+        <a href="testdetails.php">
+          <i class="fas fa-file-medical"></i>Patient Test Details
+        </a>
+      </li>
+      <li>
+        <a href="vaccine.php">
+          <i class="fas fa-syringe"></i>Vaccine Availability
+        </a>
+      </li>
 
 
-        </ul>
+    </ul>
   </div>
   </div>
   </div>

@@ -32,7 +32,7 @@ if (!isset($_SESSION['admin_id'])) {
         </header>
         <ul class="nav">
             <li>
-                <a href="dashboard.php">
+                <a href="admin.php">
                     <i class="fas fa-tachometer-alt"></i>Dashboard
                 </a>
             </li>
@@ -117,7 +117,7 @@ if (!isset($_SESSION['admin_id'])) {
                             <td>
                                 <?= $row['vac_id'] ?>
                             </td>
-                           
+
                             <td>
                                 <?= $row['hospital_name'] ?>
                             </td>

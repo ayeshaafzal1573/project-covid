@@ -32,7 +32,7 @@ if (!isset($_SESSION['admin_id'])) {
     </header>
     <ul class="nav">
       <li>
-        <a href="dashboard.php">
+        <a href="admin.php">
           <i class="fas fa-tachometer-alt"></i>Dashboard
         </a>
       </li>
@@ -89,6 +89,43 @@ if (!isset($_SESSION['admin_id'])) {
     </div>
   </nav>
   <!-- NAV ENDS -->
+  <!-- CARDS -->
+  
+  <!-- start services -->
+   
+    <div class="container w-100" data-aos="fade-up" >
+        <div class="row justify-content-center" style="margin-left: 200px;" >
+            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3" id="grooming">
+                <div class="grooming-imgbg mt-2">
+                    <img src="../images/hospital.png" alt="Award" class="grooming-img">
+                </div>
+                <h5>Total Hospitals</h6>
+                    <p class="grooming-para"><?= $admin_id ?></p>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 " id="grooming">
+                <div class="grooming-imgbg mt-2">
+                    <img src="assets/image/vaccination.png" alt="Award" class="grooming-img ">
+                </div>
+                <h5>Patients</h5>
+                <p class="grooming-para">Collars, leashes, toys, beds, and more - pamper your furry friend in style!</p>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3" id="grooming">
+                <div class="grooming-imgbg mt-2">
+                    <img src="assets/image/cat-food.png" alt="Award" class="grooming-img ">
+                </div>
+                <h5>Vaccinated</h5>
+               <p class="grooming-para">Pet food supports their growth,energy and <br>immune health. </p>
+            </div>
+
+      
+        </div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+
+</div>
 </body>
 <!-- SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
