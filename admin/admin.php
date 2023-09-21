@@ -33,28 +33,35 @@ if (!isset($_SESSION['admin_id'])) {
     <ul class="nav">
       <li>
         <a href="dashboard.php">
-          <i class="zmdi zmdi-view-dashboard"></i>Dashboard
+          <i class="fas fa-tachometer-alt"></i>Dashboard
         </a>
       </li>
       <li>
         <a href="patientrecord.php">
-          <i class="zmdi zmdi-link"></i>Patients
+          <i class="fas fa-users"></i>Patients
         </a>
       </li>
       <li>
         <a href="hospitaldetails.php">
-          <i class="zmdi zmdi-share"></i>Hospitals
+          <i class="fas fa-hospital"></i>Hospitals
         </a>
       </li>
       <li>
         <a href="crdetails.php">
-          <i class="zmdi zmdi-widgets"></i>Reports</a>
+          <i class="fas fa-chart-bar"></i>Reports
+        </a>
       </li>
       <li>
         <a href="testdetails.php">
-          <i class="zmdi zmdi-settings"></i>Patient Test Details
+          <i class="fas fa-file-medical"></i>Patient Test Details
         </a>
       </li>
+      <li>
+        <a href="vaccine.php">
+          <i class="fas fa-syringe"></i>Vaccine Availability
+        </a>
+      </li>
+
 
     </ul>
   </div>
