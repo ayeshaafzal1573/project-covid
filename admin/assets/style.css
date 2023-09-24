@@ -21,7 +21,7 @@
       height: 500%;
       margin-left: -250px;
       overflow-y: auto;
-      background: linear-gradient(to right, rgb(253, 37, 37), #05254d);
+      background:  #05254d;
       -webkit-transition: all 0.5s ease;
       -moz-transition: all 0.5s ease;
       -o-transition: all 0.5s ease;
@@ -42,7 +42,7 @@
       color: white;
       display: block;
       text-decoration: none;
-      background: linear-gradient(to right, rgb(253, 37, 37), #05254d);
+      background: #05254d;
   }
 
   #sidebar header a:hover {
@@ -62,7 +62,7 @@
 
 
   #sidebar .nav a {
-      background: linear-gradient(to right, rgb(253, 37, 37), #05254d);
+      background:#05254d;
       border-bottom: 1px solid white;
       color: white;
       font-size: 14px;
@@ -83,11 +83,11 @@
       justify-content: center;
       align-items: center;
       margin-left: 200px;
-      width: 90%;
+      width:90%;
       margin-top: 20px;
       border: #05254d 3px solid;
       border-radius: 20px;
-      height: 230px;
+      height: auto;
 
 
 

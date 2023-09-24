@@ -28,7 +28,7 @@ if (!isset($_SESSION['admin_id'])) {
   <!-- SIDEBAR -->
   <div id="sidebar">
     <header>
-      <a href="#"><img src="../images/corona_icon.png" alt="" style="width:70px ; padding: 20px;"></a>
+      <a href="#"><img src="../images/covidlogo.png" alt="" style="width:120px ; height:120px;padding: 20px;"></a>
     </header>
     <ul class="nav">
       <li>
@@ -80,9 +80,9 @@ if (!isset($_SESSION['admin_id'])) {
           </a>
 
           <ul class="dropdown-menu">
-            <li><a href="#"><i class="zmdi zmdi-notifications text-danger"></i> Notifications</a></li>
+            <li><a href="notification.php"><i class="zmdi zmdi-notifications text-danger"></i> Notifications</a></li>
             <li><a href="../login.php">Logout</a></li>
-            <li><a href="#">Profile</a></li>
+
           </ul>
         </li>
       </ul>
@@ -90,42 +90,44 @@ if (!isset($_SESSION['admin_id'])) {
   </nav>
   <!-- NAV ENDS -->
   <!-- CARDS -->
-  
+
   <!-- start services -->
-   
-    <div class="container w-100" data-aos="fade-up" >
-        <div class="row justify-content-center" style="margin-left: 200px;" >
-            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3" id="grooming">
-                <div class="grooming-imgbg mt-2">
-                    <img src="../images/hospital.png" alt="Award" class="grooming-img">
-                </div>
-                <h5>Total Hospitals</h6>
-                    <p class="grooming-para"><?= $admin_id ?></p>
-            </div>
-            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 " id="grooming">
-                <div class="grooming-imgbg mt-2">
-                    <img src="assets/image/vaccination.png" alt="Award" class="grooming-img ">
-                </div>
-                <h5>Patients</h5>
-                <p class="grooming-para">Collars, leashes, toys, beds, and more - pamper your furry friend in style!</p>
-            </div>
-            <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3" id="grooming">
-                <div class="grooming-imgbg mt-2">
-                    <img src="assets/image/cat-food.png" alt="Award" class="grooming-img ">
-                </div>
-                <h5>Vaccinated</h5>
-               <p class="grooming-para">Pet food supports their growth,energy and <br>immune health. </p>
-            </div>
 
-      
+  <div class="container w-100" data-aos="fade-up">
+    <div class="row justify-content-center" style="margin-left: 200px;">
+      <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3" id="grooming">
+        <div class="grooming-imgbg mt-2">
+          <img src="../images/hospital.png" alt="Award" class="grooming-img">
         </div>
-    </div>
+        <h5>Total Hospitals</h6>
+          <p class="grooming-para">
+            <?= $admin_id ?>
+          </p>
+      </div>
+      <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 " id="grooming">
+        <div class="grooming-imgbg mt-2">
+          <img src="assets/image/vaccination.png" alt="Award" class="grooming-img ">
+        </div>
+        <h5>Patients</h5>
+        <p class="grooming-para">Collars, leashes, toys, beds, and more - pamper your furry friend in style!</p>
+      </div>
+      <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3" id="grooming">
+        <div class="grooming-imgbg mt-2">
+          <img src="assets/image/cat-food.png" alt="Award" class="grooming-img ">
+        </div>
+        <h5>Vaccinated</h5>
+        <p class="grooming-para">Pet food supports their growth,energy and <br>immune health. </p>
+      </div>
+
 
     </div>
-    </div>
-    </div>
+  </div>
 
-</div>
+  </div>
+  </div>
+  </div>
+
+  </div>
 </body>
 <!-- SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

@@ -27,8 +27,8 @@ if (!isset($_SESSION['hospital_id'])) {
 <body>
     <!-- SIDEBAR -->
     <div id="sidebar">
-        <header>
-            <a href="#"><img src="../images/covidlogo.png" alt="" style="width:120px ; height:120; padding: 20px;"></a>
+       <header>
+            <a href="#"><img src="../images/covidlogo.png" alt="" style="width:120px ; height:120;padding: 20px;"></a>
         </header>
         <ul class="nav">
 

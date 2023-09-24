@@ -28,7 +28,7 @@ if (!isset($_SESSION['admin_id'])) {
     <!-- SIDEBAR STARTS -->
     <div id="sidebar">
         <header>
-            <a href="#"><img src="../images/corona_icon.png" alt="" style="width:70px ; padding: 20px;"></a>
+            <a href="#"><img src="../images/covidlogo.png" alt="" style="width:120px ; height:120px;padding: 20px;"></a>
         </header>
         <ul class="nav">
             <li>
@@ -80,7 +80,8 @@ if (!isset($_SESSION['admin_id'])) {
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="zmdi zmdi-notifications text-danger"></i> Notifications</a></li>
+                        <li><a href="notification.php"><i class="zmdi zmdi-notifications text-danger"></i>
+                                Notifications</a></li>
                         <li><a href="../logout.php">Logout</a></li>
                     </ul>
                 </li>
