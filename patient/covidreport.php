@@ -4,38 +4,30 @@ include("../connection.php");
 
 // Session Start
 session_start();
-if (isset($_SESSION['patient_id'])) {
-    $patient_id = $_SESSION['patient_id'];
+?>
 
-    // Fetch patient's reports with hospital name from the 'appointment' table
-    $query = "SELECT appointment.app_date, appointment.app_time, appointment.test_name, appointment.status, hospital.hospital_name
-              FROM appointment
-              JOIN hospital ON appointment.hospital_id = hospital.hospital_id
-              WHERE appointment.patient_id = $patient_id";
+<!DOCTYPE html>
+<html lang="en">
 
-    $result = mysqli_query($con, $query);
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Report</title>
+     <link rel="stylesheet" href="../admin/assets/style.css">
+    <link rel="icon" href="../images/covidlogo.png">
+    <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    if (!$result) {
-        die("Error executing the query: " . mysqli_error($con));
-    }
-    ?>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Patient Reports</title>
-        <!-- Include Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    </head>
-
-    <body>
+<body>
+    <!-- TABLE STARTS -->
+    <div class="container-fluid" id="all-products">
+        <h1 class="text-center">Patient Appointments</h1>
         <div class="container">
-            <h1 class="mt-5">My Reports</h1>
-
-            <table class="table table-bordered mt-3">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Hospital Name</th>
@@ -46,6 +38,23 @@ if (isset($_SESSION['patient_id'])) {
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- PHP -->
+                    <?php
+                    if (isset($_SESSION['patient_id'])) {
+                        $patient_id = $_SESSION['patient_id'];
+
+                        // Fetch patient's reports with hospital name from the 'appointment' table
+                        $query = "SELECT appointment.app_date, appointment.app_time, appointment.test_name, appointment.status, hospital.hospital_name
+              FROM appointment
+              JOIN hospital ON appointment.hospital_id = hospital.hospital_id
+              WHERE appointment.patient_id = $patient_id";
+
+                        $result = mysqli_query($con, $query);
+
+                        if (!$result) {
+                            die("Error executing the query: " . mysqli_error($con));
+                        }
+                    } ?>
                     <?php while ($row = mysqli_fetch_assoc($result)): ?>
                         <tr>
                             <td>
@@ -68,17 +77,15 @@ if (isset($_SESSION['patient_id'])) {
                 </tbody>
             </table>
         </div>
+    </div>
 
-        <!-- Include Bootstrap JS (optional) -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </body>
 
-    </html>
 
-    <?php
-} else {
-    echo "Patient not logged in.";
-}
-?>
+    <!-- TABLE END -->
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

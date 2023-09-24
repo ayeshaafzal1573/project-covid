@@ -172,7 +172,7 @@ session_start();
           $_SESSION['hospital_id'] = $check_login['hospital_id'];
 
           echo "<script>alert('Login successful');</script>";
-          header("location: hospital/hospital.php");
+          header("location: hospital/patientlist.php");
           exit;
         } else {
           echo "<script>alert('Admin has rejected your request');</script>";
