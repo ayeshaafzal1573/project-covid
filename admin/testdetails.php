@@ -100,6 +100,7 @@ if (!isset($_SESSION['admin_id'])) {
             <th>Hospital Name</th>
             <th>Date</th>
             <th>Time</th>
+            <th>Report</th>
           </tr>
         </thead>
         <tbody>
@@ -118,6 +119,7 @@ if (!isset($_SESSION['admin_id'])) {
             echo "<td>{$row['hospital_name']}</td>";
             echo "<td>{$row['app_date']}</td>";
             echo "<td>{$row['app_time']}</td>";
+        
             echo "</tr>";
           }
           ?>
