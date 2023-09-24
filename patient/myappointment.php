@@ -84,6 +84,6 @@ if (!isset($_SESSION['patient_id'])) {
     </div>
   </div>
   <!-- TABLE END -->
-  <!-- SCRIPTS -->
+<!-- SCRIPTS -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
