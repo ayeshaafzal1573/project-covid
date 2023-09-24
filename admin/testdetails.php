@@ -100,8 +100,7 @@ if (!isset($_SESSION['admin_id'])) {
             <th>Hospital Name</th>
             <th>Date</th>
             <th>Time</th>
-            <th>Report</th>
-          </tr>
+           </tr>
         </thead>
         <tbody>
           <!-- PHP -->

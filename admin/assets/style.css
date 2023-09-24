@@ -100,7 +100,7 @@
 
   .table td {
       font-size: 18px;
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
       font-weight: 300;
   }
 
@@ -176,17 +176,18 @@
     width: 280px;
     height: 360px;
     background-color: #05254d;
-    margin-right: 20px;justify-content: center;
+    margin-right: 20px;
+    justify-content: center;
     align-items: center;
     text-align: center !important;
-
+margin-top: 50px;
     border-radius: 20px;
     
     transition: transform 0.5s;
 }
 
 .grooming-para {
-
+color: white;
     font-size: 10px;
     text-align: center;
 
