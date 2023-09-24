@@ -76,7 +76,7 @@ if (!isset($_SESSION['admin_id'])) {
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="../images/admin.jpg" alt="Admin Profile" class="adminpic">
-            <?php echo $_SESSION['admin_id']; ?> <span class="caret"></span>
+            <?php echo $_SESSION['username']; ?> <span class="caret"></span>
           </a>
 
           <ul class="dropdown-menu">
@@ -100,7 +100,7 @@ if (!isset($_SESSION['admin_id'])) {
             <th>Hospital Name</th>
             <th>Date</th>
             <th>Time</th>
-           </tr>
+          </tr>
         </thead>
         <tbody>
           <!-- PHP -->
@@ -118,7 +118,7 @@ if (!isset($_SESSION['admin_id'])) {
             echo "<td>{$row['hospital_name']}</td>";
             echo "<td>{$row['app_date']}</td>";
             echo "<td>{$row['app_time']}</td>";
-        
+
             echo "</tr>";
           }
           ?>
