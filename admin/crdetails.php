@@ -82,7 +82,7 @@ if (!isset($_SESSION['admin_id'])) {
           <ul class="dropdown-menu">
             <li><a href="notification.php"><i class="zmdi zmdi-notifications text-danger"></i> Notifications</a></li>
             <li><a href="../login.php">Logout</a></li>
-            <li><a href="#">Profile</a></li>
+
           </ul>
         </li>
       </ul>
@@ -139,9 +139,10 @@ if (!isset($_SESSION['admin_id'])) {
                 <td>
                   <?= $row['status'] == 1 ? 'Positive' : 'Negative' ?>
                 </td>
-                   <td><a href="download.php?app_id={$row['app_id']}" class='btn' style='background-color:red; color:#ffff'>Download Report</a></td>;
+                <td><a href="download.php?app_id={$row['app_id']}" class='btn'
+                    style='background-color:red; color:#ffff'>Download Report</a></td>;
 
-            
+
               </tr>
             <?php } else { ?>
               <tr>
