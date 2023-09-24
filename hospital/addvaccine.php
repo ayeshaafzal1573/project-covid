@@ -27,25 +27,32 @@ if (!isset($_SESSION['hospital_id'])) {
 <body>
     <!-- SIDEBAR -->
     <div id="sidebar">
-       <header>
+        <header>
             <a href="#"><img src="../images/covidlogo.png" alt="" style="width:120px ; height:120;padding: 20px;"></a>
         </header>
         <ul class="nav">
-
             <li>
-                <a href="appiontments.php">
-                    <i class="fas fa-users"></i>Appointments
+                <a href="patientlist.php">
+                    <i class="zmdi zmdi-account"></i>Patients
+                </a>
+            </li>
+            <li>
+                <a href="patientappointment.php">
+                    <i class="zmdi zmdi-calendar"></i>Patient Appointment
                 </a>
             </li>
             <li>
                 <a href="addvaccine.php">
-                    <i class="fas fa-hospital"></i>Add vaccine
+                    <i class="zmdi zmdi-plus"></i>Add Vaccination
                 </a>
             </li>
-
-
+            <li>
+                <a href="vacstatus.php">
+                    <i class="zmdi zmdi-hospital"></i>Vaccination
+                </a>
+            </li>
         </ul>
-    </div>
+
     </div>
     </div>
     </div>
@@ -98,7 +105,7 @@ if (!isset($_SESSION['hospital_id'])) {
     <!-- ... Rest of your HTML code ... -->
 
     <!-- Form to insert vaccine data -->
-    <h1 class="add-vaccine">ADD VACCINE</h1>
+    <h1 class="add-vaccine">ADD VACCINATION</h1>
     <form method="POST" style="margin-left: 400px; width:50%;">
         <div class="form-group">
             <label for="vaccine_name">Vaccine Name:</label>

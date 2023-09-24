@@ -79,7 +79,7 @@ if (!isset($_SESSION['hospital_id'])) {
     <!-- NAV ENDS -->
     <!-- TABLE STARTS -->
     <div class="container-fluid" id="all-products">
-        <h1 class="text-center">Patient Appointments</h1>
+        <h1 class="text-center">Patients</h1>
         <div class="container">
             <table class="table">
                 <thead>
@@ -88,14 +88,15 @@ if (!isset($_SESSION['hospital_id'])) {
                         <th>Hospital Name</th>
                         <th>Appointment Date</th>
                         <th>Test Name</th>
-                        <th>Test Result</th>
+                        <th>Status</th>
+
                     </tr>
                 </thead>
                 <tbody>
                     <!-- PHP -->
                     <?php
                     $hospital_id = $_SESSION['hospital_id'];
-                    $query = "SELECT a.*, p.patient_name FROM appointment a JOIN patient p ON a.patient_id = p.patient_id WHERE a.approval_status = 'Approved' AND a.hospital_id = $hospital_id";
+                    $query = "SELECT a.*, p.patient_name FROM appointment a JOIN patient p ON a.patient_id = p.patient_id WHERE a.hospital_id = $hospital_id";
                     $result = mysqli_query($con, $query);
 
                     if (!$result) {
@@ -132,16 +133,13 @@ if (!isset($_SESSION['hospital_id'])) {
                                     <?= $row['test_name'] ?>
                                 </td>
                                 <td>
-                                    <button class="positive-button btn btn-success"
-                                        data-appid="<?= $row['app_id'] ?>">Positive</button>
-                                    <button class="negative-button btn btn-danger"
-                                        data-appid="<?= $row['app_id'] ?>">Negative</button>
+                                    <?= $row['approval_status'] ?>
                                 </td>
+
+
                             </tr>
-                        <?php else: ?>
-                            <tr>
-                                <td colspan="5">Error fetching data.</td>
-                            </tr>
+
+
                         <?php endif; ?>
                     <?php endwhile; ?>
                     <!-- PHP -->
@@ -161,32 +159,7 @@ if (!isset($_SESSION['hospital_id'])) {
 
 
 </html>
-<!-- AJAX  -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".positive-button, .negative-button").forEach(function (button) {
-            button.addEventListener("click", function () {
-                var app_id = this.getAttribute("data-appid");
-                var isPositive = this.classList.contains("positive-button");
-                var url = isPositive ? "test_active.php" : "test_deactive.php";
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", url + "?app_id=" + app_id, true);
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        var row = document.getElementById("row_" + app_id);
-                        if (row) {
-                            row.remove();
-                        } else {
-                            console.error("Row not found.");
-                        }
-                    }
-                };
-                xhr.send();
-            });
-        });
-    });
 
-</script>
 
 <!-- PHP -->
 
