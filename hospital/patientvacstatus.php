@@ -14,9 +14,9 @@ if (!isset($_SESSION['hospital_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Appointment</title>
+    <title>Hospital</title>
     <link rel="stylesheet" href="../admin/assets/style.css">
-    <link rel="icon" href="../images/corona_icon.png">
+    <link rel="icon" href="../images/covidlogo.png">
     <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
@@ -47,7 +47,7 @@ if (!isset($_SESSION['hospital_id'])) {
                 </a>
             </li>
             <li>
-                <a href="vacstatus.php">
+                <a href="vaccstatus.php">
                     <i class="zmdi zmdi-hospital"></i>Vaccination
                 </a>
             </li>
@@ -83,24 +83,21 @@ if (!isset($_SESSION['hospital_id'])) {
     <!-- NAV ENDS -->
     <!-- TABLE STARTS -->
     <div class="container-fluid" id="all-products">
-        <h1 class="text-center">Patients</h1>
+        <h1 class="text-center">Patient Vaccination Status</h1>
         <div class="container">
             <table class="table">
                 <thead>
                     <tr>
                         <th>Patient Name</th>
-                        <th>Hospital Name</th>
-                        <th>Appointment Date</th>
-                        <th>Test Name</th>
-                        <th>Status</th>
-
+                        <th>Test Result</th>
+                        <th>Vaccination Suggestion</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- PHP -->
                     <?php
                     $hospital_id = $_SESSION['hospital_id'];
-                    $query = "SELECT a.*, p.patient_name FROM appointment a JOIN patient p ON a.patient_id = p.patient_id WHERE a.hospital_id = $hospital_id";
+                    $query = "SELECT vac_id,vac_name,vac_status from vaccination WHERE hospital_id='$hospital_id'";
                     $result = mysqli_query($con, $query);
 
                     if (!$result) {
@@ -108,39 +105,27 @@ if (!isset($_SESSION['hospital_id'])) {
                     }
 
                     while ($row = mysqli_fetch_assoc($result)):
-                        $patient_id = $row['patient_id'];
-
-                        $patient_query = "SELECT patient_name FROM patient WHERE patient_id = $patient_id";
-                        $patient_result = mysqli_query($con, $patient_query);
-
                         $hospital_query = "SELECT hospital_name FROM hospital WHERE hospital_id = $hospital_id";
                         $hospital_result = mysqli_query($con, $hospital_query);
 
-                        if ($patient_result && $hospital_result):
-                            $patient_data = mysqli_fetch_assoc($patient_result);
+                        if ($hospital_result):
                             $hospital_data = mysqli_fetch_assoc($hospital_result);
-
-                            $patient_name = $patient_data['patient_name'];
                             $hospital_name = $hospital_data['hospital_name'];
                             ?>
-                            <tr id="row_<?= $row['app_id'] ?>">
+                            <tr id="row_<?= $row['vac_id'] ?>">
                                 <td>
-                                    <?= $patient_name ?>
+                                    <?= $row['vac_id'] ?>
                                 </td>
                                 <td>
                                     <?= $hospital_name ?>
                                 </td>
                                 <td>
-                                    <?= $row['app_date'] ?>
-                                </td>
-                                <td>
-                                    <?= $row['test_name'] ?>
-                                </td>
-                                <td>
-                                    <?= $row['approval_status'] ?>
-                                </td>
+                                    <?= $row['vac_status'] ?>
+                                    <a href="editvacstatus.php?vac_id=<?= $row['vac_id'] ?>">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
 
-
+                                </td>
                             </tr>
 
 
@@ -156,17 +141,10 @@ if (!isset($_SESSION['hospital_id'])) {
 
     <!-- TABLE END -->
 
+
 </body>
 <!-- SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-</html>
-
-
-<!-- PHP -->
-
-</body>
 
 </html>

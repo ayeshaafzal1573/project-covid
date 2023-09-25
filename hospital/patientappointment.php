@@ -51,15 +51,19 @@ if (!isset($_SESSION['hospital_id'])) {
                     <i class="zmdi zmdi-hospital"></i>Vaccination
                 </a>
             </li>
+            <li>
+                <a href="patientvacstatus.php">
+                    <i class="fas fa-syringe"></i> Patient Vaccination
+                </a>
+            </li>
         </ul>
 
     </div>
     </div>
     </div>
-    </div>
     <!-- SIDEBAR END -->
     <!-- NAV STARTS -->
-    <nav class="navbar navbar-default">
+    <nav class="navbar">
         <div class="container-fluid">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -69,8 +73,8 @@ if (!isset($_SESSION['hospital_id'])) {
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="zmdi zmdi-notifications text-danger"></i> Notifications</a></li>
-                        <li><a href="../login.php">Logout</a></li>
+                        <li><a href="#"><i class="fa-regular fa-bell"></i> Notifications</a></li>
+                        <li><a href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
                     </ul>
                 </li>
             </ul>

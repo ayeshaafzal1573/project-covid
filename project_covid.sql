@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2023 at 09:42 PM
+-- Generation Time: Sep 25, 2023 at 08:54 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -39,9 +39,10 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `username`, `email`, `password`) VALUES
-(1, 'hey', 'hey@gmail.com', 'hey'),
-(2, 'put', 'put@krey.com', 'put'),
-(20, 'Admin', 'admin@gmail.com', 'admin');
+(20, 'Admin', 'admin@gmail.com', 'admin'),
+(21, 'aaq', 'aaq@gmail.com ', 'aaq123'),
+(22, 'flappy', 'flappy@gmail.com ', 'flappy'),
+(23, 'admin', 'admin@gmail.com ', 'admim');
 
 -- --------------------------------------------------------
 
@@ -56,17 +57,19 @@ CREATE TABLE `appointment` (
   `app_date` date DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `app_time` time DEFAULT NULL,
-  `test_name` varchar(255) NOT NULL
+  `test_name` varchar(255) NOT NULL,
+  `approval_status` enum('Pending','Approved','Rejected') DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `appointment`
 --
 
-INSERT INTO `appointment` (`app_id`, `patient_id`, `hospital_id`, `app_date`, `status`, `app_time`, `test_name`) VALUES
-(4, 8, 2, '2023-01-31', 1, '01:00:00', 'Naats'),
-(5, 9, 1, '2023-09-20', 0, '17:12:00', 'PCR'),
-(6, 8, 2, '2023-09-27', 1, '23:04:00', 'Naats');
+INSERT INTO `appointment` (`app_id`, `patient_id`, `hospital_id`, `app_date`, `status`, `app_time`, `test_name`, `approval_status`) VALUES
+(4, 8, 2, '2023-01-31', 1, '01:00:00', 'Naats', 'Rejected'),
+(5, 9, 1, '2023-09-20', 1, '17:12:00', 'PCR', 'Approved'),
+(6, 8, 2, '2023-09-27', 1, '23:04:00', 'Naats', 'Approved'),
+(7, 9, 1, '2023-09-26', 1, '05:17:00', 'PCR', 'Approved');
 
 -- --------------------------------------------------------
 
@@ -77,9 +80,7 @@ INSERT INTO `appointment` (`app_id`, `patient_id`, `hospital_id`, `app_date`, `s
 CREATE TABLE `covid_test` (
   `test_id` int(11) NOT NULL,
   `patient_id` int(11) DEFAULT NULL,
-  `hospital_id` int(11) DEFAULT NULL,
-  `test_date` date DEFAULT NULL,
-  `result` varchar(255) DEFAULT NULL
+  `hospital_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -93,17 +94,18 @@ CREATE TABLE `hospital` (
   `hospital_name` varchar(255) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `status` int(11) NOT NULL
+  `status` int(11) NOT NULL,
+  `approval_status` enum('Pending','Approved','Rejected') DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `hospital`
 --
 
-INSERT INTO `hospital` (`hospital_id`, `hospital_name`, `location`, `password`, `status`) VALUES
-(1, 'kucbhi', 'Karachi', 'kuchbhi', 0),
-(2, 'kucbhi', 'Karachi', 'kuchbhi', 1),
-(3, 'liaquat', 'Karachi', 'liaquat', 1);
+INSERT INTO `hospital` (`hospital_id`, `hospital_name`, `location`, `password`, `status`, `approval_status`) VALUES
+(1, 'aghakhan', 'Karachi', 'aghakhan', 1, 'Approved'),
+(2, 'mothercare', 'Karachi', 'mothercare', 0, 'Rejected'),
+(3, 'liaquat', 'Karachi', 'liaquat', 1, 'Rejected');
 
 -- --------------------------------------------------------
 
@@ -124,7 +126,7 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`patient_id`, `patient_name`, `address`, `email`, `password`) VALUES
-(8, 'aisha', 'shamsisociety', 'aisha@gmail.com', 'aisha'),
+(8, 'aisha', 'shamsi', 'aisha@gmail.com', 'aisha'),
 (9, 'sunaina', 'lakhani', 'sunaina@gmail.com', 'sunaina');
 
 -- --------------------------------------------------------
@@ -162,10 +164,18 @@ CREATE TABLE `report` (
 
 CREATE TABLE `vaccination` (
   `vac_id` int(11) NOT NULL,
+  `vac_name` varchar(255) NOT NULL,
   `patient_id` int(11) DEFAULT NULL,
   `hospital_id` int(11) DEFAULT NULL,
   `vac_status` enum('Available','Unavailable') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vaccination`
+--
+
+INSERT INTO `vaccination` (`vac_id`, `vac_name`, `patient_id`, `hospital_id`, `vac_status`) VALUES
+(4, 'pi fizar', NULL, 1, 'Unavailable');
 
 --
 -- Indexes for dumped tables
@@ -237,13 +247,13 @@ ALTER TABLE `vaccination`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `covid_test`
@@ -279,7 +289,7 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT for table `vaccination`
 --
 ALTER TABLE `vaccination`
-  MODIFY `vac_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `vac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

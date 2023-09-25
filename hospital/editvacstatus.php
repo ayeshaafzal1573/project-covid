@@ -9,6 +9,7 @@ if (!isset($_SESSION['hospital_id'])) {
     exit;
 }
 ?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -22,7 +23,6 @@ if (!isset($_SESSION['hospital_id'])) {
         href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 
 <body>
     <!-- SIDEBAR -->
@@ -81,63 +81,52 @@ if (!isset($_SESSION['hospital_id'])) {
         </div>
     </nav>
     <!-- NAV ENDS -->
-    <!-- TABLE STARTS -->
+    <!-- PHP -->
     <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $vaccineName = $_POST['vaccine_name'];
-        $availabilityStatus = $_POST['availability_status'];
-        $hospitalId = $_SESSION['hospital_id'];
-
-
-        // Insert the data into the vaccination table
-        $query = "INSERT INTO vaccination (hospital_id, vac_name, vac_status)
-              VALUES ($hospitalId, '$vaccineName', '$availabilityStatus')";
-
-        // Debug: Print the query to check if it looks correct
-        echo "SQL Query: $query<br>";
-
+    if (isset($_GET['vac_id'])) {
+        $vac_id = $_GET['vac_id'];
+        $query = "SELECT vac_id, vac_name, vac_status FROM vaccination WHERE hospital_id = {$_SESSION['hospital_id']} AND vac_id = $vac_id";
         $result = mysqli_query($con, $query);
 
-        if ($result) {
-            echo "<script>alert('Vaccine data inserted successfully');</script>";
+        if ($result && $row = mysqli_fetch_assoc($result)) {
+            $vac_name = $row['vac_name'];
+            $vac_status = $row['vac_status'];
         } else {
-            echo "<script>alert('Error inserting vaccine data: " . mysqli_error($con) . "');</script>";
+            echo "Vaccination ID not found.";
+            exit;
+        }
+    }
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $newStatus = $_POST['new_status'];
+        $updateQuery = "UPDATE vaccination SET vac_status = '$newStatus' WHERE vac_id = $vac_id AND hospital_id = {$_SESSION['hospital_id']}";
+        $updateResult = mysqli_query($con, $updateQuery);
+
+        if ($updateResult) {
+            header("Location: vacstatus.php");
+            exit;
+        } else {
+            echo "Error updating vaccination status: " . mysqli_error($con);
         }
     }
     ?>
-
-
-    <!-- ... Rest of your HTML code ... -->
-
-    <!-- Form to insert vaccine data -->
+    <!-- FORM -->
     <h1 class="add-vaccine">ADD VACCINATION</h1>
     <form method="POST" style="margin-left: 400px; width:50%;">
-        <div class="form-group">
-            <label for="vaccine_name">Vaccine Name:</label>
-            <input type="text" class="form-control" id="vaccine_name" name="vaccine_name" required>
-        </div>
-        <div class="form-group">
-            <label for="availability_status">Availability Status:</label>
-            <select class="form-control" id="availability_status" name="availability_status" required>
-                <option class="available" value="Available">Available</option>
-                <option class="available" value="Unavailable">Unavailable</option>
-            </select>
-        </div>
-        <button type="submit" class="btn-vaccine">Insert Vaccine Data</button>
+
+
+        <label>New Status:</label>
+        <select class="form-control" id="new_status" name="new_status">
+            <option value="Available" <?php if ($vac_status === 'Available')
+                echo 'selected'; ?>>Available</option>
+            <option value="Unavailable" <?php if ($vac_status === 'Unavailable')
+                echo 'selected'; ?>>Unavailable
+            </option>
+        </select>
+
+        <button type="submit" class="btn btn-primary">Update Status</button>
     </form>
-
-
-
-    <!-- TABLE END -->
-
-</body>
-<!-- SCRIPTS -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-</html>
-
+    <!-- FORM END -->
+    <!-- PHP -->
 </body>
 
 </html>
