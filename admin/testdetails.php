@@ -70,13 +70,13 @@ if (!isset($_SESSION['admin_id'])) {
   </div>
   <!-- SIDEBAR END -->
   <!-- NAV STARTS -->
-  <nav class="navbar navbar-default">
+  <nav class="navbar">
     <div class="container-fluid">
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="../images/admin.jpg" alt="Admin Profile" class="adminpic">
-            <?php echo $_SESSION['username']; ?> <span class="caret"></span>
+            <img src="../images/adminuser.png" alt="Admin Profile" class="adminpic">
+              <span class="caret"></span>
           </a>
 
           <ul class="dropdown-menu">

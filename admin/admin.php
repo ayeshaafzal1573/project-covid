@@ -72,13 +72,13 @@ if (!isset($_SESSION['admin_id'])) {
   </div>
   <!-- SIDEBAR END -->
   <!-- NAV STARTS -->
-  <nav class="navbar navbar-default">
+  <nav class="navbar">
     <div class="container-fluid">
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="../images/admin.jpg" alt="Admin Profile" class="adminpic">
-           <?php echo $_SESSION['username']; ?> <span class="caret"></span>
+            <img src="../images/adminuser.png" alt="Admin Profile" class="adminpic">
+            <span class="caret"></span>
           </a>
 
           <ul class="dropdown-menu">
@@ -103,7 +103,7 @@ if (!isset($_SESSION['admin_id'])) {
         </div>
         <h5>Total Hospitals</h6>
           <p class="grooming-para">
-
+10
           </p>
       </div>
       <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 " id="grooming">
@@ -113,7 +113,7 @@ if (!isset($_SESSION['admin_id'])) {
         <h5>Patients</h5>
         <p class="grooming-para">
 
-
+20
         </p>
       </div>
       <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3" id="grooming">
@@ -121,7 +121,9 @@ if (!isset($_SESSION['admin_id'])) {
           <img src="../images/vaccine.png" alt="Award" class="grooming-img ">
         </div>
         <h5>Vaccinated</h5>
-        <p class="grooming-para">Pet food supports their growth,energy and <br>immune health. </p>
+         <p class="grooming-para">
+2
+          </p>
       </div>
 
 

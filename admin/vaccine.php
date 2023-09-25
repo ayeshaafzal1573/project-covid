@@ -70,13 +70,13 @@ if (!isset($_SESSION['admin_id'])) {
     </div>
     <!-- SIDEBAR END -->
     <!-- NAV STARTS -->
-    <nav class="navbar navbar-default">
+    <nav class="navbar">
         <div class="container-fluid">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="../images/admin.jpg" alt="Admin Profile" class="adminpic">
-                        <?php echo $_SESSION['username']; ?> <span class="caret"></span>
+                        <img src="../images/adminuser.png" alt="Admin Profile" class="adminpic">
+                 <span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu">
@@ -99,12 +99,13 @@ if (!isset($_SESSION['admin_id'])) {
                         <th>Vaccine ID</th>
                         <th>Hospital Name</th>
                         <th>Vaccine Status</th>
+                        <th>Vaccine Name</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- PHP -->
                     <?php
-                    $query = "SELECT v.vac_id, v.patient_id, v.hospital_id, v.vac_status, h.hospital_name
+                    $query = "SELECT v.vac_id, v.patient_id, v.hospital_id, v.vac_name, v.vac_status, h.hospital_name
           FROM vaccination v
           LEFT JOIN hospital h ON v.hospital_id = h.hospital_id";
 
@@ -121,6 +122,9 @@ if (!isset($_SESSION['admin_id'])) {
 
                             <td>
                                 <?= $row['hospital_name'] ?>
+                            </td>
+                            <td>
+                                <?= $row['vac_name'] ?>
                             </td>
                             <td>
                                 <?= $row['vac_status'] ?>

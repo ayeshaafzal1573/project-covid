@@ -71,13 +71,13 @@ if (!isset($_SESSION['admin_id'])) {
     </div>
     <!-- SIDEBAR END -->
     <!-- NAV STARTS -->
-    <nav class="navbar navbar-default">
+    <nav class="navbar">
         <div class="container-fluid">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="../images/admin.jpg" alt="Admin Profile" class="adminpic">
-                        <?php echo $_SESSION['username']; ?> <span class="caret"></span>
+                        <img src="../images/adminuser.png" alt="Admin Profile" class="adminpic">
+                        <span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu">
@@ -218,9 +218,10 @@ if (!isset($_SESSION['admin_id'])) {
                                 <?= $row['test_name'] ?>
                             </td>
                             <td>
-                                <a href="?id=<?= $row['app_id'] ?>&action=approve">Approve</a>
-                                <a href="?id=<?= $row['app_id'] ?>&action=reject">Reject</a>
+                                <a href="?id=<?= $row['app_id'] ?>&action=approve" class="btn btn-success">Approve</a>
+                                <a href="?id=<?= $row['app_id'] ?>&action=reject" class="btn btn-danger">Reject</a>
                             </td>
+
                         </tr>
                     <?php endwhile; ?>
 
