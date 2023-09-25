@@ -1,12 +1,13 @@
 <?php
-session_start();
-if (!isset($_SESSION['patient_id'])) {
-    header("Location: login.php");
-    exit();
-}
-
+// Database Connection
 include("../connection.php");
-
+// Session Start
+session_start();
+//if user loggout
+if (!isset($_SESSION['patient_id'])) {
+    header("Location: ../login.php");
+    exit;
+}
 $patient_name = "";
 $address = "";
 $email = "";
@@ -25,19 +26,13 @@ if (mysqli_num_rows($result) > 0) {
     $address = $row['address'];
     $email = $row['email'];
 }
-
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve the updated data from the form
     $new_patient_name = $_POST["patient_name"];
     $new_address = $_POST["address"];
     $new_email = $_POST["email"];
-
-    // Update the patient's profile data in the database
     $query = "UPDATE `patient` SET `patient_name`='$new_patient_name', `address`='$new_address', `email`='$new_email' WHERE `patient_id` = $patient_id";
-
     if (mysqli_query($con, $query)) {
-        header("Location: myprofile.php"); // Redirect to the profile page after successful update
+        header("Location: myprofile.php");
         exit();
     } else {
         echo "Error updating profile: " . mysqli_error($con);
@@ -49,11 +44,13 @@ mysqli_close($con);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
 </head>
+
 <body>
     <h1>Edit Profile</h1>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -69,4 +66,5 @@ mysqli_close($con);
         <input type="submit" value="Update Profile">
     </form>
 </body>
+
 </html>

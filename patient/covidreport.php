@@ -1,11 +1,14 @@
 <?php
 // Database Connection
 include("../connection.php");
-
 // Session Start
 session_start();
+//if user loggout
+if (!isset($_SESSION['patient_id'])) {
+    header("Location: ../login.php");
+    exit;
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +16,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Report</title>
-     <link rel="stylesheet" href="../admin/assets/style.css">
+    <link rel="stylesheet" href="../admin/assets/style.css">
     <link rel="icon" href="../images/covidlogo.png">
     <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet"

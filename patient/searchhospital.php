@@ -9,18 +9,18 @@
 
 <body>
     <h1>Hospital Search</h1>
-  <form id="searchForm">
-    <label for="location">Location:</label>
-    <input type="text" id="location" name="location" required><br>
+    <form id="searchForm">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required><br>
 
-    <label for="hospital_type">Hospital Type:</label>
-    <select id="hospital_type" name="hospital_type"> 
-        <option value="covid19">COVID-19</option>
-        <option value="vaccination">Vaccination</option>
-    </select><br>
+        <label for="hospital_type">Hospital Type:</label>
+        <select id="hospital_type" name="hospital_type">
+            <option value="covid19">COVID-19</option>
+            <option value="vaccination">Vaccination</option>
+        </select><br>
 
-    <button type="submit">Search</button>
-</form>
+        <button type="submit">Search</button>
+    </form>
     <div id="searchResults">
         <!-- Display search results here -->
     </div>
@@ -31,9 +31,17 @@
 
 </html>
 <?php
+// Database Connection
 include("../connection.php");
+// Session Start
+session_start();
+//if user loggout
+if (!isset($_SESSION['patient_id'])) {
+    header("Location: ../login.php");
+    exit;
+}
 $location = $_GET["location"];
-$hospitalType = $_GET["hospital_type"]; 
+$hospitalType = $_GET["hospital_type"];
 $query = "SELECT * FROM `hospital` WHERE `location` LIKE '%$location%' AND `hospital_name` = '$hospitalType'";
 $result = mysqli_query($con, $query);
 

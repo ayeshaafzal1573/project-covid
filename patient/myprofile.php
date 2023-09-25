@@ -1,15 +1,13 @@
 <?php
-// Start the session and check if the user is logged in
-session_start();
-if (!isset($_SESSION['patient_id'])) {
-    header("Location: login.php"); // Redirect to the login page if not logged in
-    exit();
-}
-
-// Include the database connection
+// Database Connection
 include("../connection.php");
-
-// Fetch patient's profile data from the database
+// Session Start
+session_start();
+//if user loggout
+if (!isset($_SESSION['patient_id'])) {
+    header("Location: ../login.php");
+    exit;
+}
 $patient_id = $_SESSION['patient_id'];
 $query = "SELECT * FROM `patient` WHERE `patient_id` = $patient_id";
 $result = mysqli_query($con, $query);

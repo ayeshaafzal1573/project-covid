@@ -1,8 +1,13 @@
 <?php
-//Database Connection
+// Database Connection
 include("../connection.php");
 // Session Start
 session_start();
+//if user loggout
+if (!isset($_SESSION['patient_id'])) {
+    header("Location: ../login.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,9 +20,9 @@ session_start();
 
 <body>
     <form method="POST">
-  <label for="patient_name">Patient ID:</label>
-<input type="text" id="patient_name" name="patient_name"><br><br>
-<select name="test_name">
+        <label for="patient_name">Patient ID:</label>
+        <input type="text" id="patient_name" name="patient_name"><br><br>
+        <select name="test_name">
             <option hidden>Select Covid Test</option>
             <option>PCR</option>
             <option>Naats</option>
@@ -41,7 +46,7 @@ session_start();
     </form>
     <!-- PHP -->
     <?php
-   
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $testname = $_POST["test_name"];
         $patient_name = $_POST["patient_name"];
