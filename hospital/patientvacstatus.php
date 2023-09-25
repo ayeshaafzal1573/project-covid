@@ -96,8 +96,13 @@ if (!isset($_SESSION['hospital_id'])) {
                 <tbody>
                     <!-- PHP -->
                     <?php
+
                     $hospital_id = $_SESSION['hospital_id'];
-                    $query = "SELECT vac_id,vac_name,vac_status from vaccination WHERE hospital_id='$hospital_id'";
+                    $query = "SELECT p.patient_name, a.status, r.vac_suggest FROM patient p
+          INNER JOIN appointment a ON p.patient_id = a.patient_id
+          LEFT JOIN report r ON p.patient_id = r.patient_id
+          WHERE a.hospital_id='$hospital_id'";
+
                     $result = mysqli_query($con, $query);
 
                     if (!$result) {
@@ -105,33 +110,40 @@ if (!isset($_SESSION['hospital_id'])) {
                     }
 
                     while ($row = mysqli_fetch_assoc($result)):
-                        $hospital_query = "SELECT hospital_name FROM hospital WHERE hospital_id = $hospital_id";
-                        $hospital_result = mysqli_query($con, $hospital_query);
+                        $patient_name = $row['patient_name'];
+                        $status = ($row['status'] == 0) ? "Negative" : "Positive";
+                        $vac_suggest = $row['vac_suggest'];
 
-                        if ($hospital_result):
-                            $hospital_data = mysqli_fetch_assoc($hospital_result);
-                            $hospital_name = $hospital_data['hospital_name'];
-                            ?>
-                            <tr id="row_<?= $row['vac_id'] ?>">
-                                <td>
-                                    <?= $row['vac_id'] ?>
-                                </td>
-                                <td>
-                                    <?= $hospital_name ?>
-                                </td>
-                                <td>
-                                    <?= $row['vac_status'] ?>
-                                    <a href="editvacstatus.php?vac_id=<?= $row['vac_id'] ?>">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
+                        // Fetch available vaccines from the vaccination table
+                        $vaccine_query = "SELECT vac_name FROM vaccination WHERE vac_status = 'Available'";
+                        $vaccine_result = mysqli_query($con, $vaccine_query);
 
-                                </td>
-                            </tr>
-
-
-                        <?php endif; ?>
+                        ?>
+                        <tr id="row_<?= $patient_name ?>">
+                            <td>
+                                <?= $patient_name ?>
+                            </td>
+                            <td>
+                                <?= $status ?>
+                            </td>
+                            <td>
+                                <select name="vac_suggest[<?= $patient_name ?>]">
+                                    <option value="hidden">Select Vaccine</option>
+                                    <?php
+                                    while ($vaccine_row = mysqli_fetch_assoc($vaccine_result)) {
+                                        $selected = ($vaccine_row['vac_name'] == $vac_suggest) ? 'selected' : '';
+                                        echo "<option value='" . $vaccine_row['vac_name'] . "' $selected>" . $vaccine_row['vac_name'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </td>
+                            <td>
+                                <button onclick="saveVaccineSuggestion('<?= $patient_name ?>')">Save</button>
+                            </td>
+                        </tr>
                     <?php endwhile; ?>
                     <!-- PHP -->
+
                 </tbody>
             </table>
         </div>
@@ -143,6 +155,22 @@ if (!isset($_SESSION['hospital_id'])) {
 
 
 </body>
+<script>
+    function saveVaccineSuggestion(patientName) {
+        var selectedVaccine = $("select[name='vac_suggest[" + patientName + "]']").val();
+        $.ajax({
+            type: "POST",
+            url: "save_vaccine_suggestion.php", // Create this PHP file to handle the database update
+            data: { patientName: patientName, selectedVaccine: selectedVaccine },
+            success: function (response) {
+                console.log(response); // You can replace this with your own logic
+            },
+            error: function (error) {
+                console.error("Error:", error);
+            }
+        });
+    }
+</script>
 <!-- SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
