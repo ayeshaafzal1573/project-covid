@@ -23,7 +23,6 @@ if (!isset($_SESSION['hospital_id'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-
 <body>
     <!-- SIDEBAR -->
     <div id="sidebar">
@@ -99,9 +98,9 @@ if (!isset($_SESSION['hospital_id'])) {
 
                     $hospital_id = $_SESSION['hospital_id'];
                     $query = "SELECT p.patient_name, a.status, r.vac_suggest FROM patient p
-          INNER JOIN appointment a ON p.patient_id = a.patient_id
-          LEFT JOIN report r ON p.patient_id = r.patient_id
-          WHERE a.hospital_id='$hospital_id'";
+                    INNER JOIN appointment a ON p.patient_id = a.patient_id
+                    LEFT JOIN report r ON p.patient_id = r.patient_id
+                    WHERE a.hospital_id='$hospital_id'";
 
                     $result = mysqli_query($con, $query);
 
@@ -138,8 +137,10 @@ if (!isset($_SESSION['hospital_id'])) {
                                 </select>
                             </td>
                             <td>
-                                <button onclick="saveVaccineSuggestion('<?= $patient_name ?>')">Save</button>
+                                <button type="button" class="btn btn-primary"
+                                    onclick="saveVaccineSuggestion('<?= $patient_name ?>')">Save</button>
                             </td>
+
                         </tr>
                     <?php endwhile; ?>
                     <!-- PHP -->
@@ -148,21 +149,64 @@ if (!isset($_SESSION['hospital_id'])) {
             </table>
         </div>
     </div>
+    <?php
+    // Database Connection
+    include("../connection.php");
 
+    while ($row = mysqli_fetch_assoc($result)):
+        $patient_name = $row['patient_name'];
+        $status = ($row['status'] == 1) ? "Positive" : "Negative"; // Updated logic
+        $vac_suggest = $row['vac_suggest'];
+        $patientName = $_POST["patientName"];
+        $selectedVaccine = $_POST["selectedVaccine"];
+
+        echo "Patient Name: " . $patientName . "<br>";
+        echo "Selected Vaccine: " . $selectedVaccine . "<br>";
+
+        // Fetch available vaccines from the vaccination table
+        $vaccine_query = "SELECT vac_name FROM vaccination WHERE vac_status = 'Available'";
+        $vaccine_result = mysqli_query($con, $vaccine_query);
+
+        ?>
+        <tr id="row_<?= $patient_name ?>">
+            <td>
+                <?= $patient_name ?>
+            </td>
+            <td>
+                <?= $status ?> <!-- Display the test_result based on status -->
+            </td>
+            <td>
+                <select name="vac_suggest[<?= $patient_name ?>]">
+                    <option value="hidden">Select Vaccine</option>
+                    <?php
+                    while ($vaccine_row = mysqli_fetch_assoc($vaccine_result)) {
+                        $selected = ($vaccine_row['vac_name'] == $vac_suggest) ? 'selected' : '';
+                        echo "<option value='" . $vaccine_row['vac_name'] . "' $selected>" . $vaccine_row['vac_name'] . "</option>";
+                    }
+
+                    ?>
+                </select>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="saveVaccineSuggestion('<?= $patient_name ?>')">Save</button>
+            </td>
+        </tr>
+<?php endwhile; ?>
 
 
     <!-- TABLE END -->
-
-
-</body>
-<script>
+  <script>
     function saveVaccineSuggestion(patientName) {
+        // Get the selected vaccine suggestion for the patient
         var selectedVaccine = $("select[name='vac_suggest[" + patientName + "]']").val();
+
+        // Send an AJAX request to save the suggestion
         $.ajax({
             type: "POST",
             url: "save_vaccine_suggestion.php", // Create this PHP file to handle the database update
             data: { patientName: patientName, selectedVaccine: selectedVaccine },
             success: function (response) {
+                // Handle the response from the server (e.g., display a success message)
                 console.log(response); // You can replace this with your own logic
             },
             error: function (error) {
@@ -171,8 +215,9 @@ if (!isset($_SESSION['hospital_id'])) {
         });
     }
 </script>
-<!-- SCRIPTS -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
 
 </html>

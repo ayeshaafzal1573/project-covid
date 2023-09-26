@@ -162,11 +162,6 @@ if (!isset($_SESSION['hospital_id'])) {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-</html>
-
-
-<!-- PHP -->
-
 </body>
 
 </html>

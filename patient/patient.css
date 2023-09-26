@@ -223,7 +223,7 @@
       font-size: 17px;
       background-color: #05254d;
       color: #fff;
-
+border-radius: 20px;
       width: 100%;
       max-width: 275px;
       text-align: center;
@@ -367,7 +367,7 @@
   }
 
   .site-navbar ul li {
-      padding-right: 110px;
+      padding-right: 115px;
       text-align: center;
       align-items: center;
       justify-content: center;
@@ -573,7 +573,8 @@
   .photog .read_more {
       margin-right: 15px;
       font-weight: normal;
-      background: #fff;
+      border-radius: 10px;
+      background: #ed242e;
       color: #000;
       height: 50px;
       line-height: 50px;
@@ -1131,14 +1132,11 @@
   /** footer **/
 
   .footer {
-      padding-top: 80px;
-      background: #111111;
+      padding-top: 20px;
+      background: #05254d;
       text-align: center;
   }
 
-  .hedingh3 {
-      padding-bottom: 25px;
-  }
 
   .hedingh3 h3 {
       color: #fff;
@@ -1154,15 +1152,16 @@
       color: #fff;
       text-align: left;
       margin-bottom: 15px;
+
   }
 
   ul.menu_footer {
       text-align: left;
-      margin-bottom: 15px;
+      
   }
 
   ul.menu_footer li a {
-      color: #979793;
+ color: white;
       font-size: 17px;
       line-height: 18px;
       padding-bottom: 10px;
@@ -1172,11 +1171,6 @@
   ul.menu_footer li a:hover {
       color: #e92f0b;
   }
-
-
-
-
-
   ul.inst li {
       display: inline-block;
       margin: 4px;
@@ -1186,6 +1180,7 @@
   ul.top_infomation li {
       display: block;
       font-size: 17px;
+      padding: 8px;
       color: #fff;
   }
 
@@ -1214,31 +1209,6 @@
       border-radius: 25px;
       cursor: pointer;
       transition: ease-in all 0.5s;
-  }
-
-
-  .copyright {
-      margin-top: 60px;
-
-      padding-bottom: 20px;
-  }
-
-  .copyright p {
-      border-top: #d1d1d1 solid 1px;
-      padding-top: 20px;
-      color: #d1d1d1;
-      font-size: 17px;
-      line-height: 22px;
-      text-align: center;
-      font-weight: normal;
-  }
-
-  .copyright a {
-      color: #d1d1d1;
-  }
-
-  .copyright a:hover {
-      color: #ed1c24;
   }
 
 

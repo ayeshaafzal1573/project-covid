@@ -50,6 +50,8 @@ if (!isset($_SESSION['patient_id'])) {
                         $query = "SELECT appointment.app_date, appointment.app_time, appointment.test_name, appointment.status, hospital.hospital_name
               FROM appointment
               JOIN hospital ON appointment.hospital_id = hospital.hospital_id
+                JOIN vaccination ON appointment.patient_id = vaccination.patient_id
+      
               WHERE appointment.patient_id = $patient_id";
 
                         $result = mysqli_query($con, $query);
@@ -74,6 +76,9 @@ if (!isset($_SESSION['patient_id'])) {
                             </td>
                             <td>
                                 <?= $row['status'] == 1 ? 'Positive' : 'Negative' ?>
+                            </td>
+                            <td>
+                                <?= $row['vac_suggest'] ?>
                             </td>
                         </tr>
                     <?php endwhile; ?>
