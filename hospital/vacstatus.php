@@ -14,7 +14,7 @@ if (!isset($_SESSION['hospital_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hospital</title>
+    <title>Status</title>
     <link rel="stylesheet" href="../admin/assets/style.css">
     <link rel="icon" href="../images/covidlogo.png">
     <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -73,7 +73,6 @@ if (!isset($_SESSION['hospital_id'])) {
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="fa-regular fa-bell"></i> Notifications</a></li>
                         <li><a href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
                     </ul>
                 </li>
@@ -118,7 +117,7 @@ if (!isset($_SESSION['hospital_id'])) {
                                     <?= $row['vac_id'] ?>
                                 </td>
                                 <td>
-                                    <?= $hospital_name ?>
+                                    <?= $row['vac_name'] ?>
                                 </td>
                                 <td>
                                     <?= $row['vac_status'] ?>

@@ -14,7 +14,7 @@ if (!isset($_SESSION['hospital_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Add Vaccine</title>
     <link rel="stylesheet" href="../admin/assets/style.css">
     <link rel="icon" href="../images/covidlogo.png">
     <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -69,11 +69,10 @@ if (!isset($_SESSION['hospital_id'])) {
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="../images/hospitaluser.png" alt="Admin Profile" class="adminpic">
-                    <?php echo $_SESSION['hospital_name']; ?> <span class="caret"></span>
+                        <?php echo $_SESSION['hospital_name']; ?> <span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="fa-regular fa-bell"></i> Notifications</a></li>
                         <li><a href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
                     </ul>
                 </li>
@@ -87,13 +86,8 @@ if (!isset($_SESSION['hospital_id'])) {
         $vaccineName = $_POST['vaccine_name'];
         $availabilityStatus = $_POST['availability_status'];
         $hospitalId = $_SESSION['hospital_id'];
-
-
-        // Insert the data into the vaccination table
         $query = "INSERT INTO vaccination (hospital_id, vac_name, vac_status)
               VALUES ($hospitalId, '$vaccineName', '$availabilityStatus')";
-
-        // Debug: Print the query to check if it looks correct
         echo "SQL Query: $query<br>";
 
         $result = mysqli_query($con, $query);
@@ -105,22 +99,18 @@ if (!isset($_SESSION['hospital_id'])) {
         }
     }
     ?>
-
-
-    <!-- ... Rest of your HTML code ... -->
-
     <!-- Form to insert vaccine data -->
     <h1 class="add-vaccine">ADD VACCINATION</h1>
     <form method="POST" style="margin-left: 400px; width:50%;">
         <div class="form-group">
             <label for="vaccine_name">Vaccine Name:</label>
-            <input type="text" class="form-control" id="vaccine_name" name="vaccine_name" required>
+            <input type="text" class="form-control" id="vaccine_name" name="vaccine_name">
         </div>
         <div class="form-group">
             <label for="availability_status">Availability Status:</label>
-            <select class="form-control" id="availability_status" name="availability_status" required>
-                <option class="available" value="Available">Available</option>
-                <option class="available" value="Unavailable">Unavailable</option>
+            <select class="form-control" id="availability_status" name="availability_status">
+                <option class="Available" value="Available">Available</option>
+                <option class="Unavailable" value="Unavailable">Unavailable</option>
             </select>
         </div>
         <button type="submit" class="btn-vaccine">Insert Vaccine Data</button>

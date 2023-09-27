@@ -16,7 +16,7 @@ if (!isset($_SESSION['hospital_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Appointment</title>
     <link rel="stylesheet" href="../admin/assets/style.css">
-    <link rel="icon" href="../images/corona_icon.png">
+    <link rel="icon" href="../images/covidlogo.png">
     <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
@@ -71,9 +71,7 @@ if (!isset($_SESSION['hospital_id'])) {
                         <img src="../images/hospitaluser.png" alt="Admin Profile" class="adminpic">
                         <?php echo $_SESSION['hospital_name']; ?> <span class="caret"></span>
                     </a>
-
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="fa-regular fa-bell"></i> Notifications</a></li>
                         <li><a href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
                     </ul>
                 </li>

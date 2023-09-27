@@ -15,7 +15,7 @@ if (!isset($_SESSION['hospital_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Edit Vaccine Status</title>
     <link rel="stylesheet" href="../admin/assets/style.css">
     <link rel="icon" href="../images/covidlogo.png">
     <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -73,7 +73,6 @@ if (!isset($_SESSION['hospital_id'])) {
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="fa-regular fa-bell"></i> Notifications</a></li>
                         <li><a href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
                     </ul>
                 </li>
@@ -123,10 +122,15 @@ if (!isset($_SESSION['hospital_id'])) {
             </option>
         </select>
 
-        <button type="submit" class="btn btn-primary">Update Status</button>
+        <button type="submit" class="btn-vaccine">Update Status</button>
     </form>
     <!-- FORM END -->
     <!-- PHP -->
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 </body>
 
 </html>

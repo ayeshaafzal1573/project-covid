@@ -14,7 +14,7 @@ if (!isset($_SESSION['hospital_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hospital</title>
+    <title>Vaccination Status</title>
     <link rel="stylesheet" href="../admin/assets/style.css">
     <link rel="icon" href="../images/covidlogo.png">
     <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -72,7 +72,6 @@ if (!isset($_SESSION['hospital_id'])) {
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="fa-regular fa-bell"></i> Notifications</a></li>
                         <li><a href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
                     </ul>
                 </li>
@@ -188,33 +187,34 @@ if (!isset($_SESSION['hospital_id'])) {
                 </select>
             </td>
             <td>
-                <button type="button" class="btn btn-primary" onclick="saveVaccineSuggestion('<?= $patient_name ?>')">Save</button>
+                <button type="button" class="btn btn-primary"
+                    onclick="saveVaccineSuggestion('<?= $patient_name ?>')">Save</button>
             </td>
         </tr>
-<?php endwhile; ?>
+    <?php endwhile; ?>
 
 
     <!-- TABLE END -->
-  <script>
-    function saveVaccineSuggestion(patientName) {
-        // Get the selected vaccine suggestion for the patient
-        var selectedVaccine = $("select[name='vac_suggest[" + patientName + "]']").val();
+    <script>
+        function saveVaccineSuggestion(patientName) {
+            // Get the selected vaccine suggestion for the patient
+            var selectedVaccine = $("select[name='vac_suggest[" + patientName + "]']").val();
 
-        // Send an AJAX request to save the suggestion
-        $.ajax({
-            type: "POST",
-            url: "save_vaccine_suggestion.php", // Create this PHP file to handle the database update
-            data: { patientName: patientName, selectedVaccine: selectedVaccine },
-            success: function (response) {
-                // Handle the response from the server (e.g., display a success message)
-                console.log(response); // You can replace this with your own logic
-            },
-            error: function (error) {
-                console.error("Error:", error);
-            }
-        });
-    }
-</script>
+            // Send an AJAX request to save the suggestion
+            $.ajax({
+                type: "POST",
+                url: "save_vaccine_suggestion.php", // Create this PHP file to handle the database update
+                data: { patientName: patientName, selectedVaccine: selectedVaccine },
+                success: function (response) {
+                    // Handle the response from the server (e.g., display a success message)
+                    console.log(response); // You can replace this with your own logic
+                },
+                error: function (error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+    </script>
     <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

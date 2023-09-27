@@ -15,9 +15,9 @@ if (!isset($_SESSION['admin_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Record</title>
+    <title>PVaccine</title>
     <link rel="stylesheet" href="assets/style.css">
-    <link rel="icon" href="../images/corona_icon.png">
+    <link rel="icon" href="../images/covidlogo.png">
     <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
@@ -76,7 +76,7 @@ if (!isset($_SESSION['admin_id'])) {
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="../images/adminuser.png" alt="Admin Profile" class="adminpic">
-                <?php echo $_SESSION['username']; ?> <span class="caret"></span>
+                        <?php echo $_SESSION['username']; ?> <span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu">
