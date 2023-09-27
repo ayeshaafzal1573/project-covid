@@ -9,8 +9,6 @@ if (!isset($_SESSION['admin_id'])) {
   exit;
 }
 ?>
-
-
 <html lang="en">
 
 <head>
@@ -24,7 +22,6 @@ if (!isset($_SESSION['admin_id'])) {
     href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 
 <body>
   <!-- SIDEBAR -->
@@ -63,8 +60,6 @@ if (!isset($_SESSION['admin_id'])) {
           <i class="fas fa-syringe"></i>Vaccine Availability
         </a>
       </li>
-
-
     </ul>
   </div>
   </div>
@@ -76,11 +71,10 @@ if (!isset($_SESSION['admin_id'])) {
     <div class="container-fluid">
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="../images/adminuser.png" alt="Admin Profile" class="adminpic">
-            <span class="caret"></span>
-          </a>
-
+       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <img src="../images/adminuser.png" alt="Admin Profile" class="adminpic">
+      <?php echo $_SESSION['username']; ?> <span class="caret"></span>
+    </a>
           <ul class="dropdown-menu">
             <li><a href="notification.php"><i class="zmdi zmdi-notifications text-danger"></i> Notifications</a></li>
             <li><a href="../login.php">Logout</a></li>
@@ -103,7 +97,7 @@ if (!isset($_SESSION['admin_id'])) {
         </div>
         <h5>Total Hospitals</h6>
           <p class="grooming-para">
-10
+            10
           </p>
       </div>
       <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 " id="grooming">
@@ -113,7 +107,7 @@ if (!isset($_SESSION['admin_id'])) {
         <h5>Patients</h5>
         <p class="grooming-para">
 
-20
+          20
         </p>
       </div>
       <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3" id="grooming">
@@ -121,9 +115,9 @@ if (!isset($_SESSION['admin_id'])) {
           <img src="../images/vaccine.png" alt="Award" class="grooming-img ">
         </div>
         <h5>Vaccinated</h5>
-         <p class="grooming-para">
-2
-          </p>
+        <p class="grooming-para">
+          2
+        </p>
       </div>
 
 

@@ -68,24 +68,12 @@ if (!isset($_SESSION['patient_id'])) {
         </div>
     </header>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Hospital Search</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <form class="form-inline my-2 my-lg-0" action="hospitals.php" method="GET">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search"
+                    <form class="form-inline" action="hospitals.php" method="GET">
+                        <input class="form-control" type="search" placeholder="Search" name="search"
                             aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        <button class="btn btn-search" type="submit">Search</button>
                     </form>
-                </li>
-            </ul>
-        </div>
-    </nav>
+           
 
     <div class="container mt-4">
         <div class="row">
@@ -100,15 +88,18 @@ if (!isset($_SESSION['patient_id'])) {
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                       echo '
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">' . $row['hospital_name'] . '</h5>
-                                <p class="card-text">Location: ' . $row['location'] . '</p>
-                                <p class="card-text">Status: ' . ($row['status'] ? 'Active' : 'Inactive') . '</p>
-                                 </div>
-                        </div>
-                    </div>';
+                      <div class="col-lg-4 col-md-6 mb-4">
+                      <div class="card" style="width: 18rem;">    
+                    <img src="../images/hospital.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <h5 class="card-title">' . $row['hospital_name'] . '</h5>
+                    <p class="card-text">Location: ' . $row['location'] . '</p>
+                    <p class="card-text">Status: ' . ($row['status'] ? 'Active' : 'Inactive') . '</p>
+                           
+  </div>
+</div>
+</div>';
+                  
                 }
             } else {
                 echo '<div class="col-12"><p>No hospitals found.</p></div>';

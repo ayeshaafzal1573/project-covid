@@ -1128,13 +1128,18 @@ border-radius: 20px;
 
   /** end update **/
 
-
+  html, body {
+    min-height: 100%;
+}
   /** footer **/
 
   .footer {
       padding-top: 20px;
       background: #05254d;
       text-align: center;
+  
+      width: 100%;
+      bottom: 0%;
   }
 
 
@@ -1250,3 +1255,115 @@ border-radius: 20px;
       padding-top: 145px;
       padding-bottom: 80px;
   }
+  .wrapper form{
+gap: 0px !important;
+
+  }
+
+  .text-center{
+    margin-top: 80px;
+    color: black;
+    font-size: 40px;
+    font-family: poppin;
+    font-weight: bold;
+  }
+  /* TABLE CSS */
+
+/* ALL PRODUCTS */
+#all-products .table {
+    justify-content: center;
+    align-items: center;
+     width:100%;
+    margin-top: 81px;
+    border: #05254d 3px solid;
+    border-radius: 20px;
+    height: auto;
+
+
+
+}
+
+.table th {
+    font-size: 22px;
+    font-family: poppin;
+}
+
+.table td {
+    font-size: 18px;
+  
+    font-weight: 300;
+}
+
+#all-products .table td,
+th {
+    border: #05254d 3px solid;
+}
+
+
+#all-products h1 {
+    font-weight: 600;
+    color: #05254d;
+    font-family: poppin;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+}
+.form-inline{
+    margin-top: 90px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.form-inline .form-control  {
+    width: 600px;
+    margin: 10px;
+border: 1px black solid;
+
+}
+.btn-search{
+    background-color: #05254d;
+    color: white;
+}
+.card{
+    border-radius: 20px;
+    border: 1px black transparent;
+    font-size: 20px;
+}
+.card-body .card-title{
+    font-size: 25px;
+    font-family: poppin;
+    
+}
+.card-body .card-title .card-text{
+    font-size: 15px;
+}
+/* MY PROFILE */
+.my-img{
+
+width: 60px;
+height: 60px;
+border-radius: 50px;
+border: 1px solid transparent;
+margin-right: 250px;
+
+
+}
+.myprofile{
+    padding: 20px;
+    width: 400px;
+min-height: 50vh;
+border: 1px solid black;
+border-radius: 20px;
+text-align: center;
+justify-content: center;
+align-items: center;
+margin-top: 80px;
+
+}
+.myprofile p{
+    margin-right: 250px;
+    margin-top: 10px;
+}
+
+

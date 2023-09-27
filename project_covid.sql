@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2023 at 08:54 PM
+-- Generation Time: Sep 27, 2023 at 12:38 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -66,22 +66,8 @@ CREATE TABLE `appointment` (
 --
 
 INSERT INTO `appointment` (`app_id`, `patient_id`, `hospital_id`, `app_date`, `status`, `app_time`, `test_name`, `approval_status`) VALUES
-(4, 8, 2, '2023-01-31', 1, '01:00:00', 'Naats', 'Rejected'),
 (5, 9, 1, '2023-09-20', 1, '17:12:00', 'PCR', 'Approved'),
-(6, 8, 2, '2023-09-27', 1, '23:04:00', 'Naats', 'Approved'),
-(7, 9, 1, '2023-09-26', 1, '05:17:00', 'PCR', 'Approved');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `covid_test`
---
-
-CREATE TABLE `covid_test` (
-  `test_id` int(11) NOT NULL,
-  `patient_id` int(11) DEFAULT NULL,
-  `hospital_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(6, 8, 2, '2023-09-27', 1, '23:04:00', 'Naats', 'Approved');
 
 -- --------------------------------------------------------
 
@@ -132,26 +118,12 @@ INSERT INTO `patient` (`patient_id`, `patient_name`, `address`, `email`, `passwo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `patient_hospital`
---
-
-CREATE TABLE `patient_hospital` (
-  `patienthospital_id` int(11) NOT NULL,
-  `patient_id` int(11) DEFAULT NULL,
-  `hospital_id` int(11) DEFAULT NULL,
-  `result` enum('Approved','Reject') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `report`
 --
 
 CREATE TABLE `report` (
   `report_id` int(11) NOT NULL,
   `patient_id` int(11) DEFAULT NULL,
-  `test_id` int(11) DEFAULT NULL,
   `test_result` varchar(50) DEFAULT NULL,
   `vac_suggest` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -175,7 +147,7 @@ CREATE TABLE `vaccination` (
 --
 
 INSERT INTO `vaccination` (`vac_id`, `vac_name`, `patient_id`, `hospital_id`, `vac_status`) VALUES
-(4, 'pi fizar', NULL, 1, 'Unavailable');
+(4, 'pi fizar', 9, 1, 'Available');
 
 --
 -- Indexes for dumped tables
@@ -196,14 +168,6 @@ ALTER TABLE `appointment`
   ADD KEY `hospital_id` (`hospital_id`);
 
 --
--- Indexes for table `covid_test`
---
-ALTER TABLE `covid_test`
-  ADD PRIMARY KEY (`test_id`),
-  ADD KEY `patient_id` (`patient_id`),
-  ADD KEY `hospital_id` (`hospital_id`);
-
---
 -- Indexes for table `hospital`
 --
 ALTER TABLE `hospital`
@@ -216,20 +180,11 @@ ALTER TABLE `patient`
   ADD PRIMARY KEY (`patient_id`);
 
 --
--- Indexes for table `patient_hospital`
---
-ALTER TABLE `patient_hospital`
-  ADD PRIMARY KEY (`patienthospital_id`),
-  ADD KEY `patient_id` (`patient_id`),
-  ADD KEY `hospital_id` (`hospital_id`);
-
---
 -- Indexes for table `report`
 --
 ALTER TABLE `report`
   ADD PRIMARY KEY (`report_id`),
-  ADD KEY `patient_id` (`patient_id`),
-  ADD KEY `test_id` (`test_id`);
+  ADD KEY `patient_id` (`patient_id`);
 
 --
 -- Indexes for table `vaccination`
@@ -256,12 +211,6 @@ ALTER TABLE `appointment`
   MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `covid_test`
---
-ALTER TABLE `covid_test`
-  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `hospital`
 --
 ALTER TABLE `hospital`
@@ -272,12 +221,6 @@ ALTER TABLE `hospital`
 --
 ALTER TABLE `patient`
   MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `patient_hospital`
---
-ALTER TABLE `patient_hospital`
-  MODIFY `patienthospital_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `report`
@@ -303,25 +246,10 @@ ALTER TABLE `appointment`
   ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`);
 
 --
--- Constraints for table `covid_test`
---
-ALTER TABLE `covid_test`
-  ADD CONSTRAINT `covid_test_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`),
-  ADD CONSTRAINT `covid_test_ibfk_2` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`);
-
---
--- Constraints for table `patient_hospital`
---
-ALTER TABLE `patient_hospital`
-  ADD CONSTRAINT `patient_hospital_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`),
-  ADD CONSTRAINT `patient_hospital_ibfk_2` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`);
-
---
 -- Constraints for table `report`
 --
 ALTER TABLE `report`
-  ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`),
-  ADD CONSTRAINT `report_ibfk_2` FOREIGN KEY (`test_id`) REFERENCES `covid_test` (`test_id`);
+  ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`);
 
 --
 -- Constraints for table `vaccination`

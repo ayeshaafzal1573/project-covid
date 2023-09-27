@@ -46,7 +46,7 @@ if (!isset($_SESSION['hospital_id'])) {
                 </a>
             </li>
             <li>
-                <a href="vaccstatus.php">
+                <a href="vacstatus.php">
                     <i class="zmdi zmdi-hospital"></i>Vaccination
                 </a>
             </li>
@@ -68,7 +68,7 @@ if (!isset($_SESSION['hospital_id'])) {
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="../images/hospitaluser.png" alt="Admin Profile" class="adminpic">
-                        <span class="caret"></span>
+                        <?php echo $_SESSION['hospital_name']; ?> <span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu">

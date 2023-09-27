@@ -14,7 +14,53 @@ function showFields(role) {
         } else if (role === 'Patient') {
             patientFields.style.display = 'block';
         }
-    }
+}
+//login validation
+     function validateForm() {
+      // Get user type and perform validation based on it
+      var userType = document.getElementById("user_type").value;
+
+      if (userType === "Admin") {
+        var username = document.getElementById("admin_username").value;
+        var adminPassword = document.getElementById("admin_password").value;
+
+        if (username === "" || adminPassword === "") {
+          alert("Admin Username and Admin Password are required fields.");
+          return false;
+        }
+      } else if (userType === "Hospital") {
+        var hospitalName = document.getElementById("hospital_name").value;
+        var hospitalPassword = document.getElementById("hospital_password").value;
+
+        if (hospitalName === "" || hospitalPassword === "") {
+          alert("Hospital Name and Password are required fields.");
+          return false;
+        }
+      } else if (userType === "Patient") {
+        var patientEmail = document.getElementById("patient_email").value;
+        var patientPassword = document.getElementById("patient_password").value;
+
+        if (patientEmail === "" || patientPassword === "") {
+          alert("Patient Email and Password are required fields.");
+          return false;
+        }
+      }
+
+      return true; // Form is valid, allow submission
+}
+
+//   register wrapper
+ const wrapper = document.querySelector(".wrapper"),
+        signupHeader = document.querySelector(".signup header"),
+        loginHeader = document.querySelector(".login header");
+
+      loginHeader.addEventListener("click", () => {
+        wrapper.classList.add("active");
+      });
+      signupHeader.addEventListener("click", () => {
+        wrapper.classList.remove("active");
+      });
+      
 //search hospital
     document.addEventListener("DOMContentLoaded", function () {
     const searchForm = document.getElementById("searchForm");

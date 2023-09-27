@@ -13,25 +13,14 @@ session_start();
   <title>Login</title>
   <link rel="stylesheet" href="css/register.css" />
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <!-- style css -->
-  <link rel="stylesheet" href="css/style.css">
-  <!-- Responsive-->
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="icon" href="images/covidlogo.png">
   <link rel="stylesheet" href="css/responsive.css">
-  <!-- fevicon -->
-  <link rel="icon" href="images/fevicon.png" type="image/gif" />
-  <!-- Scrollbar Custom CSS -->
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-    media="screen">
-  <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
 </head>
 
 <body>
   <header class="header-area">
-    <div class="left">
-      <a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
-    </div>
     <div class="right">
       <a href="register.html"><i class="fa fa-user" aria-hidden="true"></i></a>
     </div>
@@ -39,18 +28,18 @@ session_start();
       <div class="row d_flex">
         <div class="col-sm-3 logo_sm">
           <div class="logo">
-            <a href="index.html"></a>
+            <a href="index.php"></a>
           </div>
         </div>
         <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-9">
           <div class="navbar-area">
             <nav class="site-navbar">
               <ul>
-                <li><a class="active" href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="index.html" class="logo_midle">Pandemix</a></li>
-                <li><a href="#action">Actions</a></li>
-                <li><a href="contact.html">Contact </a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="index.php#about">About</a></li>
+                <li><a href="index.php" class="logo_midle">Pandemix</a></li>
+                <li><a href="index.php#action">Actions</a></li>
+                <li><a href="contact.php">Contact </a></li>
               </ul>
               <button class="nav-toggler">
                 <span></span>
@@ -128,6 +117,7 @@ session_start();
           $result = mysqli_query($con, $fetch_id);
           $row = mysqli_fetch_array($result);
           $_SESSION['admin_id'] = $row['admin_id'];
+          $_SESSION['username'] = $username;
           header("location: admin/admin.php");
           exit;
         } else {
@@ -147,6 +137,7 @@ session_start();
           $result = mysqli_query($con, $fetch_id);
           $row = mysqli_fetch_array($result);
           $_SESSION['patient_id'] = $row['patient_id'];
+          $_SESSION['patient_name'] = $patientname;
           header("location: patient/patient.php");
           exit;
         } else {
@@ -170,6 +161,7 @@ session_start();
         if ($check_login['status'] == 1) {
 
           $_SESSION['hospital_id'] = $check_login['hospital_id'];
+          $_SESSION['hospital_name'] = $check_login['hospital_name'];
 
           echo "<script>alert('Login successful');</script>";
           header("location: hospital/patientlist.php");
@@ -180,33 +172,93 @@ session_start();
       }
     }
     ?>
-
-    <!-- PHP -->
-    <script>
-      loginHeader.addEventListener("click", () => {
-        wrapper.classList.add("active");
-      });
-      signupHeader.addEventListener("click", () => {
-        wrapper.classList.remove("active");
-      });
-    </script>
-    <script src="script.js"></script>
-    <script>
-      // JavaScript function to show the login alert
-      function showLoginAlert(message) {
-        var loginAlert = document.getElementById("login-alert");
-        var alertMessage = document.getElementById("alert-message");
-        alertMessage.innerText = message;
-        loginAlert.style.display = "block";
-      }
-
-      // Check if login was unsuccessful and display an alert
-      if (typeof loginSuccess !== 'undefined' && loginSuccess === false) {
-        showLoginAlert("Invalid email or password.");
-      }
-    </script>
-
   </section>
+  <!-- PHP -->
+  <!--  footer -->
+  <footer>
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2 col-md-6 col-sm-6">
+            <div class="hedingh3 text_align_left">
+              <h3>USEFUL LINKS</h3>
+              <ul class="menu_footer">
+                <li><a href="index.php">Home</a>
+                <li>
+                <li><a href="index.php#about">About</a>
+                <li>
+                <li> <a href="contact.php">Contact</a>
+                <li>
+
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="hedingh3 text_align_left">
+              <h3>About</h3>
+              <p>
+                We are committed to delivering the latest news, health guidelines, and resources from reputable
+                sources.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="hedingh3  text_align_left">
+              <h3>Contact Us</h3>
+              <ul class="top_infomation">
+                <li><i class="fa fa-phone" aria-hidden="true"></i>
+                  <a href="tel:111-222-333">+92-343-209872</a>
+                </li>
+                <li><i class="fa fa-envelope" aria-hidden="true"></i>
+                  <a href="mailto:ayeshaafzal1573@gmail.com">info@pandemix.com</a>
+                </li>
+                <li> <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  <a href="https://www.google.com/maps/@24.8847152,67.1775322,15z?entry=ttu">Pandemix
+                    Hospital,Karachi</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="hedingh3 text_align_left">
+              <h3>Location</h3>
+              <div class="map">
+                <img src="images/map.png" alt="map" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </footer>
+  <!-- end footer -->
+  <!-- JAVASCRIPT -->
+  <script>
+    loginHeader.addEventListener("click", () => {
+      wrapper.classList.add("active");
+    });
+    signupHeader.addEventListener("click", () => {
+      wrapper.classList.remove("active");
+    });
+  </script>
+  <script src="script.js"></script>
+  <script>
+    function showLoginAlert(message) {
+      var loginAlert = document.getElementById("login-alert");
+      var alertMessage = document.getElementById("alert-message");
+      alertMessage.innerText = message;
+      loginAlert.style.display = "block";
+    }
+
+    // Check if login was unsuccessful and display an alert
+    if (typeof loginSuccess !== 'undefined' && loginSuccess === false) {
+      showLoginAlert("Invalid email or password.");
+    }
+  </script>
+
+
 </body>
 
 </html>

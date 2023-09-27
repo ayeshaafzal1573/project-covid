@@ -69,7 +69,7 @@ if (!isset($_SESSION['hospital_id'])) {
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="../images/hospitaluser.png" alt="Admin Profile" class="adminpic">
-                        <span class="caret"></span>
+                    <?php echo $_SESSION['hospital_name']; ?> <span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu">

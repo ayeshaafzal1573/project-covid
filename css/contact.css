@@ -1,5 +1,9 @@
 
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400&display=swap');
+ 
+  html, body {
+    min-height: 100%;
+}
+ @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400&display=swap');
   body {
     font-family: 'Poppins';
     background-image: url('covid-banner.png');
@@ -17,6 +21,178 @@
         background-image: url('covid-banner3.jpg');
     }
 }
+.header-area  {
+  padding: 25px 6px;
+  color: #f1f1f1;
+  width: 100%; z-index: 9999999;
+  height: 77px;
+  
+  background:#ed242e;
+  border-radius: 6px;
+}
+
+
+.logo_sm {display: none;}
+
+.logo_midle {color: #fef6fc; font-weight: bold; color: #fff !important;}
+.logo_midle::before {
+ position: absolute;
+ content: "";
+ bottom: -93px;
+ width: 158px;
+ height: 96px;
+ background: url(../images/logo.png);
+ z-index: 999;
+ margin: 0 auto;
+ left: 0;
+ right: 6px;
+}
+.site-navbar {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.site-navbar ul {
+ margin: 0;
+ padding: 0;
+ list-style: none;
+ display: flex;
+}
+
+.site-navbar ul li a {
+ color: #fef6fc;
+ font-size: 17px;
+ display: block;
+ text-decoration: none;
+ text-transform: uppercase;
+}
+
+.site-navbar ul li {
+ padding-right: 152px;
+ text-align: center;
+ align-items: center;
+ justify-content: center;
+}
+
+.site-navbar ul li:last-child {
+ padding-right: 0;
+}
+
+.site-navbar ul li a:hover {
+ color: #00132b;
+}
+.site-navbar ul li a.active {
+ color: #00132b;
+}
+
+/* navbar regular css end */
+
+
+/* nav-toggler css start */
+
+.nav-toggler {
+ border: 3px solid #fff;
+ padding: 5px;
+ background-color: transparent;
+ cursor: pointer;
+ height: 39px;
+ display: none;
+ z-index: 99999;
+}
+
+.nav-toggler span,
+.nav-toggler span:before,
+.nav-toggler span:after {
+ width: 28px;
+ height: 3px;
+ background-color: #fff;
+ display: block;
+ transition: .3s;
+}
+
+.nav-toggler span:before {
+ content: '';
+ transform: translateY(-9px);
+}
+
+.nav-toggler span:after {
+ content: '';
+ transform: translateY(6px);
+}
+
+.nav-toggler.toggler-open span {
+ background-color: transparent;
+}
+
+.nav-toggler.toggler-open span:before {
+ transform: translateY(0px) rotate(45deg);
+}
+
+.nav-toggler.toggler-open span:after {
+ transform: translateY(-3px) rotate(-45deg);
+}
+
+
+/* nav-toggler css start */
+
+
+/* intro-area css start */
+
+.intro-area {
+ height: calc(100vh - 61px);
+ display: flex;
+ align-items: center;
+ text-align: center;
+ color: #fff;
+}
+
+
+
+
+/* intro-area css end */
+
+
+.left {
+
+ position: absolute;
+ background: #00132b;
+ width: 80px;
+ left: 0;
+ height: 77px;
+ top: 0;
+ text-align: center;
+ line-height: 77px;
+ 
+
+}
+
+.left  a i {
+ color: #fff;
+
+}
+.right {
+ position: absolute;
+ background: #00132b;
+ width: 80px;
+ right: 0;
+ height: 77px;
+ top: 0;
+ text-align: center;
+ line-height: 77px;
+
+}
+.right  a i {
+ color: #fff;
+
+}
+/** end header **/
+
+
+
+
+/** end header **/
+
 
   .container {
     width: 100%;
@@ -156,3 +332,116 @@ margin-top: 100px;
       margin-left: 0;
     }
   }
+ /** footer **/
+
+ .footer {
+  padding-top: 20px;
+  background: #05254d;
+  text-align: center;
+}
+
+
+.hedingh3 h3 {
+  color: #fff;
+  font-size: 20px;
+  padding-bottom: 20px;
+  line-height: 23px;
+  font-weight: bold;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.hedingh3 p {
+  color: #fff;
+  text-align: left;
+  margin-bottom: 15px;
+
+}
+
+ul.menu_footer {
+  text-align: left;
+
+}
+
+ul.menu_footer li a {
+  color: white;
+  font-size: 17px;
+  line-height: 18px;
+  padding-bottom: 10px;
+  display: block;
+}
+
+ul.menu_footer li a:hover {
+  color: #e92f0b;
+}
+
+ul.inst li {
+  display: inline-block;
+  margin: 4px;
+}
+
+
+ul.top_infomation li {
+  display: block;
+  font-size: 17px;
+  padding: 8px;
+  color: #fff;
+}
+
+ul.top_infomation li:last-child {
+  padding-right: 0;
+}
+
+ul.top_infomation li i {
+  margin-right: 5px;
+  color: #fff;
+  text-align: center;
+  transition: ease-in all 0.5s;
+}
+
+ul.top_infomation li a {
+  color: #fff;
+}
+
+ul.top_infomation li a:hover {
+  color: #e92f0b;
+}
+
+ul.top_infomation li i:hover {
+  background: #eb4746;
+  color: #fff;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: ease-in all 0.5s;
+}
+
+
+/** end footer **/
+
+
+/**  inner page css **/
+
+
+
+.inner_page .full_bg {
+ height: 106px;
+ padding-bottom: 0;
+
+}
+.inner_page .about {
+margin-top: 145px;
+margin-bottom: 80px;
+}
+
+.inner_page .doctors { padding-top: 140px;  padding-bottom: 50px;}
+.inner_page .coronata {
+padding-top: 130px;
+padding-bottom: 80px;
+}
+.inner_page .cases {padding-top: 140px;
+padding-bottom: 40px;}
+.inner_page .contact {
+padding-top: 145px;
+padding-bottom: 80px;
+}
+

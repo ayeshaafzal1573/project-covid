@@ -76,8 +76,7 @@ if (!isset($_SESSION['admin_id'])) {
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="../images/adminuser.png" alt="Admin Profile" class="adminpic">
-              <span class="caret"></span>
-          </a>
+            <?php echo $_SESSION['username']; ?> <span class="caret"></span>          </a>
 
           <ul class="dropdown-menu">
             <li><a href="notification.php"><i class="zmdi zmdi-notifications text-danger"></i> Notifications</a></li>

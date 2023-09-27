@@ -272,11 +272,6 @@ button {
      text-align: center;
 }
 
-
-/*-- header --*/
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-
 body {
   overflow-x: hidden;
   font-family: 'Roboto', sans-serif;
@@ -290,9 +285,8 @@ body {
      width: 100%;
      z-index: 9999999;
      height: 77px;
-     
      background:#ed242e;
-     border-radius: 6px;
+  
 }
 
 
@@ -416,29 +410,9 @@ body {
 
 /* intro-area css end */
 
-
-.left {
-
-    position: absolute;
-    background: #00132b;
-    width: 80px;
-    left: 0;
-    height: 77px;
-    top: 0;
-    text-align: center;
-    line-height: 77px;
-    
-
-}
-
-.left  a i {
-    color: #fff;
-
-}
 .right {
     position: absolute;
-    background: #00132b;
-    width: 80px;
+     width: 80px;
     right: 0;
     height: 77px;
     top: 0;
@@ -451,12 +425,9 @@ body {
 
 }
 /** end header **/
-
-
-
-
-/** end header **/
-
+html, body {
+    min-height: 100%;
+}
 
 /** banner section **/
 
@@ -535,9 +506,10 @@ body {
 .photog .read_more {
     margin-right: 15px;
     font-weight: normal;
-    background:#fff;
-    color: #000;
+    background:#ed242e;
+    color: #FFF;
     height: 50px;
+    border-radius: 10px;
     line-height: 50px;
     max-width: 204px;
 }
@@ -1130,12 +1102,7 @@ padding: 80px 0;
 
 
   /** end footer **/
-
-
 /**  inner page css **/
-
-
-
 .inner_page .full_bg {
      height: 106px;
      padding-bottom: 0;
