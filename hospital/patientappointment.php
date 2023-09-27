@@ -120,7 +120,7 @@ if (!isset($_SESSION['hospital_id'])) {
                             $patient_name = $patient_data['patient_name'];
                             $hospital_name = $hospital_data['hospital_name'];
                             ?>
-                            <tr id="row_<?= $row['app_id'] ?>">
+                            <tr data-appid="<?= $row['app_id'] ?>">
                                 <td>
                                     <?= $patient_name ?>
                                 </td>
@@ -151,46 +151,33 @@ if (!isset($_SESSION['hospital_id'])) {
             </table>
         </div>
     </div>
-
-
-
-    <!-- TABLE END -->
-
-</body>
-<!-- SCRIPTS -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-</html>
-<!-- AJAX  -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".positive-button, .negative-button").forEach(function (button) {
-            button.addEventListener("click", function () {
-                var app_id = this.getAttribute("data-appid");
-                var isPositive = this.classList.contains("positive-button");
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".positive-button, .negative-button").on("click", function () {
+                var app_id = $(this).data("appid");
+                var isPositive = $(this).hasClass("positive-button");
                 var url = isPositive ? "test_active.php" : "test_deactive.php";
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", url + "?app_id=" + app_id, true);
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        var row = document.getElementById("row_" + app_id);
-                        if (row) {
-                            row.remove();
-                        } else {
-                            console.error("Row not found.");
-                        }
+
+                console.log("Sending AJAX request to: " + url); 
+
+                $.get(url + "?app_id=" + app_id, function (data) {
+                    console.log("Response received: " + data); 
+
+                    if (data === "success") {
+                        $("tr[data-appid='" + app_id + "']").remove();
+                    } else {
+                        console.error("Error occurred.");
                     }
-                };
-                xhr.send();
+                });
             });
         });
-    });
 
-</script>
+    </script>
 
-<!-- PHP -->
+
 
 </body>
 
