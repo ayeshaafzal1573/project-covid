@@ -141,7 +141,7 @@
 
 .right {
  position: absolute;
- background: #00132b;
+ 
  width: 80px;
  right: 0;
  height: 77px;
@@ -317,6 +317,7 @@
 ul.menu_footer {
   text-align: left;
   margin-left: -30px;
+  list-style-type: none;
 
 }
 
@@ -326,6 +327,7 @@ ul.menu_footer li a {
   line-height: 18px;
   display: block;
   text-align: left;
+ 
 }
 
 ul.menu_footer li a:hover {

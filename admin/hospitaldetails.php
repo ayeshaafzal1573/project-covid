@@ -91,7 +91,7 @@ if (!isset($_SESSION['admin_id'])) {
   <!-- NAV ENDS -->
   <!-- TABLE STARTS -->
   <div class="container-fluid" id="all-products">
-    <h1 class="text-center">Hospital Details</h1>
+    <h1 class="text-center">Hospital Record</h1>
     <div class="container">
       <table class="table">
         <thead>
