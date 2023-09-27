@@ -84,8 +84,7 @@ if (!isset($_SESSION['admin_id'])) {
                         <li><a href="notification.php"><i class="zmdi zmdi-notifications text-danger"></i>
                                 Notifications</a></li>
                         <li><a href="../login.php">Logout</a></li>
-                        <li><a href="#">Profile</a></li>
-                    </ul>
+                           </ul>
                 </li>
             </ul>
         </div>
