@@ -1,3 +1,14 @@
+<?php
+// Database Connection
+include("../connection.php");
+// Session Start
+session_start();
+//if user loggout
+if (!isset($_SESSION['patient_id'])) {
+   header("Location: ../login.php");
+   exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,12 +28,25 @@
    <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
 </head>
 
+
 <body class="main-layout">
    <!-- header -->
    <header class="header-area">
       <div class="right">
-         <a href="register.php"><i class="fa fa-user" aria-hidden="true"></i></a>
-      </div>
+        
+         <button class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <?php echo $_SESSION['patient_name']; ?>
+         </button>
+         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="myprofile.php">My Profile</a>
+            <a class="dropdown-item" href="../logout.php">Logout</a>
+         </div>
+         </div>
+    
+
+
       <div class="container">
          <div class="row d_flex">
             <div class="col-sm-3 logo_sm">
@@ -239,11 +263,13 @@
       </div>
    </footer>
    <!-- end footer -->
-   <!-- Javascript files-->
-   <script src="js/jquery.min.js"></script>
-   <script src="js/bootstrap.bundle.min.js"></script>
+   <!-- SCRIPTS -->
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
    <script src="js/custom.js"></script>
+
 </body>
 
 </html>

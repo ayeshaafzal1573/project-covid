@@ -133,9 +133,8 @@
       min-width: 150px;
       /* Adjust the width as needed */
       border-radius: 20px;
-      /* Rounded corners for the dropdown */
       box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
-      /* Add a subtle shadow */
+
   }
 
   /* Style the dropdown menu items */

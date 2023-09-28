@@ -73,28 +73,33 @@ if (!isset($_SESSION['patient_id'])) {
                         <th>Appointment Time</th>
                         <th>Test Name</th>
                         <th>Result</th>
+                        <th>Vaccination Suggestion</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- PHP -->
-                    <?php
-                    if (isset($_SESSION['patient_id'])) {
-                        $patient_id = $_SESSION['patient_id'];
-
-                        // Fetch patient's reports with hospital name from the 'appointment' table
-                        $query = "SELECT appointment.app_date, appointment.app_time, appointment.test_name, appointment.status, hospital.hospital_name
+                  <!-- PHP -->
+<?php
+if (isset($_SESSION['patient_id'])) {
+    $patient_id = $_SESSION['patient_id'];
+    $query = "SELECT appointment.app_date, appointment.app_time, appointment.test_name, appointment.status, hospital.hospital_name, 
+              CASE 
+                WHEN appointment.status = 1 THEN report.vac_suggest
+                ELSE 'No suggestion'
+              END AS vac_suggest
               FROM appointment
               JOIN hospital ON appointment.hospital_id = hospital.hospital_id
-                JOIN vaccination ON appointment.patient_id = vaccination.patient_id
-      
+              JOIN vaccination ON appointment.patient_id = vaccination.patient_id
+              LEFT JOIN report ON appointment.patient_id = report.patient_id
               WHERE appointment.patient_id = $patient_id";
 
-                        $result = mysqli_query($con, $query);
+    $result = mysqli_query($con, $query);
 
-                        if (!$result) {
-                            die("Error executing the query: " . mysqli_error($con));
-                        }
-                    } ?>
+    if (!$result) {
+        die("Error executing the query: " . mysqli_error($con));
+    }
+}
+?>
+<!-- PHP END -->
                     <?php while ($row = mysqli_fetch_assoc($result)): ?>
                         <tr>
                             <td>
@@ -112,8 +117,10 @@ if (!isset($_SESSION['patient_id'])) {
                             <td>
                                 <?= $row['status'] == 1 ? 'Positive' : 'Negative' ?>
                             </td>
-
-                        </tr>
+  <td>
+           <?= $row['status'] == 1 ? $row['vac_suggest'] : 'No suggestion' ?>
+    </td>
+                            </tr>
                     <?php endwhile; ?>
                 </tbody>
             </table>

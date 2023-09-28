@@ -81,26 +81,37 @@ if (!isset($_SESSION['hospital_id'])) {
     <!-- FORM STARTS -->
     <!-- PHP -->
     <?php
-     $patients = [];
+    $patients = [];
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $patient_id = $_POST['patient_id'];
         $selected_vac_id = $_POST['vaccination'];
-        $sql = "INSERT INTO `report` (`patient_id`, `vac_suggest`)
-        VALUES ($patient_id, $selected_vac_id)";
-        if ($con->query($sql) === TRUE) {
-            echo '<script>alert("Vaccination successfully recorded.");</script>';
+        $query = "SELECT `vac_name` FROM `vaccination` WHERE `vac_id` = $selected_vac_id";
+        $result = $con->query($query);
+
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            $selected_vac_name = $row['vac_name'];
+            $sql = "INSERT INTO `report` (`patient_id`, `vac_suggest`)
+        VALUES ($patient_id, '$selected_vac_name')";
+
+            if ($con->query($sql) === TRUE) {
+                echo '<script>alert("Vaccination successfully recorded.");</script>';
+            } else {
+                echo '<script>alert("Error: ' . $sql . '\n' . $con->error . '");</script>';
+            }
         } else {
-            echo '<script>alert("Error: ' . $sql . '\n' . $con->error . '");</script>';
+            echo '<script>alert("Selected vaccination not found.");</script>';
         }
     }
+
     $hospital_id = $_SESSION['hospital_id'];
     $sql = "SELECT DISTINCT a.`patient_id`, p.`patient_name`, v.`vac_id`, v.`vac_name`
-    FROM `appointment` a
-    INNER JOIN `patient` p ON a.`patient_id` = p.`patient_id`
-    INNER JOIN `vaccination` v ON v.`hospital_id` = a.`hospital_id`
-    WHERE a.`hospital_id` = $hospital_id
-    AND a.`status` = 1
-    AND v.`vac_status` = 'Available'";
+FROM `appointment` a
+INNER JOIN `patient` p ON a.`patient_id` = p.`patient_id`
+INNER JOIN `vaccination` v ON v.`hospital_id` = a.`hospital_id`
+WHERE a.`hospital_id` = $hospital_id
+AND a.`status` = 1
+AND v.`vac_status` = 'Available'";
     $result = $con->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
