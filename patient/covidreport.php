@@ -18,15 +18,11 @@ if (!isset($_SESSION['patient_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <title>Pandemix</title>
-    <!-- bootstrap css -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <!-- style css -->
     <link rel="stylesheet" href="patient.css">
-    <!-- Responsive-->
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="icon" href="../images/covidlogo.png" type="image/gif" />
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
     <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
@@ -35,9 +31,6 @@ if (!isset($_SESSION['patient_id'])) {
 <body class="main-layout">
     <!-- header -->
     <header class="header-area">
-        <div class="left">
-            <a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
-        </div>
         <div class="right">
             <a href="register.php"><i class="fa fa-user" aria-hidden="true"></i></a>
         </div>
@@ -45,7 +38,7 @@ if (!isset($_SESSION['patient_id'])) {
             <div class="row d_flex">
                 <div class="col-sm-3 logo_sm">
                     <div class="logo">
-                        <a href="index.html"></a>
+                        <a href="index.php"></a>
                     </div>
                 </div>
                 <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-9">
@@ -119,7 +112,7 @@ if (!isset($_SESSION['patient_id'])) {
                             <td>
                                 <?= $row['status'] == 1 ? 'Positive' : 'Negative' ?>
                             </td>
-                           
+
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
@@ -127,12 +120,6 @@ if (!isset($_SESSION['patient_id'])) {
         </div>
     </div>
     <!-- TABLE END -->
-  
-    <!-- Include Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
-        integrity="sha384-fzj+3iv2pZl5jK4vF2z5s0TNqI3f21f5sFt9GO+86n5FIEp6p4U6T/Kf5F92Rf5k2L"
-        crossorigin="anonymous"></script>
-
     <!--  footer -->
     <footer>
         <div class="footer">
@@ -199,12 +186,14 @@ if (!isset($_SESSION['patient_id'])) {
     </footer>
     <!-- end footer -->
     <!-- Javascript files-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fzj+3iv2pZl5jK4vF2z5s0TNqI3f21f5sFt9GO+86n5FIEp6p4U6T/Kf5F92Rf5k2L"
+        crossorigin="anonymous"></script>
+
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
     <script src="js/custom.js"></script>
 </body>
 
 </html>
-

@@ -23,7 +23,6 @@ if (!isset($_SESSION['patient_id'])) {
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="icon" href="../images/covidlogo.png" type="image/gif" />
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
     <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
@@ -32,9 +31,6 @@ if (!isset($_SESSION['patient_id'])) {
 <body class="main-layout">
     <!-- header -->
     <header class="header-area">
-        <div class="left">
-            <a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
-        </div>
         <div class="right">
             <a href="register.php"><i class="fa fa-user" aria-hidden="true"></i></a>
         </div>
@@ -64,71 +60,65 @@ if (!isset($_SESSION['patient_id'])) {
             </div>
         </div>
     </header>
-     <!-- TABLE STARTS -->
-  <div class="container-fluid" id="all-products">
-    <h1 class="text-center">My Appointment</h1>
-    <div class="container">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Patient Name</th>
-            <th>Hospital Name</th>
-            <th>Appointment Date</th>
-            <th>Appointment Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- PHP -->
-          <?php
-          if (isset($_SESSION['patient_id'])) {
-            $patient_id = $_SESSION['patient_id'];
+    <!-- TABLE STARTS -->
+    <div class="container-fluid" id="all-products">
+        <h1 class="text-center">My Appointment</h1>
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Hospital Name</th>
+                        <th>Appointment Date</th>
+                        <th>Appointment Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- PHP -->
+                    <?php
+                    if (isset($_SESSION['patient_id'])) {
+                        $patient_id = $_SESSION['patient_id'];
 
-            $query = "SELECT appointment.app_date, appointment.app_time, patient.patient_name, hospital.hospital_name
+                        $query = "SELECT appointment.app_date, appointment.app_time, patient.patient_name, hospital.hospital_name
         FROM appointment
         JOIN patient ON appointment.patient_id = patient.patient_id
         JOIN hospital ON appointment.hospital_id = hospital.hospital_id
         WHERE appointment.patient_id = $patient_id";
-            $result = mysqli_query($con, $query);
+                        $result = mysqli_query($con, $query);
 
-            if (!$result) {
-              die("Error executing the query: " . mysqli_error($con));
-            }
-            ?>
-            <?php while ($row = mysqli_fetch_assoc($result)): ?>
-              <tr>
-                <td>
-                  <?= $row['patient_name'] ?>
-                </td>
-                <td>
-                  <?= $row['hospital_name'] ?>
-                </td>
-                <td>
-                  <?= $row['app_date'] ?>
-                </td>
-                <td>
-                  <?= $row['app_time'] ?>
-                </td>
-              </tr>
-            <?php endwhile; ?>
-   
-        <?php
-          } else {
-            echo "Patient not logged in.";
-          }
-          ?>
+                        if (!$result) {
+                            die("Error executing the query: " . mysqli_error($con));
+                        }
+                        ?>
+                        <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                            <tr>
+                                <td>
+                                    <?= $row['patient_name'] ?>
+                                </td>
+                                <td>
+                                    <?= $row['hospital_name'] ?>
+                                </td>
+                                <td>
+                                    <?= $row['app_date'] ?>
+                                </td>
+                                <td>
+                                    <?= $row['app_time'] ?>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
 
-      <!-- PHP END -->
-      </tbody>
-      </table>
+                        <?php
+                    } else {
+                        echo "Patient not logged in.";
+                    }
+                    ?>
+
+                    <!-- PHP END -->
+                </tbody>
+            </table>
+        </div>
     </div>
-  </div>
-  <!-- TABLE END -->
-  
-    <!-- Include Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
-        integrity="sha384-fzj+3iv2pZl5jK4vF2z5s0TNqI3f21f5sFt9GO+86n5FIEp6p4U6T/Kf5F92Rf5k2L"
-        crossorigin="anonymous"></script>
-
+    <!-- TABLE END -->
     <!--  footer -->
     <footer>
         <div class="footer">
@@ -195,15 +185,13 @@ if (!isset($_SESSION['patient_id'])) {
     </footer>
     <!-- end footer -->
     <!-- Javascript files-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fzj+3iv2pZl5jK4vF2z5s0TNqI3f21f5sFt9GO+86n5FIEp6p4U6T/Kf5F92Rf5k2L"
+        crossorigin="anonymous"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
     <script src="js/custom.js"></script>
 </body>
 
 </html>
- 
-<!-- SCRIPTS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

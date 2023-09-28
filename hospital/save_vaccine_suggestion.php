@@ -3,8 +3,8 @@
 include("../connection.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $patientName = $_POST["patientName"];
-    $selectedVaccine = $_POST["selectedVaccine"];
+    $patientName = $_POST["patient_name"];
+    $selectedVaccine = $_POST["vac_name"];
 
     // Check if the patient exists in the database
     $checkPatientQuery = "SELECT patient_id FROM patient WHERE patient_name = ?";
@@ -14,12 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_stmt_bind_result($stmt, $patientId);
 
     if (mysqli_stmt_fetch($stmt)) {
-        // Patient exists, update the report table
-        $updateQuery = "INSERT INTO report (patient_id, vac_suggest) VALUES (?, ?)
-ON DUPLICATE KEY UPDATE vac_suggest = ?
-";
-        $stmt2 = mysqli_prepare($con, $updateQuery);
-        mysqli_stmt_bind_param($stmt2, "iss", $patientId, $selectedVaccine, $selectedVaccine);
+        // Patient exists, insert the vaccine suggestion into the report table
+        $insertQuery = "INSERT INTO report (patient_id, vac_suggest) VALUES (?, ?)";
+        $stmt2 = mysqli_prepare($con, $insertQuery);
+        mysqli_stmt_bind_param($stmt2, "is", $patientId, $selectedVaccine);
 
         if (mysqli_stmt_execute($stmt2)) {
             echo "Vaccine suggestion saved successfully.";

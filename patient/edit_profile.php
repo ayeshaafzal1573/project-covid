@@ -19,17 +19,12 @@ if (!isset($_SESSION['patient_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <title>Pandemix</title>
-    <!-- bootstrap css -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <!-- style css -->
     <link rel="stylesheet" href="patient.css">
-    <!-- Responsive-->
     <link rel="stylesheet" href="../css/responsive.css">
-    
     <link rel="stylesheet" href="../css/register.css" />
     <link rel="icon" href="../images/covidlogo.png" type="image/gif" />
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
     <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
@@ -38,9 +33,6 @@ if (!isset($_SESSION['patient_id'])) {
 <body class="main-layout">
     <!-- header -->
     <header class="header-area">
-        <div class="left">
-            <a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
-        </div>
         <div class="right">
             <a href="register.php"><i class="fa fa-user" aria-hidden="true"></i></a>
         </div>
@@ -48,7 +40,7 @@ if (!isset($_SESSION['patient_id'])) {
             <div class="row d_flex">
                 <div class="col-sm-3 logo_sm">
                     <div class="logo">
-                        <a href="index.html"></a>
+                        <a href="index.php"></a>
                     </div>
                 </div>
                 <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-9">
@@ -70,64 +62,57 @@ if (!isset($_SESSION['patient_id'])) {
             </div>
         </div>
     </header>
-<!-- PHP -->
-<?php
+    <!-- PHP -->
+    <?php
 
-$patient_name = "";
-$address = "";
-$email = "";
+    $patient_name = "";
+    $address = "";
+    $email = "";
 
-$patient_id = $_SESSION['patient_id'];
-$query = "SELECT * FROM `patient` WHERE `patient_id` = $patient_id";
-$result = mysqli_query($con, $query);
+    $patient_id = $_SESSION['patient_id'];
+    $query = "SELECT * FROM `patient` WHERE `patient_id` = $patient_id";
+    $result = mysqli_query($con, $query);
 
-if (!$result) {
-    die("Database query failed: " . mysqli_error($con));
-}
-
-if (mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $patient_name = $row['patient_name'];
-    $address = $row['address'];
-    $email = $row['email'];
-}
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $new_patient_name = $_POST["patient_name"];
-    $new_address = $_POST["address"];
-    $new_email = $_POST["email"];
-    $query = "UPDATE `patient` SET `patient_name`='$new_patient_name', `address`='$new_address', `email`='$new_email' WHERE `patient_id` = $patient_id";
-    if (mysqli_query($con, $query)) {
-        header("Location: myprofile.php");
-        exit();
-    } else {
-        echo "Error updating profile: " . mysqli_error($con);
+    if (!$result) {
+        die("Database query failed: " . mysqli_error($con));
     }
-}
 
-mysqli_close($con);
-?>
-<section class="wrapper">
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $patient_name = $row['patient_name'];
+        $address = $row['address'];
+        $email = $row['email'];
+    }
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $new_patient_name = $_POST["patient_name"];
+        $new_address = $_POST["address"];
+        $new_email = $_POST["email"];
+        $query = "UPDATE `patient` SET `patient_name`='$new_patient_name', `address`='$new_address', `email`='$new_email' WHERE `patient_id` = $patient_id";
+        if (mysqli_query($con, $query)) {
+            header("Location: myprofile.php");
+            exit();
+        } else {
+            echo "Error updating profile: " . mysqli_error($con);
+        }
+    }
+
+    mysqli_close($con);
+    ?>
+    <section class="wrapper">
         <div class="form signup">
-          <header>EDIT PROFILE</header>
-          <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-          
-        <input type="text" name="patient_name" id="patient_name" value="<?php echo $patient_name; ?>"><br>
-        <input type="text" name="address" value="<?php echo $address; ?>"><br>
-        <input type="text" name="email" value="<?php echo $email; ?>"><br>
-        <input type="submit" value="Update Profile">
-            </form>
-         
-      </div>
-    
-  </section>
-<!-- PHP -->
- 
-  
-    <!-- Include Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
-        integrity="sha384-fzj+3iv2pZl5jK4vF2z5s0TNqI3f21f5sFt9GO+86n5FIEp6p4U6T/Kf5F92Rf5k2L"
-        crossorigin="anonymous"></script>
+            <header>EDIT PROFILE</header>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
+                <input type="text" name="patient_name" id="patient_name" value="<?php echo $patient_name; ?>"><br>
+                <input type="text" name="address" value="<?php echo $address; ?>"><br>
+                <input type="text" name="email" value="<?php echo $email; ?>"><br>
+                <input type="submit" value="Update Profile">
+            </form>
+
+        </div>
+
+    </section>
+    <!-- PHP -->
     <!--  footer -->
     <footer>
         <div class="footer">
@@ -145,10 +130,7 @@ mysqli_close($con);
                                 <li>
                                 <li> <a href="covidreport.php">My Reports</a>
                                 <li>
-
                             </ul>
-
-
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6">
@@ -194,12 +176,13 @@ mysqli_close($con);
     </footer>
     <!-- end footer -->
     <!-- Javascript files-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fzj+3iv2pZl5jK4vF2z5s0TNqI3f21f5sFt9GO+86n5FIEp6p4U6T/Kf5F92Rf5k2L"
+        crossorigin="anonymous"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
     <script src="js/custom.js"></script>
 </body>
 
 </html>
-

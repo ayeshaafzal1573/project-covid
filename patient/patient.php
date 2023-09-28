@@ -6,14 +6,12 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-   <!-- site metas -->
    <title>Pandemix</title>
    <link rel="stylesheet" href="../css/bootstrap.min.css">
    <link rel="stylesheet" href="patient.css">
    <link rel="stylesheet" href="../css/responsive.css">
    <link rel="icon" href="../images/covidlogo.png" type="image/gif" />
    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-   <link rel="stylesheet" href="../css/owl.carousel.min.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
       media="screen">
    <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
@@ -22,9 +20,6 @@
 <body class="main-layout">
    <!-- header -->
    <header class="header-area">
-      <div class="left">
-         <a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
-      </div>
       <div class="right">
          <a href="register.php"><i class="fa fa-user" aria-hidden="true"></i></a>
       </div>
@@ -32,7 +27,7 @@
          <div class="row d_flex">
             <div class="col-sm-3 logo_sm">
                <div class="logo">
-                  <a href="index.html"></a>
+                  <a href="index.php"></a>
                </div>
             </div>
             <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-9">
@@ -126,9 +121,7 @@
       </div>
    </div>
    <!-- end coronata -->
-
    <!-- use in doctor page -->
-
    <div class="cases">
       <div class="container-fluid">
          <div class="row">
@@ -185,9 +178,6 @@
       </div>
    </div>
    <!-- end cases -->
-
-
-
    <!--  footer -->
    <footer>
       <div class="footer">
@@ -205,10 +195,7 @@
                         <li>
                         <li> <a href="covidreport.php">My Reports</a>
                         <li>
-
                      </ul>
-
-
                   </div>
                </div>
                <div class="col-lg-3 col-md-6 col-sm-6">
@@ -256,7 +243,6 @@
    <script src="js/jquery.min.js"></script>
    <script src="js/bootstrap.bundle.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
-   <script src="js/owl.carousel.min.js"></script>
    <script src="js/custom.js"></script>
 </body>
 

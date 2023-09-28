@@ -138,11 +138,7 @@ if (!isset($_SESSION['hospital_id'])) {
                                 <td>
                                     <?= $row['approval_status'] ?>
                                 </td>
-
-
                             </tr>
-
-
                         <?php endif; ?>
                     <?php endwhile; ?>
                     <!-- PHP -->
@@ -150,11 +146,7 @@ if (!isset($_SESSION['hospital_id'])) {
             </table>
         </div>
     </div>
-
-
-
-    <!-- TABLE END -->
-
+   <!-- TABLE END -->
 </body>
 <!-- SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

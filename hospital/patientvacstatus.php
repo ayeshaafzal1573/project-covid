@@ -148,74 +148,7 @@ if (!isset($_SESSION['hospital_id'])) {
             </table>
         </div>
     </div>
-    <?php
-    // Database Connection
-    include("../connection.php");
 
-    while ($row = mysqli_fetch_assoc($result)):
-        $patient_name = $row['patient_name'];
-        $status = ($row['status'] == 1) ? "Positive" : "Negative"; // Updated logic
-        $vac_suggest = $row['vac_suggest'];
-        $patientName = $_POST["patientName"];
-        $selectedVaccine = $_POST["selectedVaccine"];
-
-        echo "Patient Name: " . $patientName . "<br>";
-        echo "Selected Vaccine: " . $selectedVaccine . "<br>";
-
-        // Fetch available vaccines from the vaccination table
-        $vaccine_query = "SELECT vac_name FROM vaccination WHERE vac_status = 'Available'";
-        $vaccine_result = mysqli_query($con, $vaccine_query);
-
-        ?>
-        <tr id="row_<?= $patient_name ?>">
-            <td>
-                <?= $patient_name ?>
-            </td>
-            <td>
-                <?= $status ?> <!-- Display the test_result based on status -->
-            </td>
-            <td>
-                <select name="vac_suggest[<?= $patient_name ?>]">
-                    <option value="hidden">Select Vaccine</option>
-                    <?php
-                    while ($vaccine_row = mysqli_fetch_assoc($vaccine_result)) {
-                        $selected = ($vaccine_row['vac_name'] == $vac_suggest) ? 'selected' : '';
-                        echo "<option value='" . $vaccine_row['vac_name'] . "' $selected>" . $vaccine_row['vac_name'] . "</option>";
-                    }
-
-                    ?>
-                </select>
-            </td>
-            <td>
-                <button type="button" class="btn btn-primary"
-                    onclick="saveVaccineSuggestion('<?= $patient_name ?>')">Save</button>
-            </td>
-        </tr>
-    <?php endwhile; ?>
-
-
-    <!-- TABLE END -->
-    <script>
-        function saveVaccineSuggestion(patientName) {
-            // Get the selected vaccine suggestion for the patient
-            var selectedVaccine = $("select[name='vac_suggest[" + patientName + "]']").val();
-
-            // Send an AJAX request to save the suggestion
-            $.ajax({
-                type: "POST",
-                url: "save_vaccine_suggestion.php", // Create this PHP file to handle the database update
-                data: { patientName: patientName, selectedVaccine: selectedVaccine },
-                success: function (response) {
-                    // Handle the response from the server (e.g., display a success message)
-                    console.log(response); // You can replace this with your own logic
-                },
-                error: function (error) {
-                    console.error("Error:", error);
-                }
-            });
-        }
-    </script>
-    <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

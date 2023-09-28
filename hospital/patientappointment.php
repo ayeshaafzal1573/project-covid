@@ -154,28 +154,28 @@ if (!isset($_SESSION['hospital_id'])) {
     <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".positive-button, .negative-button").on("click", function () {
-                var app_id = $(this).data("appid");
-                var isPositive = $(this).hasClass("positive-button");
-                var url = isPositive ? "test_active.php" : "test_deactive.php";
+   <script>
+    $(document).ready(function () {
+        $(".positive-button, .negative-button").on("click", function () {
+            var app_id = $(this).data("appid");
+            var isPositive = $(this).hasClass("positive-button");
+            var url = isPositive ? "test_active.php" : "test_deactive.php";
+            
+            console.log("Sending AJAX request to: " + url);
 
-                console.log("Sending AJAX request to: " + url); 
+            $.post(url, { app_id: app_id }, function (data) {
+                console.log("Response received: " + data);
 
-                $.get(url + "?app_id=" + app_id, function (data) {
-                    console.log("Response received: " + data); 
-
-                    if (data === "success") {
-                        $("tr[data-appid='" + app_id + "']").remove();
-                    } else {
-                        console.error("Error occurred.");
-                    }
-                });
+                if (data === "success") {
+                    $("tr[data-appid='" + app_id + "']").remove();
+                } else {
+                    console.error("Error occurred.");
+                }
             });
         });
+    });
 
-    </script>
+</script>
 
 
 

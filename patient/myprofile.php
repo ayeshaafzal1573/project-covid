@@ -18,15 +18,11 @@ if (!isset($_SESSION['patient_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <title>Pandemix</title>
-    <!-- bootstrap css -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <!-- style css -->
     <link rel="stylesheet" href="patient.css">
-    <!-- Responsive-->
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="icon" href="../images/covidlogo.png" type="image/gif" />
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
     <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
@@ -35,9 +31,6 @@ if (!isset($_SESSION['patient_id'])) {
 <body class="main-layout">
     <!-- header -->
     <header class="header-area">
-        <div class="left">
-            <a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
-        </div>
         <div class="right">
             <a href="register.php"><i class="fa fa-user" aria-hidden="true"></i></a>
         </div>
@@ -69,78 +62,68 @@ if (!isset($_SESSION['patient_id'])) {
     </header>
     <!-- PHP -->
     <?php
+    $patient_id = $_SESSION['patient_id'];
+    $query = "SELECT * FROM `patient` WHERE `patient_id` = $patient_id";
+    $result = mysqli_query($con, $query);
 
-$patient_id = $_SESSION['patient_id'];
-$query = "SELECT * FROM `patient` WHERE `patient_id` = $patient_id";
-$result = mysqli_query($con, $query);
+    if (!$result) {
+        die("Database query failed: " . mysqli_error($con));
+    }
 
-if (!$result) {
-    die("Database query failed: " . mysqli_error($con));
-}
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $patient_name = $row['patient_name'];
+        $address = $row['address'];
+        $email = $row['email'];
+    }
 
-if (mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $patient_name = $row['patient_name'];
-    $address = $row['address'];
-    $email = $row['email'];
-}
+    mysqli_close($con);
+    ?>
 
-mysqli_close($con);
-?>
-
-<div class="container myprofile">
-    <div class="row">
-        <div class="col-md-12">
-            <img src="../images/patientuser.png" alt="myprofile" class="my-img">
+    <div class="container myprofile">
+        <div class="row">
+            <div class="col-md-12">
+                <img src="../images/patientuser.png" alt="myprofile" class="my-img">
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <p style="font-family: poppin; font-size: 22px;  margin-top: 5px;">
-        <?php echo $patient_name; ?></p>
-        </div>
-        
+        <div class="row">
+            <div class="col-md-12">
+                <p style="font-family: poppin; font-size: 22px;  margin-top: 5px;">
+                    <?php echo $patient_name; ?>
+                </p>
+            </div>
+
         </div>
         <div class="row">
             <div class="col-12">
-            <p><strong>Address:</strong>
-            <br>
-            </p>
-            <p style="border: 1px solid black; width: 40%;">
-            <?php echo $address; ?>
-            </p>
+                <p><strong>Address:</strong>
+                    <br>
+                </p>
+                <p style="border: 1px solid black; width: 40%;">
+                    <?php echo $address; ?>
+                </p>
+            </div>
         </div>
-    </div>
         <div class="row">
             <div class="col-md-12">
-            <p><strong>Email:</strong><br>
+                <p><strong>Email:</strong><br>
                 <p style="border: 1px solid black; width: 40%;">
                     <?php echo $email; ?>
-                    </p>
-    
-    </p>
-    </p>
-        </div>
+                </p>
+
+                </p>
+                </p>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                  
-  <a href="edit_profile.php" class="btn btn-primary">Edit Profile</a>
+
+                <a href="edit_profile.php" class="btn btn-primary">Edit Profile</a>
 
             </div>
         </div>
-</div>
-
-
-
-  
- 
-  
-    <!-- Include Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
-        integrity="sha384-fzj+3iv2pZl5jK4vF2z5s0TNqI3f21f5sFt9GO+86n5FIEp6p4U6T/Kf5F92Rf5k2L"
-        crossorigin="anonymous"></script>
-
+    </div>
+    <!-- PHP -->
     <!--  footer -->
     <footer>
         <div class="footer">
@@ -207,12 +190,13 @@ mysqli_close($con);
     </footer>
     <!-- end footer -->
     <!-- Javascript files-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fzj+3iv2pZl5jK4vF2z5s0TNqI3f21f5sFt9GO+86n5FIEp6p4U6T/Kf5F92Rf5k2L"
+        crossorigin="anonymous"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
     <script src="js/custom.js"></script>
 </body>
 
 </html>
-

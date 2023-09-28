@@ -316,9 +316,8 @@ border-radius: 20px;
       width: 100%;
       z-index: 9999999;
       height: 77px;
-
       background: #ed242e;
-      border-radius: 6px;
+
   }
 
 
@@ -386,8 +385,6 @@ border-radius: 20px;
   }
 
   /* navbar regular css end */
-
-
   /* nav-toggler css start */
 
   .nav-toggler {
@@ -445,35 +442,9 @@ border-radius: 20px;
       text-align: center;
       color: #fff;
   }
-
-
-
-
-  /* intro-area css end */
-
-
-  .left {
-
-      position: absolute;
-      background: #00132b;
-      width: 80px;
-      left: 0;
-      height: 77px;
-      top: 0;
-      text-align: center;
-      line-height: 77px;
-
-
-  }
-
-  .left a i {
-      color: #fff;
-
-  }
-
+ /* intro-area css end */
   .right {
       position: absolute;
-      background: #00132b;
       width: 80px;
       right: 0;
       height: 77px;
@@ -487,15 +458,7 @@ border-radius: 20px;
       color: #fff;
 
   }
-
   /** end header **/
-
-
-
-
-  /** end header **/
-
-
   /** banner section **/
 
   .full_bg {

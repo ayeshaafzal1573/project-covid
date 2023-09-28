@@ -108,6 +108,7 @@ if (!isset($_SESSION['hospital_id'])) {
         }
     }
     ?>
+        <!-- PHP -->
     <!-- FORM -->
     <h1 class="add-vaccine">ADD VACCINATION</h1>
     <form method="POST" style="margin-left: 400px; width:50%;">
@@ -125,7 +126,7 @@ if (!isset($_SESSION['hospital_id'])) {
         <button type="submit" class="btn-vaccine">Update Status</button>
     </form>
     <!-- FORM END -->
-    <!-- PHP -->
+
     <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
