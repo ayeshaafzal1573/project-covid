@@ -74,7 +74,8 @@ if (!isset($_SESSION['patient_id'])) {
         <div class="form signup">
             <header> BOOK APPOINTMENTS</header>
             <form method="POST">
-                <input type="text" id="patient_name" name="patient_name" placeholder="Patient Name"><br><br>
+                <input type="text" id="patient_name" name="patient_name" placeholder="Patient Name" value="<?php echo $_SESSION['patient_name']; ?>"><br><br>
+
                 <select name="test_name" class="location">
                     <option hidden>Select Covid Test</option>
                     <option>PCR</option>
@@ -114,11 +115,12 @@ if (!isset($_SESSION['patient_id'])) {
         if (empty($patient_name) || empty($hospital_id) || empty($testname) || empty($app_date) || empty($app_time)) {
             echo "Please fill in all fields.";
         } else {
-            $query =
-                "INSERT INTO appointment (patient_id, hospital_id,test_name,app_date, app_time)VALUES((SELECT patient_id FROM patient WHERE patient_name = '$patient_name'),$hospital_id,'$testname','$app_date','$app_time')";
+            $query = "INSERT INTO appointment (patient_id, hospital_id, test_name, app_date, app_time, status)
+          VALUES ((SELECT patient_id FROM patient WHERE patient_name = '$patient_name'), $hospital_id, '$testname', '$app_date', '$app_time', 0)";
             //Connection Check
             if (mysqli_query($con, $query)) {
-                echo "Appointment booked successfully.";
+                echo "<script>alert('Appointment booked successfully.');</script>";
+
             } else {
                 echo "Error: " . mysqli_error($con);
             }

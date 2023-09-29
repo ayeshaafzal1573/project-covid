@@ -59,8 +59,6 @@ if (!isset($_SESSION['hospital_id'])) {
         </ul>
 
     </div>
-    </div>
-    </div>
     <!-- SIDEBAR END -->
     <!-- NAV STARTS -->
     <nav class="navbar">
@@ -71,7 +69,9 @@ if (!isset($_SESSION['hospital_id'])) {
                         <img src="../images/hospitaluser.png" alt="Admin Profile" class="adminpic">
                         <?php echo $_SESSION['hospital_name']; ?> <span class="caret"></span>
                     </a>
+
                     <ul class="dropdown-menu">
+                        <li><a href="index.php"><i class="fas fa-home"></i>Back To Home</a></li>
                         <li><a href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
                     </ul>
                 </li>
@@ -134,16 +134,19 @@ if (!isset($_SESSION['hospital_id'])) {
                                     <?= $row['test_name'] ?>
                                 </td>
                                 <td>
-                                    <button class="positive-button btn btn-success"
-                                        data-appid="<?= $row['app_id'] ?>">Positive</button>
-                                    <button class="negative-button btn btn-danger"
-                                        data-appid="<?= $row['app_id'] ?>">Negative</button>
+                                    <button class="btn btn-success"
+                                        onclick="updateStatus(<?= $row['app_id'] ?>, 1, this)">Positive</button>
+                                    <button class="btn btn-danger"
+                                        onclick="updateStatus(<?= $row['app_id'] ?>, 0, this)">Negative</button>
                                 </td>
                             </tr>
                         <?php else: ?>
                             <tr>
-                                <td colspan="5">Error fetching data.</td>
+                                <td colspan="5">Error fetching data:
+                                    <?php echo mysqli_error($con); ?>
+                                </td>
                             </tr>
+
                         <?php endif; ?>
                     <?php endwhile; ?>
                     <!-- PHP -->
@@ -154,29 +157,40 @@ if (!isset($_SESSION['hospital_id'])) {
     <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   <script>
-    $(document).ready(function () {
-        $(".positive-button, .negative-button").on("click", function () {
-            var app_id = $(this).data("appid");
-            var isPositive = $(this).hasClass("positive-button");
-            var url = isPositive ? "test_active.php" : "test_deactive.php";
-            
-            console.log("Sending AJAX request to: " + url);
+    <script>
+        function updateStatus(appointmentId, newStatus, buttonElement) {
+            // Send an AJAX request to update the status
+            $.ajax({
+                type: 'POST',
+                url: 'update_status.php',
+                data: {
+                    app_id: appointmentId,
+                    status: newStatus
+                },
+                success: function (response) {
+                    if (response === 'success') {
+                        // Update the UI to reflect the new status (e.g., change button color)
+                        if (newStatus === 1) {
+                            // Positive
+                            alert('Status updated to Positive');
+                        } else {
+                            // Negative
+                            alert('Status updated to Negative');
+                        }
 
-            $.post(url, { app_id: app_id }, function (data) {
-                console.log("Response received: " + data);
-
-                if (data === "success") {
-                    $("tr[data-appid='" + app_id + "']").remove();
-                } else {
-                    console.error("Error occurred.");
+                        // Remove the row from the table
+                        var row = buttonElement.closest('tr');
+                        row.remove();
+                    } else {
+                        alert('Status update failed');
+                    }
+                },
+                error: function () {
+                    alert('An error occurred while updating the status');
                 }
             });
-        });
-    });
-
-</script>
-
+        }
+    </script>
 
 
 </body>

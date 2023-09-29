@@ -139,7 +139,7 @@
 
   /* Style the dropdown menu items */
   .dropdown-menu li {
-      padding: 10px 15px;
+      padding: -25px 15px;
       height: 50px;
       background-color: #ffffff;
       color: rgb(64, 211, 27);

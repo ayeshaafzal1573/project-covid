@@ -139,7 +139,7 @@ if (!isset($_SESSION['admin_id'])) {
                 <td>
                   <?= $row['status'] == 1 ? 'Positive' : 'Negative' ?>
                 </td>
-                <td><a href="download.php?app_id={$row['app_id']}" class='btn'
+                <td><a href="report.xlsx?app_id={$row['app_id']}" class='btn'
                     style='background-color:red; color:#ffff'>Download Report</a></td>;
 
 
@@ -159,9 +159,10 @@ if (!isset($_SESSION['admin_id'])) {
   </div>
   <!-- TABLE END -->
 
-<!-- SCRIPTS -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
+
 </html>

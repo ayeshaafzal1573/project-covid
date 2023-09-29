@@ -71,8 +71,8 @@ if (!isset($_SESSION['hospital_id'])) {
                         <img src="../images/hospitaluser.png" alt="Admin Profile" class="adminpic">
                         <?php echo $_SESSION['hospital_name']; ?> <span class="caret"></span>
                     </a>
-
                     <ul class="dropdown-menu">
+                        <li><a href="index.php"><i class="fas fa-home"></i>Back To Home</a></li>
                         <li><a href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
                     </ul>
                 </li>
@@ -108,7 +108,7 @@ if (!isset($_SESSION['hospital_id'])) {
         }
     }
     ?>
-        <!-- PHP -->
+    <!-- PHP -->
     <!-- FORM -->
     <h1 class="add-vaccine">ADD VACCINATION</h1>
     <form method="POST" style="margin-left: 400px; width:50%;">

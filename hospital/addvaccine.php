@@ -71,8 +71,8 @@ if (!isset($_SESSION['hospital_id'])) {
                         <img src="../images/hospitaluser.png" alt="Admin Profile" class="adminpic">
                         <?php echo $_SESSION['hospital_name']; ?> <span class="caret"></span>
                     </a>
-
                     <ul class="dropdown-menu">
+                     <li><a href="index.php"><i class="fas fa-home"></i>Back To Home</a></li>
                         <li><a href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
                     </ul>
                 </li>
@@ -88,8 +88,6 @@ if (!isset($_SESSION['hospital_id'])) {
         $hospitalId = $_SESSION['hospital_id'];
         $query = "INSERT INTO vaccination (hospital_id, vac_name, vac_status)
               VALUES ($hospitalId, '$vaccineName', '$availabilityStatus')";
-        echo "SQL Query: $query<br>";
-
         $result = mysqli_query($con, $query);
 
         if ($result) {

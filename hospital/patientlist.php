@@ -71,8 +71,8 @@ if (!isset($_SESSION['hospital_id'])) {
                         <img src="../images/hospitaluser.png" alt="Admin Profile" class="adminpic">
                         <?php echo $_SESSION['hospital_name']; ?> <span class="caret"></span>
                     </a>
-
                     <ul class="dropdown-menu">
+                        <li><a href="index.php"><i class="fas fa-home"></i>Back To Home</a></li>
                         <li><a href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
                     </ul>
                 </li>
@@ -146,7 +146,7 @@ if (!isset($_SESSION['hospital_id'])) {
             </table>
         </div>
     </div>
-   <!-- TABLE END -->
+    <!-- TABLE END -->
 </body>
 <!-- SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
