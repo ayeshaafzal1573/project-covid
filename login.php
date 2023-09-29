@@ -123,7 +123,7 @@ session_start();
           header("location: admin/admin.php");
           exit;
         } else {
-          $loginError = "Invalid username or password.";
+          echo "<script>alert('Invalid admin name or password');</script>";
         }
 
         mysqli_stmt_close($stmt);
@@ -144,7 +144,7 @@ session_start();
           header("location: patient/patient.php");
           exit;
         } else {
-          $loginError = "Invalid email or password.";
+          echo "<script>alert('Invalid email name or password');</script>";
         }
 
         mysqli_stmt_close($stmt);

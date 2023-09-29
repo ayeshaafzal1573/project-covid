@@ -139,7 +139,7 @@ if (!isset($_SESSION['admin_id'])) {
                 <td>
                   <?= $row['status'] == 1 ? 'Positive' : 'Negative' ?>
                 </td>
-                <td><a href="report.xlsx?app_id={$row['app_id']}" class='btn'
+                <td><a href="assets/report.xlsx" class='btn'
                     style='background-color:red; color:#ffff'>Download Report</a></td>;
 
 
