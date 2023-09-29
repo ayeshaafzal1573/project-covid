@@ -1284,28 +1284,42 @@ th {
     align-items: center;
 }
 .form-inline .form-control  {
-    width: 600px;
+    width: 650px;
     margin: 10px;
 border: 1px black solid;
 
 }
+
 .btn-search{
     background-color: #05254d;
     color: white;
 }
 .card{
     border-radius: 20px;
-    border: 1px black transparent;
+    border: 0.5px solid black;
     font-size: 20px;
+}
+.card img{
+border-top-right-radius: 20px;
+border-top-left-radius: 20px;
+
+
 }
 .card-body .card-title{
     font-size: 25px;
     font-family: poppin;
+    font-weight: 500;
+    text-transform: capitalize;
     
 }
-.card-body .card-title .card-text{
-    font-size: 15px;
+.card-body .card-text{
+    font-size: 15px !important;
+    
 }
+
+
+/* Card */
+
 /* MY PROFILE */
 .my-img{
 
@@ -1313,7 +1327,7 @@ width: 60px;
 height: 60px;
 border-radius: 50px;
 border: 1px solid transparent;
-margin-right: 250px;
+
 
 
 }
@@ -1321,7 +1335,6 @@ margin-right: 250px;
     padding: 20px;
     width: 400px;
 min-height: 50vh;
-border: 1px solid black;
 border-radius: 20px;
 text-align: center;
 justify-content: center;
@@ -1329,9 +1342,31 @@ align-items: center;
 margin-top: 80px;
 
 }
+.myprofile h1{
+text-transform: uppercase;
+font-size: 30px;
+padding-top: 10px;
+
+padding-bottom: 20px;
+}
+.myprofile h5{
+padding: 10px;
+font-size: 20px;
+font-weight: 500;
+
+}
 .myprofile p{
-    margin-right: 250px;
-    margin-top: 10px;
+padding: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    width:auto;
+    border-bottom: 1px solid black;
+ margin-left: -20px;
+}
+.myprofile .btn-edit{
+background-color: #05254d;
+color: white;
+margin-top: 20px;
 }
 
 

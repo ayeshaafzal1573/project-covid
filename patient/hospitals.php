@@ -86,16 +86,19 @@ if (!isset($_SESSION['patient_id'])) {
                 while ($row = $result->fetch_assoc()) {
                     echo '
                       <div class="col-lg-4 col-md-6 mb-4">
-                      <div class="card" style="width: 18rem;">    
+                      <div class="card" style="width: 18rem;">
+                      <a href="bookappointment.php">    
                     <img src="../images/hospital.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                     <h5 class="card-title">' . $row['hospital_name'] . '</h5>
-                    <p class="card-text">Location: ' . $row['location'] . '</p>
+                    <p class="card-text">' . $row['location'] . '</p>
+                    
                     <p class="card-text">Status: ' . ($row['status'] ? 'Active' : 'Inactive') . '</p>
-                           
+                           </a>
   </div>
 </div>
 </div>';
+
 
                 }
             } else {
@@ -104,6 +107,7 @@ if (!isset($_SESSION['patient_id'])) {
 
             $con->close();
             ?>
+
         </div>
     </div>
     <!-- PHP END -->

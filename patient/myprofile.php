@@ -94,38 +94,34 @@ if (!isset($_SESSION['patient_id'])) {
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
-                <p style="font-family: poppin; font-size: 22px;  margin-top: 5px;">
+            <div class="col-12">
+                <h1>
                     <?php echo $patient_name; ?>
-                </p>
+                </h1>
             </div>
 
         </div>
         <div class="row">
             <div class="col-12">
-                <p><strong>Address:</strong>
-                    <br>
-                </p>
-                <p style="border: 1px solid black; width: 40%;">
-                    <?php echo $address; ?>
-                </p>
+                <h5>Address:
+                </h5>
+                                <p>
+                        <?php echo $address; ?>
+                                </p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <p><strong>Email:</strong><br>
-                <p style="border: 1px solid black; width: 40%;">
-                    <?php echo $email; ?>
-                </p>
-
-                </p>
-                </p>
+                <h5>Email: <h5>
+                         <p>
+                        <?php echo $email; ?>
+                        </p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
 
-                <a href="edit_profile.php" class="btn btn-primary">Edit Profile</a>
+                <a href="edit_profile.php" class="btn btn-edit">Edit Profile</a>
 
             </div>
         </div>
