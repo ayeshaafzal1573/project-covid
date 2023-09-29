@@ -33,7 +33,6 @@ if (!isset($_SESSION['patient_id'])) {
    <!-- header -->
    <header class="header-area">
       <div class="right">
-        
          <button class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             <i class="fa fa-user" aria-hidden="true"></i>
@@ -44,9 +43,6 @@ if (!isset($_SESSION['patient_id'])) {
             <a class="dropdown-item" href="../logout.php">Logout</a>
          </div>
          </div>
-    
-
-
       <div class="container">
          <div class="row d_flex">
             <div class="col-sm-3 logo_sm">

@@ -17,7 +17,7 @@ if (!isset($_SESSION['patient_id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <title>Pandemix</title>
+    <title>Covid Report</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="patient.css">
     <link rel="stylesheet" href="../css/responsive.css">
@@ -32,7 +32,14 @@ if (!isset($_SESSION['patient_id'])) {
     <!-- header -->
     <header class="header-area">
         <div class="right">
-            <a href="register.php"><i class="fa fa-user" aria-hidden="true"></i></a>
+            <button class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <?php echo $_SESSION['patient_name']; ?>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="myprofile.php">My Profile</a>
+                <a class="dropdown-item" href="../logout.php">Logout</a>
+            </div>
         </div>
         <div class="container">
             <div class="row d_flex">
@@ -45,11 +52,11 @@ if (!isset($_SESSION['patient_id'])) {
                     <div class="navbar-area">
                         <nav class="site-navbar">
                             <ul>
-                                <li><a class="active" href="patient.php">Home</a></li>
+                                <li><a href="patient.php">Home</a></li>
                                 <li><a href="myappointment.php">Appointments</a></li>
                                 <li><a href="patient.php" class="logo_midle">Pandemix</a></li>
                                 <li><a href="hospitals.php">Hospital</a></li>
-                                <li><a href="covidreport.php">Reports</a></li>
+                                <li><a class="active" href="covidreport.php">Reports</a></li>
                             </ul>
                             <button class="nav-toggler">
                                 <span></span>
@@ -77,11 +84,11 @@ if (!isset($_SESSION['patient_id'])) {
                     </tr>
                 </thead>
                 <tbody>
-                  <!-- PHP -->
-<?php
-if (isset($_SESSION['patient_id'])) {
-    $patient_id = $_SESSION['patient_id'];
-    $query = "SELECT appointment.app_date, appointment.app_time, appointment.test_name, appointment.status, hospital.hospital_name, 
+                    <!-- PHP -->
+                    <?php
+                    if (isset($_SESSION['patient_id'])) {
+                        $patient_id = $_SESSION['patient_id'];
+                        $query = "SELECT appointment.app_date, appointment.app_time, appointment.test_name, appointment.status, hospital.hospital_name, 
               CASE 
                 WHEN appointment.status = 1 THEN report.vac_suggest
                 ELSE 'No suggestion'
@@ -92,14 +99,14 @@ if (isset($_SESSION['patient_id'])) {
               LEFT JOIN report ON appointment.patient_id = report.patient_id
               WHERE appointment.patient_id = $patient_id";
 
-    $result = mysqli_query($con, $query);
+                        $result = mysqli_query($con, $query);
 
-    if (!$result) {
-        die("Error executing the query: " . mysqli_error($con));
-    }
-}
-?>
-<!-- PHP END -->
+                        if (!$result) {
+                            die("Error executing the query: " . mysqli_error($con));
+                        }
+                    }
+                    ?>
+                    <!-- PHP END -->
                     <?php while ($row = mysqli_fetch_assoc($result)): ?>
                         <tr>
                             <td>
@@ -117,10 +124,10 @@ if (isset($_SESSION['patient_id'])) {
                             <td>
                                 <?= $row['status'] == 1 ? 'Positive' : 'Negative' ?>
                             </td>
-  <td>
-           <?= $row['status'] == 1 ? $row['vac_suggest'] : 'No suggestion' ?>
-    </td>
-                            </tr>
+                            <td>
+                                <?= $row['status'] == 1 ? $row['vac_suggest'] : 'No suggestion' ?>
+                            </td>
+                        </tr>
                     <?php endwhile; ?>
                 </tbody>
             </table>
@@ -192,15 +199,13 @@ if (isset($_SESSION['patient_id'])) {
         </div>
     </footer>
     <!-- end footer -->
-    <!-- Javascript files-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
-        integrity="sha384-fzj+3iv2pZl5jK4vF2z5s0TNqI3f21f5sFt9GO+86n5FIEp6p4U6T/Kf5F92Rf5k2L"
-        crossorigin="anonymous"></script>
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
     <script src="js/custom.js"></script>
+
 </body>
 
 </html>

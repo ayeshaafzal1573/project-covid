@@ -17,7 +17,7 @@ if (!isset($_SESSION['patient_id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <title>Pandemix</title>
+    <title>Book Appointment</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="patient.css">
     <link rel="stylesheet" href="../css/responsive.css">
@@ -33,7 +33,14 @@ if (!isset($_SESSION['patient_id'])) {
     <!-- header -->
     <header class="header-area">
         <div class="right">
-            <a href="register.php"><i class="fa fa-user" aria-hidden="true"></i></a>
+            <button class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <?php echo $_SESSION['patient_name']; ?>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="myprofile.php">My Profile</a>
+                <a class="dropdown-item" href="../logout.php">Logout</a>
+            </div>
         </div>
         <div class="container">
             <div class="row d_flex">
@@ -61,12 +68,12 @@ if (!isset($_SESSION['patient_id'])) {
             </div>
         </div>
     </header>
+    <!-- Header end -->
+    <!-- form -->
     <section class="wrapper">
         <div class="form signup">
             <header> BOOK APPOINTMENTS</header>
-
             <form method="POST">
-
                 <input type="text" id="patient_name" name="patient_name" placeholder="Patient Name"><br><br>
                 <select name="test_name" class="location">
                     <option hidden>Select Covid Test</option>
@@ -83,7 +90,7 @@ if (!isset($_SESSION['patient_id'])) {
                         echo "<option value='{$row['hospital_id']}'>{$row['hospital_name']}</option>";
                     }
                     ?>
-                </select><br><br>   
+                </select><br><br>
                 <label for="date">Select Appointment Date:</label>
                 <input type="date" name="app_date"><br><br>
                 <label for="app_time">Select Appointment Time:</label>
@@ -118,7 +125,7 @@ if (!isset($_SESSION['patient_id'])) {
         }
     }
     ?>
-
+    <!-- form end -->
     <!-- PHP -->
     <!--  footer -->
     <footer>
@@ -182,15 +189,13 @@ if (!isset($_SESSION['patient_id'])) {
         </div>
     </footer>
     <!-- end footer -->
-    <!-- Javascript files-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
-        integrity="sha384-fzj+3iv2pZl5jK4vF2z5s0TNqI3f21f5sFt9GO+86n5FIEp6p4U6T/Kf5F92Rf5k2L"
-        crossorigin="anonymous"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
-
     <script src="js/custom.js"></script>
+
 </body>
 
 </html>
