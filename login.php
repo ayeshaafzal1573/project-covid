@@ -22,7 +22,7 @@ session_start();
 <body>
   <header class="header-area">
     <div class="right">
-      <a href="register.html"><i class="fa fa-user" aria-hidden="true"></i></a>
+      <a href="register.php"><i class="fa fa-user" aria-hidden="true"></i></a>
     </div>
     <div class="container">
       <div class="row d_flex">
@@ -101,77 +101,85 @@ session_start();
       <?php
     }
     ?>
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      //variable of dropdown
-      $userType = $_POST["user_type"];
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Variable for user type from dropdown
+  $userType = $_POST["user_type"];
 
-      if ($userType === "Admin") {
-        $username = $_POST["username"];
-        $password = $_POST["admin_password"];
+  if ($userType === "Admin") {
+    $username = $_POST["username"];
+    $password = $_POST["admin_password"];
 
-        $query = "SELECT * FROM admin WHERE username = '$username' AND password = '$password'";
+    // Prepare and execute a query using prepared statements
+    $query = "SELECT admin_id, password FROM admin WHERE username = ?";
+    $stmt = mysqli_prepare($con, $query);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $admin_id, $hashedPassword);
 
-        if (mysqli_num_rows(mysqli_query($con, $query))) {
-          $fetch_id = "SELECT admin_id FROM admin WHERE username='$username'";
-          $result = mysqli_query($con, $fetch_id);
-          $row = mysqli_fetch_array($result);
-          $_SESSION['admin_id'] = $row['admin_id'];
-          $_SESSION['username'] = $username;
-          header("location: admin/admin.php");
-          exit;
-        } else {
-          $loginError = "Invalid email or password.";
-          echo "<script>var loginSuccess = false;</script>";
-        }
-      }
-
-      //Patient Login
-      elseif ($userType === "Patient") {
-        $patientEmail = $_POST["patient_email"];
-        $password = $_POST["patient_password"];
-        $query = "SELECT * FROM patient WHERE email = '$patientEmail' AND password = '$password'";
-
-        if (mysqli_num_rows(mysqli_query($con, $query))) {
-          $fetch_id = "SELECT patient_id FROM patient WHERE email='$patientEmail'";
-          $result = mysqli_query($con, $fetch_id);
-          $row = mysqli_fetch_array($result);
-          $_SESSION['patient_id'] = $row['patient_id'];
-          $_SESSION['patient_name'] = $patientname;
-          header("location: patient/patient.php");
-          exit;
-        } else {
-          $loginError = "Invalid email or password.";
-          echo "<script>var loginSuccess = false;</script>";
-        }
-      }
+    if (mysqli_stmt_fetch($stmt) && password_verify($password, $hashedPassword)) {
+      $_SESSION['admin_id'] = $admin_id;
+      $_SESSION['username'] = $username;
+      header("location: admin/admin.php");
+      exit;
+    } else {
+      $loginError = "Invalid username or password.";
     }
-    ?>
-    <!-- Hospital Login -->
-    <?php
-    if (isset($_POST["login_submit"])) {
-      $hospitalName = $_POST["hospital_name"];
-      $password = $_POST["hospital_password"];
-      $query = "SELECT * FROM hospital WHERE hospital_name='$hospitalName' AND password='$password'";
-      $login_query = mysqli_query($con, $query);
 
-      if ($login_query && mysqli_num_rows($login_query) > 0) {
-        $check_login = mysqli_fetch_assoc($login_query);
+    mysqli_stmt_close($stmt);
+  } elseif ($userType === "Patient") {
+    $patientEmail = $_POST["patient_email"];
+    $password = $_POST["patient_password"];
 
-        if ($check_login['status'] == 1) {
+    // Prepare and execute a query using prepared statements
+    $query = "SELECT patient_id, patient_name, password FROM patient WHERE email = ?";
+    $stmt = mysqli_prepare($con, $query);
+    mysqli_stmt_bind_param($stmt, "s", $patientEmail);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $patient_id, $patient_name, $hashedPassword);
 
-          $_SESSION['hospital_id'] = $check_login['hospital_id'];
-          $_SESSION['hospital_name'] = $check_login['hospital_name'];
-
-          echo "<script>alert('Login successful');</script>";
-          header("location: hospital/patientlist.php");
-          exit;
-        } else {
-          echo "<script>alert('Admin has rejected your request');</script>";
-        }
-      }
+    if (mysqli_stmt_fetch($stmt) && password_verify($password, $hashedPassword)) {
+      $_SESSION['patient_id'] = $patient_id;
+      $_SESSION['patient_name'] = $patient_name;
+      header("location: patient/patient.php");
+      exit;
+    } else {
+      $loginError = "Invalid email or password.";
     }
-    ?>
+
+    mysqli_stmt_close($stmt);
+  }
+}
+
+// Hospital login code
+if (isset($_POST["login_submit"])) {
+  $hospitalName = $_POST["hospital_name"];
+  $password = $_POST["hospital_password"];
+  // Prepare and execute a query using prepared statements
+  $query = "SELECT hospital_id, hospital_name, status, password FROM hospital WHERE hospital_name = ?";
+  $stmt = mysqli_prepare($con, $query);
+  mysqli_stmt_bind_param($stmt, "s", $hospitalName);
+  mysqli_stmt_execute($stmt);
+  mysqli_stmt_bind_result($stmt, $hospital_id, $hospital_name, $status, $hashedPassword);
+
+  if (mysqli_stmt_fetch($stmt) && password_verify($password, $hashedPassword)) {
+    if ($status == 1) {
+      $_SESSION['hospital_id'] = $hospital_id;
+      $_SESSION['hospital_name'] = $hospital_name;
+      header("location: hospital/patientlist.php");
+      exit;
+    } else {
+      echo "<script>alert('Admin has rejected your request');</script>";
+    }
+  } else {
+    echo "<script>alert('Invalid hospital name or password');</script>";
+  }
+
+  mysqli_stmt_close($stmt);
+}
+?>
+<!-- PHP END -->
+
   </section>
   <!-- PHP -->
   <!--  footer -->

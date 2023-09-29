@@ -107,7 +107,7 @@ if (!isset($_SESSION['patient_id'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $testname = $_POST["test_name"];
         $patient_name = $_POST["patient_name"];
-        $hospital_id = $_POST["hospital_selection"];
+        $hospital_id = $_POST["hospital_id"];
         $app_date = $_POST["app_date"];
         $app_time = $_POST["app_time"];
         // Validate and sanitize data 

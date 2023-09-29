@@ -27,7 +27,7 @@ include("connection.php");
       <div class="row d_flex">
         <div class="col-sm-3 logo_sm">
           <div class="logo">
-            <a href="index.html"></a>
+            <a href="index.php"></a>
           </div>
         </div>
         <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-9">
@@ -77,7 +77,7 @@ include("connection.php");
             <option value="Multan">Multan</option>
           </select><br><br>
           <input type="password" name="hospital_password" placeholder="Password"><br><br>
-          <button class="hbtn" onclick="return validateForm();"> <a href="hospital/approcess.php">Register</button></a>
+          <a href="hospital/approcess.php"><button class="hbtn" type="submit" name="submit">Register</button></a>
         </div>
         <!-- Patient Fields -->
         <div id="patientFields" style="display: none;">
@@ -97,30 +97,33 @@ include("connection.php");
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $userType = $_POST["user_type"];
       if (isset($_POST['submit'])) {
-        // Process the form data based on user type
+        //ADMIN
         if ($userType === "Admin") {
           $adminusername = $_POST["username"];
           $adminemail = $_POST["admin_email"];
           $adminpassword = $_POST["admin_password"];
-          $query = "INSERT INTO admin (username, email, password) VALUES ('$adminusername', '$adminemail', '$adminpassword')";
-
-          // Perform admin registration
-        } elseif ($userType === "Hospital") {
-          $hospitalname = $_POST["hospital_name"];
-          $hospitallocation = $_POST["location"];
-          $hospitalpassword = $_POST["hospital_password"];
-          $query = "INSERT INTO hospital (hospital_name, location, password) VALUES ('$hospitalname', '$hospitallocation', '$hospitalpassword')";
-
-          // Perform hospital registration
-        } elseif ($userType === "Patient") {
+          $hashedPassword = password_hash($adminpassword, PASSWORD_DEFAULT);
+          $query = "INSERT INTO admin (username, email, password) VALUES ('$adminusername', '$adminemail', '$hashedPassword')";
+        }
+        //PATIENT
+        elseif ($userType === "Patient") {
           $patientname = $_POST["patient_name"];
           $patientaddress = $_POST["address"];
           $patientemail = $_POST["email"];
           $patientpassword = $_POST["patient_password"];
-          $query = "INSERT INTO patient (patient_name, address, email, password) VALUES ('$patientname', '$patientaddress', '$patientemail', '$patientpassword')";
+          $hashedPassword = password_hash($patientpassword, PASSWORD_DEFAULT);
+          $query = "INSERT INTO patient (patient_name, address, email, password) VALUES ('$patientname', '$patientaddress', '$patientemail', '$hashedPassword')";
         }
 
-        // Execute the query
+        //HOSPITAL
+        
+        elseif ($userType === "Hospital") {
+          $hospitalname = $_POST["hospital_name"];
+          $hospitallocation = $_POST["location"];
+          $hospitalpassword = $_POST["hospital_password"];
+          $hashedPassword = password_hash($hospitalpassword, PASSWORD_DEFAULT);
+          $query = "INSERT INTO hospital (hospital_name, location, password) VALUES ('$hospitalname', '$hospitallocation', '$hashedPassword')";
+        }
         if (mysqli_query($con, $query)) {
           echo '<script>window.location.href = "login.php";</script>';
         } else {
@@ -130,6 +133,7 @@ include("connection.php");
     }
     ?>
     <!-- PHP END -->
+
   </section>
   <!--  footer -->
   <footer>
