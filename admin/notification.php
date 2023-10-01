@@ -95,7 +95,7 @@ if (!isset($_SESSION['admin_id'])) {
     // Handle hospital approval/rejection
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hospitalId = $_POST['hospital_id'];
-        $action = $_POST['action'];
+        $action = $_POST['approval_status'];
         // Update the approval status in the database
         $query = "UPDATE hospital SET approval_status = '$action' WHERE hospital_id = $hospitalId";
         $result = mysqli_query($con, $query);
