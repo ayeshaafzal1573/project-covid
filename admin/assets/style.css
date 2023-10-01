@@ -142,7 +142,7 @@
       padding: -25px 15px;
       height: 50px;
       background-color: #ffffff;
-      color: rgb(64, 211, 27);
+    
   }
 
   .dropdown-menu li a i {
@@ -211,7 +211,7 @@ font-weight: 600;
 /* HOSPITAL */
 
 .add-vaccine {
-
+text-transform: capitalize;
     margin-left: 100px;
     font-weight: 600;
     color: #05254d;

@@ -80,9 +80,9 @@ if (!isset($_SESSION['admin_id'])) {
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a href="notification.php"><i class="zmdi zmdi-notifications text-danger"></i>
-                                Notifications</a></li>
-                        <li><a href="../logout.php">Logout</a></li>
+
+                        <li><a href="notification.php"><i class="zmdi zmdi-notifications"></i> Notifications</a></li>
+                        <li><a href="../login.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
                     </ul>
                 </li>
             </ul>

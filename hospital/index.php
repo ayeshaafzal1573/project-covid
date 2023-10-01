@@ -54,7 +54,6 @@ padding: 0px;
         <div class="right">
             <button class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-user" aria-hidden="true"></i>
-              
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="patientlist.php">Dashboard</a>
@@ -101,7 +100,7 @@ padding: 0px;
                                     <div class="col-md-8">
                                         <div class="photog">
                                             <h1>Care early<br>Coronavirus</h1>
-                                            <a class="read_more" href="bookappointment.php">Book Appointment</a>
+                                            <a class="read_more" href="#about">Read More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +161,7 @@ padding: 0px;
     </div>
     <!-- end coronata -->
     <!-- use in doctor page -->
-    <div class="cases">
+    <div class="cases" id="action">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">

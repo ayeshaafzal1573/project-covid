@@ -82,7 +82,6 @@ if (!isset($_SESSION['hospital_id'])) {
     <!-- FORM STARTS -->
     <!-- PHP -->
     <?php
-    $patients = [];
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $patient_id = $_POST['patient_id'];
         $selected_vac_id = $_POST['vaccination'];
@@ -92,8 +91,8 @@ if (!isset($_SESSION['hospital_id'])) {
         if ($result->num_rows == 1) {
             $row = $result->fetch_assoc();
             $selected_vac_name = $row['vac_name'];
-            $sql = "INSERT INTO `report` (`patient_id`, `vac_suggest`)
-        VALUES ($patient_id, '$selected_vac_name')";
+            $sql = "INSERT INTO `patient_vaccination_table` (`patient_id`, `vac_id`, `vac_suggest`)
+                    VALUES ($patient_id, $selected_vac_id, '$selected_vac_name')";
 
             if ($con->query($sql) === TRUE) {
                 echo '<script>alert("Vaccination successfully recorded.");</script>';
@@ -106,31 +105,26 @@ if (!isset($_SESSION['hospital_id'])) {
     }
 
     $hospital_id = $_SESSION['hospital_id'];
+
     $sql = "SELECT DISTINCT a.`patient_id`, p.`patient_name`, v.`vac_id`, v.`vac_name`
-FROM `appointment` a
-INNER JOIN `patient` p ON a.`patient_id` = p.`patient_id`
-INNER JOIN `vaccination` v ON v.`hospital_id` = a.`hospital_id`
-WHERE a.`hospital_id` = $hospital_id
-AND a.`status` = 1
-AND v.`vac_status` = 'Available'";
+            FROM `appointment` a
+            INNER JOIN `vaccination` v ON v.`hospital_id` = a.`hospital_id`
+            INNER JOIN `patient` p ON p.`patient_id` = a.`patient_id`
+            WHERE a.`hospital_id` = $hospital_id
+            AND a.`status` = 1
+            AND v.`vac_status` = 'Available'";
+
     $result = $con->query($sql);
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $patients[] = [
-                'patient_id' => $row['patient_id'],
-                'patient_name' => $row['patient_name'],
-                'vac_id' => $row['vac_id'],
-                'vac_name' => $row['vac_name'],
-            ];
-        }
-    }
+    $patients = $result->fetch_all(MYSQLI_ASSOC);
+
     $con->close();
     ?>
+
     <!-- PHP -->
     <h1 class="add-vaccine">Patient Vaccination</h1>
     <form method="POST" style="margin-left: 400px; width:50%;">
         <label for="patient_id">Select Patient:</label>
-        <select name="patient_id" required id="availability_status">
+        <select name="patient_id" id="availability_status">
             <!-- PHP -->
             <?php
             if (!empty($patients)) {
@@ -141,21 +135,22 @@ AND v.`vac_status` = 'Available'";
                 echo "<option disabled>No eligible patients</option>";
             }
             ?>
-            <!-- PHP -->
         </select><br><br>
 
         <label for="vaccination">Select Vaccination:</label>
-        <select name="vaccination" required id="availability_status">
+        <select name="vaccination" id="availability_status">
             <!-- PHP -->
             <?php
             if (!empty($patients)) {
                 foreach ($patients as $patient) {
                     echo "<option value='" . $patient['vac_id'] . "'>" . $patient['vac_name'] . "</option>";
                 }
+            } else {
+                echo "<option disabled>No available vaccinations</option>";
             }
             ?>
-            <!-- PHP -->
         </select><br>
+
         <input type="submit" value="Submit" class="btn-vaccine">
     </form>
 </body>
