@@ -127,7 +127,7 @@ AND v.`vac_status` = 'Available'";
     $con->close();
     ?>
     <!-- PHP -->
-    <h1 class="add-vaccine">PATIENT VACCINATION</h1>
+    <h1 class="add-vaccine">Patient Vaccination</h1>
     <form method="POST" style="margin-left: 400px; width:50%;">
         <label for="patient_id">Select Patient:</label>
         <select name="patient_id" required id="availability_status">

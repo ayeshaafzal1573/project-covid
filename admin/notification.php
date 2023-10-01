@@ -99,7 +99,6 @@ if (!isset($_SESSION['admin_id'])) {
         // Update the approval status in the database
         $query = "UPDATE hospital SET approval_status = '$action' WHERE hospital_id = $hospitalId";
         $result = mysqli_query($con, $query);
-
         if ($result) {
             echo "<script>alert('Hospital $action successfully');</script>";
         } else {

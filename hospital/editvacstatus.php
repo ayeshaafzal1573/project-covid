@@ -110,7 +110,7 @@ if (!isset($_SESSION['hospital_id'])) {
     ?>
     <!-- PHP -->
     <!-- FORM -->
-    <h1 class="add-vaccine">ADD VACCINATION</h1>
+    <h1 class="add-vaccine">Add Vaccination</h1>
     <form method="POST" style="margin-left: 400px; width:50%;">
 
 

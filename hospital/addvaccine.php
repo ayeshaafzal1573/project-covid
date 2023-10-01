@@ -72,7 +72,7 @@ if (!isset($_SESSION['hospital_id'])) {
                         <?php echo $_SESSION['hospital_name']; ?> <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                     <li><a href="index.php"><i class="fas fa-home"></i>Back To Home</a></li>
+                        <li><a href="index.php"><i class="fas fa-home"></i>Back To Home</a></li>
                         <li><a href="../logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
                     </ul>
                 </li>
@@ -98,7 +98,7 @@ if (!isset($_SESSION['hospital_id'])) {
     }
     ?>
     <!-- Form to insert vaccine data -->
-    <h1 class="add-vaccine">ADD VACCINATION</h1>
+    <h1 class="add-vaccine">Add Vaccination</h1>
     <form method="POST" style="margin-left: 400px; width:50%;">
         <div class="form-group">
             <label for="vaccine_name">Vaccine Name:</label>
