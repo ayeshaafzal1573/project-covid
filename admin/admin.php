@@ -71,10 +71,10 @@ if (!isset($_SESSION['admin_id'])) {
     <div class="container-fluid">
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-    <img src="../images/adminuser.png" alt="Admin Profile" class="adminpic">
-      <?php echo $_SESSION['username']; ?> <span class="caret"></span>
-    </a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <img src="../images/adminuser.png" alt="Admin Profile" class="adminpic">
+            <?php echo $_SESSION['username']; ?> <span class="caret"></span>
+          </a>
           <ul class="dropdown-menu">
             <li><a href="notification.php"><i class="zmdi zmdi-notifications text-danger"></i> Notifications</a></li>
             <li><a href="../login.php">Logout</a></li>
@@ -86,9 +86,7 @@ if (!isset($_SESSION['admin_id'])) {
   </nav>
   <!-- NAV ENDS -->
   <!-- CARDS -->
-
   <!-- start services -->
-
   <div class="container w-100" data-aos="fade-up">
     <div class="row justify-content-center" style="margin-left: 250px;">
       <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3" id="grooming">

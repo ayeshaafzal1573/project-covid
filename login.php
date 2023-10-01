@@ -94,13 +94,6 @@ session_start();
     </div>
 
     <!-- PHP -->
-    <?php if (isset($loginError)) { ?>
-      <p>
-        <?php echo $loginError; ?>
-      </p>
-      <?php
-    }
-    ?>
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       // Variable for user type from dropdown

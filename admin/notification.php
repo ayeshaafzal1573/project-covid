@@ -92,13 +92,10 @@ if (!isset($_SESSION['admin_id'])) {
     <!-- NAV ENDS -->
     <!-- HOSPITAL APPROVAL -->
     <?php
-
-
     // Handle hospital approval/rejection
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hospitalId = $_POST['hospital_id'];
         $action = $_POST['action'];
-
         // Update the approval status in the database
         $query = "UPDATE hospital SET approval_status = '$action' WHERE hospital_id = $hospitalId";
         $result = mysqli_query($con, $query);
@@ -111,12 +108,9 @@ if (!isset($_SESSION['admin_id'])) {
     }
     $query = "SELECT * FROM hospital WHERE approval_status = 'Pending'";
     $result = mysqli_query($con, $query);
-
     if (!$result) {
         die("Error executing the query: " . mysqli_error($con));
     }
-
-
     ?>
     <div class="container-fluid" id="all-products">
         <h1 class="text-center">Hospital Approval</h1>

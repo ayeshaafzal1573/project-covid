@@ -140,9 +140,7 @@ if (!isset($_SESSION['admin_id'])) {
                   <?= $row['status'] == 1 ? 'Positive' : 'Negative' ?>
                 </td>
                 <td><a href="assets/report.xlsx" class='btn'
-                    style='background-color:red; color:#ffff'>Download Report</a></td>;
-
-
+                    style='background-color:red;color:#ffff'>Download Report</a></td>;
               </tr>
             <?php } else { ?>
               <tr>
