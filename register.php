@@ -17,6 +17,7 @@ include("connection.php");
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 </head>
+
 <body>
   <header class="header-area">
     <div class="right">
@@ -62,9 +63,9 @@ include("connection.php");
         <!-- Admin Fields -->
         <div id="adminFields" style="display: none;" class="form signup">
           <input type="text" name="username" placeholder="Username"><br><br>
-          <input type="text" name="admin_email" placeholder="Email"><br><br>
-          <input type="password" name="admin_password" placeholder="Password"><br><br>
-          <input type="submit" value="Register" name="submit" onclick="return validateForm();">
+          <input type="email" name="admin_email" placeholder="Email" required><br><br>
+          <input type="password" name="admin_password" placeholder="Password">
+          <input type="submit" value="Register" name="submit">
         </div>
         <!-- Hospital Fields -->
         <div id="hospitalFields" style="display: none;">
@@ -76,7 +77,7 @@ include("connection.php");
             <option value="Multan">Multan</option>
           </select><br><br>
           <input type="password" name="hospital_password" placeholder="Password"><br><br>
-          <a href="hospital/approcess.php"><button class="hbtn" type="submit" name="submit">Register</button></a>
+          <input type="submit" value="Register" name="submit"><br><br>
         </div>
         <!-- Patient Fields -->
         <div id="patientFields" style="display: none;">
@@ -84,7 +85,7 @@ include("connection.php");
           <input type="text" name="address" placeholder="Patient Address"><br><br>
           <input type="text" name="email" placeholder="Patient Email"><br><br>
           <input type="password" name="patient_password" placeholder="Patient Password"><br><br>
-          <input type="submit" value="Register" name="submit" onclick="return validateForm();"><br><br>
+          <input type="submit" value="Register" name="submit"><br><br>
         </div>
       </form>
     </div>
@@ -93,17 +94,62 @@ include("connection.php");
     </div>
     <!-- PHP -->
     <?php
+    // Initialize error variables
+    $usernameErr = $emailErr = $passwordErr = $phoneNumberErr = '';
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $userType = $_POST["user_type"];
+
       if (isset($_POST['submit'])) {
-        //ADMIN
+        // ADMIN
         if ($userType === "Admin") {
           $adminusername = $_POST["username"];
           $adminemail = $_POST["admin_email"];
           $adminpassword = $_POST["admin_password"];
           $hashedPassword = password_hash($adminpassword, PASSWORD_DEFAULT);
-          $query = "INSERT INTO admin (username, email, password) VALUES ('$adminusername', '$adminemail', '$hashedPassword')";
+          // Validation
+          if (empty($adminusername)) {
+            $usernameErr = 'Username is required.';
+          } elseif (!preg_match('/^[a-zA-Z0-9_]{3,20}$/', $adminusername)) {
+            $usernameErr = 'Username must contain 3-20 alphanumeric characters and underscores.';
+          }
+          if (empty($adminemail)) {
+            $emailErr = 'Email is required.';
+          } elseif (!filter_var($adminemail, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = 'Invalid email format.';
+          }
+
+          if (empty($adminpassword)) {
+            $passwordErr = 'Password is required.';
+          } elseif (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $adminpassword)) {
+            $passwordErr = 'Password must contain at least one letter, one number, and be at least 8 characters long.';
+          }
+
+          if (empty($usernameErr) && empty($emailErr) && empty($passwordErr)) {
+            // Insert into the database
+            $query = "INSERT INTO admin (username, email, password) VALUES ('$adminusername', '$adminemail', '$hashedPassword')";
+            if (mysqli_query($con, $query)) {
+              // Registration successful
+              echo '<script>alert("Registration successful.");</script>';
+            } else {
+              // Registration failed, display error messages
+              $errorMessages = [];
+              if (!empty($usernameErr)) {
+                $errorMessages[] = $usernameErr;
+              }
+              if (!empty($emailErr)) {
+                $errorMessages[] = $emailErr;
+              }
+              if (!empty($passwordErr)) {
+                $errorMessages[] = $passwordErr;
+              }
+
+              $errorMessage = implode('<br>', $errorMessages);
+              echo '<script>alert("Registration failed:<br>' . $errorMessage . '");</script>';
+            }
+          }
         }
+
         //PATIENT
         elseif ($userType === "Patient") {
           $patientname = $_POST["patient_name"];
@@ -111,28 +157,72 @@ include("connection.php");
           $patientemail = $_POST["email"];
           $patientpassword = $_POST["patient_password"];
           $hashedPassword = password_hash($patientpassword, PASSWORD_DEFAULT);
-          $query = "INSERT INTO patient (patient_name, address, email, password) VALUES ('$patientname', '$patientaddress', '$patientemail', '$hashedPassword')";
+
+          // Validation
+          if (empty($patientname)) {
+            $usernameErr = 'Patient Name is required.';
+          } elseif (!preg_match('/^[a-zA-Z0-9_]{3,20}$/', $adminusername)) {
+            $usernameErr = 'Username must contain 3-20 alphanumeric characters and underscores.';
+          }
+
+          if (empty($patientaddress)) {
+            $addressErr = 'Patient Address is required.';
+          }
+
+          if (empty($patientemail)) {
+            $emailErr = 'Email is required.';
+          } elseif (!filter_var($patientemail, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = 'Invalid email format.';
+          }
+
+          if (empty($patientpassword)) {
+            $passwordErr = 'Password is required.';
+          } elseif (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $patientpassword)) {
+            $passwordErr = 'Password must contain at least one letter, one number, and be at least 8 characters long.';
+          }
+          if (empty($usernameErr) && empty($addressErr) && empty($emailErr) && empty($passwordErr)) {
+            $query = "INSERT INTO patient (patient_name, address, email, password) VALUES ('$patientname', '$patientaddress', '$patientemail', '$hashedPassword')";
+            if (mysqli_query($con, $query)) {
+              echo '<script>alert("Admin will approve your request");</script>';
+            } else {
+              echo "Error: " . mysqli_error($con);
+            }
+          }
         }
 
-        //HOSPITAL
-        
+        // HOSPITAL
         elseif ($userType === "Hospital") {
           $hospitalname = $_POST["hospital_name"];
           $hospitallocation = $_POST["location"];
           $hospitalpassword = $_POST["hospital_password"];
           $hashedPassword = password_hash($hospitalpassword, PASSWORD_DEFAULT);
-          $query = "INSERT INTO hospital (hospital_name, location, password) VALUES ('$hospitalname', '$hospitallocation', '$hashedPassword')";
-        }
-        if (mysqli_query($con, $query)) {
-          echo '<script>window.location.href = "login.php";</script>';
-        } else {
-          echo "Error: " . mysqli_error($con);
+
+          // Validation
+          if (empty($hospitalname)) {
+            $hospitalnameErr = 'Hospital Name is required.';
+          }
+          if (empty($hospitallocation)) {
+            $locationErr = 'Location is required.';
+          }
+          if (empty($hospitalpassword)) {
+            $passwordErr = 'Password is required.';
+          } elseif (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $hospitalpassword)) {
+            $passwordErr = 'Password must contain at least one letter, one number, and be at least 8 characters long.';
+          }
+
+          if (empty($hospitalnameErr) && empty($locationErr) && empty($passwordErr)) {
+            $query = "INSERT INTO hospital (hospital_name, location, password) VALUES ('$hospitalname', '$hospitallocation', '$hashedPassword')";
+            if (mysqli_query($con, $query)) {
+              echo '<script>alert("Admin Will Approve Your Request.");</script>';
+            } else {
+              echo "Error: " . mysqli_error($con);
+            }
+          }
         }
       }
     }
     ?>
     <!-- PHP END -->
-
   </section>
   <!--  footer -->
   <footer>
@@ -195,65 +285,7 @@ include("connection.php");
   </footer>
   <!-- end footer -->
   <!-- JAVASCRIPT -->
-  <script>
-    function validateForm() {
-      var userType = document.getElementById("user_type").value;
-      var isValid = true;
-      var username = document.getElementById("username").value;
-      var email = document.getElementById("admin_email").value;
-      var password = document.getElementById("admin_password").value;
-      if (username === "" || email === "" || password === "") {
-        alert("Username, Email, and Password are required fields.");
-        isValid = false;
-      } else if (!isEmailValid(email)) {
-        alert("Invalid email format.");
-        isValid = false;
-      } else if (!isPasswordValid(password)) {
-        alert("Password must contain at least one lowercase letter, one uppercase letter, and be at least 8 characters long.");
-        isValid = false;
-      }
-      if (userType === "Hospital") {
-        var hospitalName = document.getElementById("hospital_name").value;
-        var location = document.getElementById("location").value;
-        var hospitalPassword = document.getElementById("hospital_password").value;
-
-       else if (hospitalName === "" || location === "" || hospitalPassword === "") {
-          alert("Hospital Name, Location, and Password are required fields.");
-          isValid = false;
-        } else if (!isPasswordValid(hospitalPassword)) {
-          alert("Hospital Password must contain at least one lowercase letter, one uppercase letter, and be at least 8 characters long.");
-          isValid = false;
-        }
-      } else if (userType === "Patient") {
-        var patientName = document.getElementById("patient_name").value;
-        var address = document.getElementById("address").value;
-        var patientEmail = document.getElementById("email").value; // Assuming you renamed the input field
-        var patientPassword = document.getElementById("patient_password").value;
-
-        if (patientName === "" || address === "" || patientEmail === "" || patientPassword === "") {
-          alert("Patient Name, Address, Email, and Password are required fields.");
-          isValid = false;
-        } else if (!isPasswordValid(patientPassword)) {
-          alert("Patient Password must contain at least one lowercase letter, one uppercase letter, and be at least 8 characters long.");
-          isValid = false;
-        }
-      }
-
-      return isValid;
-    }
-    function isEmailValid(email) {
-      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
-    }
-    function isPasswordValid(password) {
-      // Password must contain at least one lowercase letter, one uppercase letter, and be at least 8 characters long
-      var lowercaseRegex = /[a-z]/;
-      var uppercaseRegex = /[A-Z]/;
-      return lowercaseRegex.test(password) && uppercaseRegex.test(password) && password.length >= 8;
-    }
-  </script>
   <script src="script.js"></script>
-
 </body>
 
 </html>

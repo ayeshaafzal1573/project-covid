@@ -106,18 +106,19 @@ if (!isset($_SESSION['hospital_id'])) {
 
     $hospital_id = $_SESSION['hospital_id'];
 
-    $sql = "SELECT DISTINCT a.`patient_id`, p.`patient_name`, v.`vac_id`, v.`vac_name`
+
+    $sql = "SELECT  a.`patient_id`, p.`patient_name`, v.`vac_id`, v.`vac_name`
             FROM `appointment` a
             INNER JOIN `vaccination` v ON v.`hospital_id` = a.`hospital_id`
-            INNER JOIN `patient` p ON p.`patient_id` = a.`patient_id`
+            INNER JOIN `patient` p ON a.`patient_id` = p.`patient_id`
             WHERE a.`hospital_id` = $hospital_id
             AND a.`status` = 1
             AND v.`vac_status` = 'Available'";
 
-    $result = $con->query($sql);
-    $patients = $result->fetch_all(MYSQLI_ASSOC);
+    $result = mysqli_query($con,$sql);
+    // $patients = $result->fetch_all(MYSQLI_ASSOC);
 
-    $con->close();
+    // $con->close();
     ?>
 
     <!-- PHP -->
@@ -127,13 +128,13 @@ if (!isset($_SESSION['hospital_id'])) {
         <select name="patient_id" id="availability_status">
             <!-- PHP -->
             <?php
-            if (!empty($patients)) {
-                foreach ($patients as $patient) {
-                    echo "<option value='" . $patient['patient_id'] . "'>" . $patient['patient_name'] . "</option>";
+    
+                foreach ($result as $client) {
+
+               
+                    echo "<option>" . $client['patient_name'] . "</option>";
                 }
-            } else {
-                echo "<option disabled>No eligible patients</option>";
-            }
+           
             ?>
         </select><br><br>
 
@@ -141,14 +142,11 @@ if (!isset($_SESSION['hospital_id'])) {
         <select name="vaccination" id="availability_status">
             <!-- PHP -->
             <?php
-            if (!empty($patients)) {
-                foreach ($patients as $patient) {
-                    echo "<option value='" . $patient['vac_id'] . "'>" . $patient['vac_name'] . "</option>";
+          
+                foreach ($result as $client) {
+                    echo "<option >" . $client['vac_name'] . "</option>";
                 }
-            } else {
-                echo "<option disabled>No available vaccinations</option>";
-            }
-            ?>
+        ?>
         </select><br>
 
         <input type="submit" value="Submit" class="btn-vaccine">

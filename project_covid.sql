@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2023 at 06:14 PM
+-- Generation Time: Oct 01, 2023 at 07:11 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -39,7 +39,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `username`, `email`, `password`) VALUES
-(1, 'Admin', 'admin@gmail.com', '$2y$10$H5Fu2fu.wUa2.FN/iURDuuXKyD838SaDCDHQ6KDnuqLhU/N8Ff0Ga');
+(1, 'Admin', 'admin@gmail.com', '$2y$10$H5Fu2fu.wUa2.FN/iURDuuXKyD838SaDCDHQ6KDnuqLhU/N8Ff0Ga'),
+(2, 'Sunaina', 'sunaina@gmail.com', '$2y$10$va4PP4mkmdrkXVBJRus9JuswLaGt9Oqq606XLbPCz/JlAfYfl4Tui');
 
 -- --------------------------------------------------------
 
@@ -64,7 +65,7 @@ CREATE TABLE `appointment` (
 
 INSERT INTO `appointment` (`app_id`, `patient_id`, `hospital_id`, `app_date`, `status`, `app_time`, `test_name`, `approval_status`) VALUES
 (1, 1, 1, '2023-09-30', 1, '19:25:00', 'PCR', 'Approved'),
-(2, 1, 1, '2023-09-30', 1, '12:46:00', 'Naats', 'Approved');
+(4, 2, 1, '2023-10-09', 1, '06:08:00', 'Naats', 'Approved');
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,7 @@ CREATE TABLE `hospital` (
 --
 
 INSERT INTO `hospital` (`hospital_id`, `hospital_name`, `location`, `password`, `status`, `approval_status`) VALUES
-(1, 'Agha Khan', 'Karachi', '$2y$10$MpkQ97qiwEi36mTzuhipcO8j6Gilcu5.Fu7bA6ND3djFGg0rM3NNm', 0, 'Approved');
+(1, 'Agha Khan', 'Karachi', '$2y$10$MpkQ97qiwEi36mTzuhipcO8j6Gilcu5.Fu7bA6ND3djFGg0rM3NNm', 1, 'Approved');
 
 -- --------------------------------------------------------
 
@@ -107,7 +108,29 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`patient_id`, `patient_name`, `address`, `email`, `password`) VALUES
-(1, 'Ayesha', 'Shamsi Society ', 'ayeshaafzal1573@gmail.com ', '$2y$10$mjCOLKl/RhACptOmCsbmN.wXXXLhwbeBEIeFReM1yDftdkBCzdaUi');
+(1, 'Ayesha', 'Shamsi Society ', 'ayeshaafzal1573@gmail.com ', '$2y$10$mjCOLKl/RhACptOmCsbmN.wXXXLhwbeBEIeFReM1yDftdkBCzdaUi'),
+(2, 'flappy', 'lakhani', 'flappy@gmail.com', '$2y$10$E6DcMD/eoEc6xxknBMOHrOHLTgHaOHKnpKZRGF2jcKMnkzhaIIOiu');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patient_vaccination_table`
+--
+
+CREATE TABLE `patient_vaccination_table` (
+  `patient_vac_id` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
+  `vac_id` int(11) NOT NULL,
+  `vac_suggest` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `patient_vaccination_table`
+--
+
+INSERT INTO `patient_vaccination_table` (`patient_vac_id`, `patient_id`, `vac_id`, `vac_suggest`) VALUES
+(1, 1, 3, 'Sinovac'),
+(2, 1, 3, 'Sinovac');
 
 -- --------------------------------------------------------
 
@@ -126,7 +149,8 @@ CREATE TABLE `report` (
 --
 
 INSERT INTO `report` (`report_id`, `patient_id`, `vac_suggest`) VALUES
-(1, 1, 'Booster');
+(1, 1, 'Booster'),
+(3, 2, 'cvq');
 
 -- --------------------------------------------------------
 
@@ -137,7 +161,6 @@ INSERT INTO `report` (`report_id`, `patient_id`, `vac_suggest`) VALUES
 CREATE TABLE `vaccination` (
   `vac_id` int(11) NOT NULL,
   `vac_name` varchar(255) NOT NULL,
-  `patient_id` int(11) DEFAULT NULL,
   `hospital_id` int(11) DEFAULT NULL,
   `vac_status` enum('Available','Unavailable') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -146,8 +169,10 @@ CREATE TABLE `vaccination` (
 -- Dumping data for table `vaccination`
 --
 
-INSERT INTO `vaccination` (`vac_id`, `vac_name`, `patient_id`, `hospital_id`, `vac_status`) VALUES
-(1, 'Booster', 1, 1, 'Available');
+INSERT INTO `vaccination` (`vac_id`, `vac_name`, `hospital_id`, `vac_status`) VALUES
+(1, 'Booster', 1, 'Available'),
+(2, 'cvq', 1, 'Available'),
+(3, 'Sinovac', 1, 'Available');
 
 --
 -- Indexes for dumped tables
@@ -180,6 +205,14 @@ ALTER TABLE `patient`
   ADD PRIMARY KEY (`patient_id`);
 
 --
+-- Indexes for table `patient_vaccination_table`
+--
+ALTER TABLE `patient_vaccination_table`
+  ADD PRIMARY KEY (`patient_vac_id`),
+  ADD KEY `patient_id` (`patient_id`),
+  ADD KEY `vac_id` (`vac_id`);
+
+--
 -- Indexes for table `report`
 --
 ALTER TABLE `report`
@@ -191,7 +224,6 @@ ALTER TABLE `report`
 --
 ALTER TABLE `vaccination`
   ADD PRIMARY KEY (`vac_id`),
-  ADD KEY `patient_id` (`patient_id`),
   ADD KEY `hospital_id` (`hospital_id`);
 
 --
@@ -202,13 +234,13 @@ ALTER TABLE `vaccination`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `hospital`
@@ -220,19 +252,25 @@ ALTER TABLE `hospital`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `patient_vaccination_table`
+--
+ALTER TABLE `patient_vaccination_table`
+  MODIFY `patient_vac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `vaccination`
 --
 ALTER TABLE `vaccination`
-  MODIFY `vac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `vac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -246,6 +284,13 @@ ALTER TABLE `appointment`
   ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`);
 
 --
+-- Constraints for table `patient_vaccination_table`
+--
+ALTER TABLE `patient_vaccination_table`
+  ADD CONSTRAINT `patient_vaccination_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`),
+  ADD CONSTRAINT `patient_vaccination_ibfk_2` FOREIGN KEY (`vac_id`) REFERENCES `vaccination` (`vac_id`);
+
+--
 -- Constraints for table `report`
 --
 ALTER TABLE `report`
@@ -255,7 +300,6 @@ ALTER TABLE `report`
 -- Constraints for table `vaccination`
 --
 ALTER TABLE `vaccination`
-  ADD CONSTRAINT `vaccination_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`),
   ADD CONSTRAINT `vaccination_ibfk_2` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`);
 COMMIT;
 
