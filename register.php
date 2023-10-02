@@ -150,7 +150,7 @@ include("connection.php");
           }
         }
 
-        //PATIENT
+        // PATIENT
         elseif ($userType === "Patient") {
           $patientname = $_POST["patient_name"];
           $patientaddress = $_POST["address"];
@@ -158,10 +158,13 @@ include("connection.php");
           $patientpassword = $_POST["patient_password"];
           $hashedPassword = password_hash($patientpassword, PASSWORD_DEFAULT);
 
+          // Initialize error variables
+          $usernameErr = $addressErr = $emailErr = $passwordErr = '';
+
           // Validation
           if (empty($patientname)) {
             $usernameErr = 'Patient Name is required.';
-          } elseif (!preg_match('/^[a-zA-Z0-9_]{3,20}$/', $adminusername)) {
+          } elseif (!preg_match('/^[a-zA-Z0-9_]{3,20}$/', $patientname)) {
             $usernameErr = 'Username must contain 3-20 alphanumeric characters and underscores.';
           }
 
@@ -180,6 +183,7 @@ include("connection.php");
           } elseif (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $patientpassword)) {
             $passwordErr = 'Password must contain at least one letter, one number, and be at least 8 characters long.';
           }
+
           if (empty($usernameErr) && empty($addressErr) && empty($emailErr) && empty($passwordErr)) {
             $query = "INSERT INTO patient (patient_name, address, email, password) VALUES ('$patientname', '$patientaddress', '$patientemail', '$hashedPassword')";
             if (mysqli_query($con, $query)) {
@@ -196,6 +200,9 @@ include("connection.php");
           $hospitallocation = $_POST["location"];
           $hospitalpassword = $_POST["hospital_password"];
           $hashedPassword = password_hash($hospitalpassword, PASSWORD_DEFAULT);
+
+          // Initialize error variables
+          $hospitalnameErr = $locationErr = $passwordErr = '';
 
           // Validation
           if (empty($hospitalname)) {

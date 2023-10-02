@@ -148,7 +148,6 @@ session_start();
     if (isset($_POST["login_submit"])) {
       $hospitalName = $_POST["hospital_name"];
       $password = $_POST["hospital_password"];
-      // Prepare and execute a query using prepared statements
       $query = "SELECT hospital_id, hospital_name, approval_status, password FROM hospital WHERE hospital_name = ?";
       $stmt = mysqli_prepare($con, $query);
       mysqli_stmt_bind_param($stmt, "s", $hospitalName);
