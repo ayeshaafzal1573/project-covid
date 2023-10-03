@@ -87,17 +87,13 @@ if (!isset($_SESSION['hospital_id'])) {
         $selected_vac_id = $_POST['vaccination'];
         $query = "SELECT `vac_name` FROM `vaccination` WHERE `vac_id` = $selected_vac_id";
         $result = $con->query($query);
-
         if ($result->num_rows == 1) {
             $row = $result->fetch_assoc();
             $selected_vac_name = $row['vac_name'];
             $sql = "INSERT INTO `patient_vaccination_table` (`patient_id`, `vac_id`, `vac_suggest`)
-                    VALUES ($patient_id, $selected_vac_id, '$selected_vac_name')";
-
+                VALUES ($patient_id, $selected_vac_id, '$selected_vac_name')";
             if ($con->query($sql) === TRUE) {
                 echo '<script>alert("Vaccination successfully recorded.");</script>';
-            } else {
-                echo '<script>alert("Error: ' . $sql . '\n' . $con->error . '");</script>';
             }
         } else {
             echo '<script>alert("Selected vaccination not found.");</script>';
@@ -106,49 +102,40 @@ if (!isset($_SESSION['hospital_id'])) {
 
     $hospital_id = $_SESSION['hospital_id'];
 
-
-    $sql = "SELECT  a.`patient_id`, p.`patient_name`, v.`vac_id`, v.`vac_name`
-            FROM `appointment` a
-            INNER JOIN `vaccination` v ON v.`hospital_id` = a.`hospital_id`
-            INNER JOIN `patient` p ON a.`patient_id` = p.`patient_id`
-            WHERE a.`hospital_id` = $hospital_id
-            AND a.`status` = 1
-            AND v.`vac_status` = 'Available'";
-
-    $result = mysqli_query($con,$sql);
-    // $patients = $result->fetch_all(MYSQLI_ASSOC);
-
-    // $con->close();
+    //Patients
+    $sqlPatients = "SELECT DISTINCT p.patient_id, p.patient_name
+               FROM appointment a
+               INNER JOIN patient p ON a.patient_id = p.patient_id
+               WHERE a.status = 1";
+    $resultPatients = mysqli_query($con, $sqlPatients);
+   //Vaccination
+    $sqlVaccinations = "SELECT DISTINCT v.vac_id, v.vac_name
+                   FROM appointment a
+                   INNER JOIN vaccination v ON v.hospital_id = a.hospital_id
+                   WHERE a.status = 1 AND v.vac_status = 'Available'";
+    $resultVaccinations = mysqli_query($con, $sqlVaccinations);
     ?>
-
     <!-- PHP -->
     <h1 class="add-vaccine">Patient Vaccination</h1>
     <form method="POST" style="margin-left: 400px; width:50%;">
-        <label for="patient_id">Select Patient:</label>
-        <select name="patient_id" id="availability_status">
+        <label for="patient">Select Patient:</label>
+        <select id="patient" name="patient">
             <!-- PHP -->
             <?php
-    
-                foreach ($result as $client) {
-
-               
-                    echo "<option>" . $client['patient_name'] . "</option>";
-                }
-           
+            foreach ($resultPatients as $patient) {
+                echo "<option value='" . $patient['patient_id'] . "'>" . $patient['patient_name'] . "</option>";
+            }
             ?>
         </select><br><br>
-
         <label for="vaccination">Select Vaccination:</label>
-        <select name="vaccination" id="availability_status">
+        <select id="vaccination" name="vaccination">
             <!-- PHP -->
             <?php
-          
-                foreach ($result as $client) {
-                    echo "<option >" . $client['vac_name'] . "</option>";
-                }
-        ?>
+            foreach ($resultVaccinations as $vaccination) {
+                echo "<option value='" . $vaccination['vac_id'] . "'>" . $vaccination['vac_name'] . "</option>";
+            }
+            ?>
         </select><br>
-
         <input type="submit" value="Submit" class="btn-vaccine">
     </form>
 </body>

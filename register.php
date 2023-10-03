@@ -17,7 +17,6 @@ include("connection.php");
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 </head>
-
 <body>
   <header class="header-area">
     <div class="right">
@@ -116,6 +115,7 @@ include("connection.php");
         }
 
         //HOSPITAL
+        
         elseif ($userType === "Hospital") {
           $hospitalname = $_POST["hospital_name"];
           $hospitallocation = $_POST["location"];
