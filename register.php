@@ -17,6 +17,7 @@ include("connection.php");
   <link rel="stylesheet" href="assets/css/responsive.css">
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 </head>
+
 <body>
   <header class="header-area">
     <div class="right">
@@ -76,7 +77,7 @@ include("connection.php");
             <option value="Multan">Multan</option>
           </select><br><br>
           <input type="password" name="hospital_password" placeholder="Password"><br><br>
-          <a href="hospital/approcess.php"><button class="hbtn" type="submit" name="submit">Register</button></a>
+          <input type="submit" value="Register" name="submit" onclick="return validateForm();">
         </div>
         <!-- Patient Fields -->
         <div id="patientFields" style="display: none;">
@@ -113,19 +114,18 @@ include("connection.php");
           $hashedPassword = password_hash($patientpassword, PASSWORD_DEFAULT);
           $query = "INSERT INTO patient (patient_name, address, email, password) VALUES ('$patientname', '$patientaddress', '$patientemail', '$hashedPassword')";
         }
-
         //HOSPITAL
-        
         elseif ($userType === "Hospital") {
           $hospitalname = $_POST["hospital_name"];
           $hospitallocation = $_POST["location"];
           $hospitalpassword = $_POST["hospital_password"];
           $hashedPassword = password_hash($hospitalpassword, PASSWORD_DEFAULT);
-          $query = "INSERT INTO hospital (hospital_name, location, password) VALUES ('$hospitalname', '$hospitallocation', '$hashedPassword')";
+          $query = "INSERT INTO hospital (hospital_name, location, password,status,approval_status) 
+              VALUES ('$hospitalname', '$hospitallocation', '$hashedPassword',0,'Pending')";
         }
+
         if (mysqli_query($con, $query)) {
           echo "<script>alert('Admin will approve your request');</script>";
-
         } else {
           echo "Error: " . mysqli_error($con);
         }
@@ -253,7 +253,7 @@ include("connection.php");
       return lowercaseRegex.test(password) && uppercaseRegex.test(password) && password.length >= 8;
     }
   </script>
-  <script src="script.js"></script>
+  <script src="assets/script.js"></script>
 
 </body>
 

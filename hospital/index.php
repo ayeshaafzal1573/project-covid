@@ -76,7 +76,7 @@ if (!isset($_SESSION['hospital_id'])) {
                                 <li><a href="index.php#about">About</a></li>
                                 <li><a href="index.php" class="logo_midle">Pandemix</a></li>
                                 <li><a href="index.php#action">Actions</a></li>
-                                <li><a href="../contact.php">Contact </a></li>
+                                <li><a href="index.php#contact">Contact </a></li>
                             </ul>
                             <button class="nav-toggler">
                                 <span></span>

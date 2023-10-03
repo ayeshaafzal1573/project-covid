@@ -29,7 +29,8 @@ if (!isset($_SESSION['admin_id'])) {
     <!-- SIDEBAR -->
     <div id="sidebar">
         <header>
-            <a href="#"><img src="../assets/images/covidlogo.png" alt="" style="width:120px ; height:120px;padding: 20px;"></a>
+            <a href="#"><img src="../assets/images/covidlogo.png" alt=""
+                    style="width:120px ; height:120px;padding: 20px;"></a>
         </header>
         <ul class="nav">
             <li>
@@ -89,15 +90,19 @@ if (!isset($_SESSION['admin_id'])) {
     <?php
     // Handle hospital approval/rejection
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $hospitalId = $_POST['hospital_id'];
-        $action = $_POST['approval_status'];
-        // Update the approval status in the database
-        $query = "UPDATE hospital SET approval_status = '$action' WHERE hospital_id = $hospitalId";
-        $result = mysqli_query($con, $query);
-        if ($result) {
-            echo "<script>alert('Hospital $action successfully');</script>";
+        if (isset($_POST['hospital_id']) && isset($_POST['action'])) {
+            $hospitalId = $_POST['hospital_id'];
+            $action = $_POST['action'];
+            $newStatus = ($action == "Approved") ? "Approved" : "Rejected";
+            $query = "UPDATE hospital SET approval_status = '$newStatus' WHERE hospital_id = $hospitalId";
+            $result = mysqli_query($con, $query);
+            if ($result) {
+                echo "<script>alert('Hospital $action successfully');</script>";
+            } else {
+                echo "<script>alert('Error updating hospital status: " . mysqli_error($con) . "');</script>";
+            }
         } else {
-            echo "<script>alert('Error updating hospital status: " . mysqli_error($con) . "');</script>";
+            echo "<script>alert('Invalid form submission');</script>";
         }
     }
     $query = "SELECT * FROM hospital WHERE approval_status = 'Pending'";

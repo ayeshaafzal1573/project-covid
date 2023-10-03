@@ -243,7 +243,7 @@ session_start();
       wrapper.classList.remove("active");
     });
   </script>
-  <script src="script.js"></script>
+  <script src="assets/script.js"></script>
   <script>
     function showLoginAlert(message) {
       var loginAlert = document.getElementById("login-alert");
