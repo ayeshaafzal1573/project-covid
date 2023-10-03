@@ -18,10 +18,10 @@ if (!isset($_SESSION['patient_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <title>My Profile</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="patient.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-    <link rel="icon" href="../images/covidlogo.png" type="image/gif" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/patient.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="icon" href="../assets/images/covidlogo.png" type="image/gif" />
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
@@ -45,7 +45,7 @@ if (!isset($_SESSION['patient_id'])) {
             <div class="row d_flex">
                 <div class="col-sm-3 logo_sm">
                     <div class="logo">
-                        <a href="index.html"></a>
+                        <a href="index.php"></a>
                     </div>
                 </div>
                 <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-9">
@@ -90,7 +90,7 @@ if (!isset($_SESSION['patient_id'])) {
     <div class="container myprofile">
         <div class="row">
             <div class="col-md-12">
-                <img src="../images/patientuser.png" alt="myprofile" class="my-img">
+                <img src="../assets/images/patientuser.png" alt="myprofile" class="my-img">
             </div>
         </div>
         <div class="row">
@@ -105,24 +105,22 @@ if (!isset($_SESSION['patient_id'])) {
             <div class="col-12">
                 <h5>Address:
                 </h5>
-                                <p>
-                        <?php echo $address; ?>
-                                </p>
+                <p>
+                    <?php echo $address; ?>
+                </p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <h5>Email: <h5>
-                         <p>
-                        <?php echo $email; ?>
+                        <p>
+                            <?php echo $email; ?>
                         </p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-
                 <a href="edit_profile.php" class="btn btn-edit">Edit Profile</a>
-
             </div>
         </div>
     </div>
@@ -144,10 +142,7 @@ if (!isset($_SESSION['patient_id'])) {
                                 <li>
                                 <li> <a href="covidreport.php">My Reports</a>
                                 <li>
-
                             </ul>
-
-
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6">
@@ -181,14 +176,12 @@ if (!isset($_SESSION['patient_id'])) {
                         <div class="hedingh3 text_align_left">
                             <h3>Location</h3>
                             <div class="map">
-                                <img src="../images/map.png" alt="map" />
+                                <img src="../assets/images/map.png" alt="map" />
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
         </div>
     </footer>
     <!-- end footer -->
@@ -197,7 +190,6 @@ if (!isset($_SESSION['patient_id'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
-    <script src="js/custom.js"></script>
 
 </body>
 

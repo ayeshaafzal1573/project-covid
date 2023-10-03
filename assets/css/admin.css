@@ -255,10 +255,53 @@ text-transform: capitalize;
     font-weight: 500 !important;
     height: 60px;
 }
-
+#patient {
+    text-transform: inherit;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 500 !important;
+    height: 60px;
+}
+#vaccination {
+    text-transform: inherit;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 500 !important;
+    height: 60px;
+}
 .available {
     font-family: poppin;
     font-size: 20px;
 
 }
 
+/* CONTACT */
+#contact {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+#contact .cname,
+.cmail {
+    width: 500px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+#contact .cmessage {
+    width: 500px;
+    height: 100px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+#contact .cbtn {
+    width: 200px;
+    padding: 10px;
+    background-color: #ff2a00fa;
+    border-radius: 10px;
+}

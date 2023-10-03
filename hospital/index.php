@@ -18,35 +18,36 @@ if (!isset($_SESSION['hospital_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <title>Pandemix</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-    <link rel="icon" href="../images/covidlogo.png" type="image/gif" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="icon" href="../assets/images/covidlogo.png" type="image/gif" />
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
     <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
     <style>
-        .right>button{
+        .right>button {
 
-background-color: #ed242e !important;
-color: white;
+            background-color: #ed242e !important;
+            color: white;
 
-}
-.right>.dropdown-menu-right{
-    min-width: 100px;
-    border-radius: 20px;
-padding: 0px;
+        }
 
-}
-.dropdown-menu>a:hover {
-    color: #05254d;
-    background-color: none !important;
-    border-radius: 20px;
-}
+        .right>.dropdown-menu-right {
+            min-width: 100px;
+            border-radius: 20px;
+            padding: 0px;
+
+        }
+
+        .dropdown-menu>a:hover {
+            color: #05254d;
+            background-color: none !important;
+            border-radius: 20px;
+        }
     </style>
 </head>
-
 
 <body class="main-layout">
     <!-- header -->
@@ -129,7 +130,7 @@ padding: 0px;
                 </div>
                 <div class="col-md-5">
                     <div class="about_img text_align_center">
-                        <figure><img src="../images/about.png" alt="#" /></figure>
+                        <figure><img src="../assets/images/about.png" alt="#" /></figure>
                     </div>
                 </div>
 
@@ -143,7 +144,7 @@ padding: 0px;
             <div class="row d_flex grid">
                 <div class="col-md-7">
                     <div class="coronata_img text_align_center">
-                        <figure><img src="../images/corona.png" alt="#" /></figure>
+                        <figure><img src="../assets/images/corona.png" alt="#" /></figure>
                     </div>
                 </div>
                 <div class="col-md-5 oder1">
@@ -177,7 +178,7 @@ padding: 0px;
             <div class="row d_flex">
                 <div class=" col-md-4">
                     <div class="latest text_align_center">
-                        <figure><img src="../images/cases1.png" alt="#" /></figure>
+                        <figure><img src="../assets/images/cases1.png" alt="#" /></figure>
                         <div class="nostrud">
                             <h3>Cases 01</h3>
                             <p>It is a long established fact that a reader will be distracted by the readable content of
@@ -192,7 +193,7 @@ padding: 0px;
                 </div>
                 <div class=" col-md-4">
                     <div class="latest text_align_center">
-                        <figure><img src="../images/cases2.png" alt="#" /></figure>
+                        <figure><img src="../assets/images/cases2.png" alt="#" /></figure>
                         <div class="nostrud">
                             <h3>Cases 02</h3>
                             <p>It is a long established fact that a reader will be distracted by the readable content of
@@ -207,7 +208,7 @@ padding: 0px;
                 </div>
                 <div class=" col-md-4">
                     <div class="latest text_align_center">
-                        <figure><img src="../images/cases3.png" alt="#" /></figure>
+                        <figure><img src="../assets/images/cases3.png" alt="#" /></figure>
                         <div class="nostrud">
                             <h3>Cases 03</h3>
                             <p>It is a long established fact that a reader will be distracted by the readable content of
@@ -224,6 +225,27 @@ padding: 0px;
         </div>
     </div>
     <!-- end cases -->
+    <!-- contact start -->
+    <div class="container-fluid" id="contact">
+        <div class="row">
+            <div class="col-12">
+                <div class="titlepage text_align_center">
+                    <h2>Contact Us</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <form method="post">
+                    <input type="text" placeholder="Enter Your Name" class="cname"><br><br>
+                    <input type="text" placeholder="Enter Your Email" class="cmail"><br><br>
+                    <input type="text" placeholder="Message" class="cmessage"><br><br>
+                    <button class="cbtn">Send </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- contact end -->
     <!--  footer -->
     <footer>
         <div class="footer">
@@ -275,7 +297,7 @@ padding: 0px;
                         <div class="hedingh3 text_align_left">
                             <h3>Location</h3>
                             <div class="map">
-                                <img src="../images/map.png" alt="map" />
+                                <img src="../assets/images/map.png" alt="map" />
                             </div>
                         </div>
                     </div>

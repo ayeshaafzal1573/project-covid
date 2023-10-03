@@ -18,12 +18,11 @@ if (!isset($_SESSION['patient_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <title>Hospital</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="patient.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-    <link rel="icon" href="../images/covidlogo.png" type="image/gif" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/patient.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="icon" href="../assets/images/covidlogo.png" type="image/gif" />
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
     <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
@@ -88,7 +87,7 @@ if (!isset($_SESSION['patient_id'])) {
                       <div class="col-lg-4 col-md-6 mb-4">
                       <div class="card" style="width: 18rem;">
                       <a href="bookappointment.php">    
-                    <img src="../images/hospital.jpg" class="card-img-top" alt="...">
+                    <img src="../assets/images/hospital.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                     <h5 class="card-title">' . $row['hospital_name'] . '</h5>
                     <p class="card-text">' . $row['location'] . '</p>
@@ -163,7 +162,7 @@ if (!isset($_SESSION['patient_id'])) {
                         <div class="hedingh3 text_align_left">
                             <h3>Location</h3>
                             <div class="map">
-                                <img src="../images/map.png" alt="map" />
+                                <img src="../assets/images/map.png" alt="map" />
                             </div>
                         </div>
                     </div>

@@ -15,8 +15,8 @@ if (!isset($_SESSION['hospital_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Vaccine</title>
-    <link rel="stylesheet" href="../admin/assets/style.css">
-    <link rel="icon" href="../images/covidlogo.png">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="icon" href="../assets/images/covidlogo.png">
     <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
@@ -28,7 +28,8 @@ if (!isset($_SESSION['hospital_id'])) {
     <!-- SIDEBAR -->
     <div id="sidebar">
         <header>
-            <a href="#"><img src="../images/covidlogo.png" alt="" style="width:120px ; height:120;padding: 20px;"></a>
+            <a href="#"><img src="../assets/images/covidlogo.png" alt=""
+                    style="width:120px ; height:120;padding: 20px;"></a>
         </header>
         <ul class="nav">
             <li>
@@ -59,8 +60,6 @@ if (!isset($_SESSION['hospital_id'])) {
         </ul>
 
     </div>
-    </div>
-    </div>
     <!-- SIDEBAR END -->
     <!-- NAV STARTS -->
     <nav class="navbar">
@@ -68,7 +67,7 @@ if (!isset($_SESSION['hospital_id'])) {
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="../images/hospitaluser.png" alt="Admin Profile" class="adminpic">
+                        <img src="../assets/images/hospitaluser.png" alt="Admin Profile" class="adminpic">
                         <?php echo $_SESSION['hospital_name']; ?> <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -102,7 +101,8 @@ if (!isset($_SESSION['hospital_id'])) {
     <form method="POST" style="margin-left: 400px; width:50%;">
         <div class="form-group">
             <label for="vaccine_name">Vaccine Name:</label>
-            <input type="text" class="form-control" id="vaccine_name" name="vaccine_name">
+            <input type="text" class="form-control" id="vaccine_name" name="vaccine_name"
+                placeholder="Enter Vaccination Name">
         </div>
         <div class="form-group">
             <label for="availability_status">Availability Status:</label>

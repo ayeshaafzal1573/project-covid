@@ -18,11 +18,11 @@ if (!isset($_SESSION['patient_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <title>Book Appointment</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="patient.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-    <link rel="stylesheet" href="../css/register.css" />
-    <link rel="icon" href="../images/covidlogo.png" type="image/gif" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/patient.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/register.css" />
+    <link rel="icon" href="../assets/images/covidlogo.png" type="image/gif" />
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
@@ -74,7 +74,8 @@ if (!isset($_SESSION['patient_id'])) {
         <div class="form signup">
             <header> BOOK APPOINTMENTS</header>
             <form method="POST">
-                <input type="text" id="patient_name" name="patient_name" placeholder="Patient Name" value="<?php echo $_SESSION['patient_name']; ?>"><br><br>
+                <input type="text" id="patient_name" name="patient_name" placeholder="Patient Name"
+                    value="<?php echo $_SESSION['patient_name']; ?>"><br><br>
 
                 <select name="test_name" class="location">
                     <option hidden>Select Covid Test</option>
@@ -180,7 +181,7 @@ if (!isset($_SESSION['patient_id'])) {
                         <div class="hedingh3 text_align_left">
                             <h3>Location</h3>
                             <div class="map">
-                                <img src="../images/map.png" alt="map" />
+                                <img src="../assets/images/map.png" alt="map" />
                             </div>
                         </div>
                     </div>
@@ -196,7 +197,6 @@ if (!isset($_SESSION['patient_id'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
-    <script src="js/custom.js"></script>
 
 </body>
 

@@ -19,11 +19,11 @@ if (!isset($_SESSION['patient_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <title>Edit Profile</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="patient.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-    <link rel="stylesheet" href="../css/register.css" />
-    <link rel="icon" href="../images/covidlogo.png" type="image/gif" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/patient.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/register.css" />
+    <link rel="icon" href="../assets/images/covidlogo.png" type="image/gif" />
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
         media="screen">
@@ -171,7 +171,7 @@ if (!isset($_SESSION['patient_id'])) {
                         <div class="hedingh3 text_align_left">
                             <h3>Location</h3>
                             <div class="map">
-                                <img src="../images/map.png" alt="map" />
+                                <img src="../assets/images/map.png" alt="map" />
                             </div>
                         </div>
                     </div>

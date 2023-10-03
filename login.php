@@ -11,11 +11,11 @@ session_start();
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
-  <link rel="stylesheet" href="css/register.css" />
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="images/covidlogo.png">
-  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="assets/css/register.css" />
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/images/covidlogo.png">
+  <link rel="stylesheet" href="assets/css/responsive.css">
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 </head>
 
@@ -39,7 +39,7 @@ session_start();
                 <li><a href="index.php#about">About</a></li>
                 <li><a href="index.php" class="logo_midle">Pandemix</a></li>
                 <li><a href="index.php#action">Actions</a></li>
-                <li><a href="contact.php">Contact </a></li>
+                <li><a href="index.php#contact">Contact </a></li>
               </ul>
               <button class="nav-toggler">
                 <span></span>
@@ -223,7 +223,7 @@ session_start();
             <div class="hedingh3 text_align_left">
               <h3>Location</h3>
               <div class="map">
-                <img src="images/map.png" alt="map" />
+                <img src="assets/images/map.png" alt="map" />
               </div>
             </div>
           </div>

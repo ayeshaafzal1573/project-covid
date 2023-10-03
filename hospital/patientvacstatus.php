@@ -15,8 +15,8 @@ if (!isset($_SESSION['hospital_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Vaccination Status</title>
-    <link rel="stylesheet" href="../admin/assets/style.css">
-    <link rel="icon" href="../images/covidlogo.png">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="icon" href="../assets/images/covidlogo.png">
     <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
@@ -27,7 +27,8 @@ if (!isset($_SESSION['hospital_id'])) {
     <!-- SIDEBAR -->
     <div id="sidebar">
         <header>
-            <a href="#"><img src="../images/covidlogo.png" alt="" style="width:120px ; height:120;padding: 20px;"></a>
+            <a href="#"><img src="../assets/images/covidlogo.png" alt=""
+                    style="width:120px ; height:120;padding: 20px;"></a>
         </header>
         <ul class="nav">
             <li>
@@ -56,10 +57,8 @@ if (!isset($_SESSION['hospital_id'])) {
                 </a>
             </li>
         </ul>
+    </div>
 
-    </div>
-    </div>
-    </div>
     <!-- SIDEBAR END -->
     <!-- NAV STARTS -->
     <nav class="navbar">
@@ -67,7 +66,7 @@ if (!isset($_SESSION['hospital_id'])) {
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="../images/hospitaluser.png" alt="Admin Profile" class="adminpic">
+                        <img src="../assets/images/hospitaluser.png" alt="Admin Profile" class="adminpic">
                         <?php echo $_SESSION['hospital_name']; ?> <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -101,25 +100,22 @@ if (!isset($_SESSION['hospital_id'])) {
     }
 
     $hospital_id = $_SESSION['hospital_id'];
-
     //Patients
-    $sqlPatients = "SELECT DISTINCT p.patient_id, p.patient_name
-               FROM appointment a
-               INNER JOIN patient p ON a.patient_id = p.patient_id
-               WHERE a.status = 1";
+    $sqlPatients = "SELECT  p.patient_id, p.patient_name FROM appointment a 
+                    INNER JOIN patient p ON a.patient_id = p.patient_id
+                    WHERE a.status = 1";
     $resultPatients = mysqli_query($con, $sqlPatients);
-   //Vaccination
-    $sqlVaccinations = "SELECT DISTINCT v.vac_id, v.vac_name
-                   FROM appointment a
-                   INNER JOIN vaccination v ON v.hospital_id = a.hospital_id
-                   WHERE a.status = 1 AND v.vac_status = 'Available'";
+    //Vaccination
+    $sqlVaccinations = "SELECT  v.vac_id, v.vac_name FROM appointment a
+                        INNER JOIN vaccination v ON v.hospital_id = a.hospital_id
+                        WHERE a.status = 1 AND v.vac_status = 'Available'";
     $resultVaccinations = mysqli_query($con, $sqlVaccinations);
     ?>
     <!-- PHP -->
     <h1 class="add-vaccine">Patient Vaccination</h1>
     <form method="POST" style="margin-left: 400px; width:50%;">
         <label for="patient">Select Patient:</label>
-        <select id="patient" name="patient">
+        <select id="patient" name="patient_id">
             <!-- PHP -->
             <?php
             foreach ($resultPatients as $patient) {
@@ -127,6 +123,7 @@ if (!isset($_SESSION['hospital_id'])) {
             }
             ?>
         </select><br><br>
+
         <label for="vaccination">Select Vaccination:</label>
         <select id="vaccination" name="vaccination">
             <!-- PHP -->

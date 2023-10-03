@@ -15,8 +15,8 @@ if (!isset($_SESSION['admin_id'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
-  <link rel="stylesheet" href="assets/style.css">
-  <link rel="icon" href="../images/corona_icon.png">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="icon" href="../assets/images/covidlogo.png">
   <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
@@ -27,7 +27,8 @@ if (!isset($_SESSION['admin_id'])) {
   <!-- SIDEBAR -->
   <div id="sidebar">
     <header>
-      <a href="#"><img src="../images/covidlogo.png" alt="" style="width:120px ; height:120px;padding: 20px;"></a>
+      <a href="#"><img src="../assets/images/covidlogo.png" alt=""
+          style="width:120px ; height:120px;padding: 20px;"></a>
     </header>
     <ul class="nav">
       <li>
@@ -62,9 +63,6 @@ if (!isset($_SESSION['admin_id'])) {
       </li>
     </ul>
   </div>
-  </div>
-  </div>
-  </div>
   <!-- SIDEBAR END -->
   <!-- NAV STARTS -->
   <nav class="navbar">
@@ -72,13 +70,12 @@ if (!isset($_SESSION['admin_id'])) {
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="../images/adminuser.png" alt="Admin Profile" class="adminpic">
+            <img src="../assets/images/adminuser.png" alt="Admin Profile" class="adminpic">
             <?php echo $_SESSION['username']; ?> <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="notification.php"><i class="zmdi zmdi-notifications text-danger"></i> Notifications</a></li>
-            <li><a href="../login.php">Logout</a></li>
-
+            <li><a href="notification.php"><i class="zmdi zmdi-notifications"></i>Approval</a></li>
+            <li><a href="../login.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
           </ul>
         </li>
       </ul>
@@ -91,7 +88,7 @@ if (!isset($_SESSION['admin_id'])) {
     <div class="row justify-content-center" style="margin-left: 250px;">
       <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3" id="grooming">
         <div class="grooming-imgbg mt-2">
-          <img src="../images/hospital.png" alt="Award" class="grooming-img">
+          <img src="../assets/images/hospital.png" alt="Award" class="grooming-img">
         </div>
         <h5>Total Hospitals</h6>
           <p class="grooming-para">
@@ -100,36 +97,26 @@ if (!isset($_SESSION['admin_id'])) {
       </div>
       <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 " id="grooming">
         <div class="grooming-imgbg mt-2">
-          <img src="../images/patient.png" alt="Award" class="grooming-img ">
+          <img src="../assets/images/patient.png" alt="Award" class="grooming-img ">
         </div>
         <h5>Patients</h5>
         <p class="grooming-para">
-
           20
         </p>
       </div>
       <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3" id="grooming">
         <div class="grooming-imgbg mt-2">
-          <img src="../images/vaccine.png" alt="Award" class="grooming-img ">
+          <img src="../assets/images/vaccine.png" alt="Award" class="grooming-img">
         </div>
         <h5>Vaccinated</h5>
         <p class="grooming-para">
           2
         </p>
       </div>
-
-
     </div>
-  </div>
-
-  </div>
-  </div>
-  </div>
-
   </div>
 </body>
 <!-- PHP -->
-
 <!-- SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

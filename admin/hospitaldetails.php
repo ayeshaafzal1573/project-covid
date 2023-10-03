@@ -15,8 +15,8 @@ if (!isset($_SESSION['admin_id'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hospital Details</title>
-  <link rel="stylesheet" href="assets/style.css">
-  <link rel="icon" href="../images/covidlogo.png">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="icon" href="../assets/images/covidlogo.png">
   <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
@@ -28,7 +28,7 @@ if (!isset($_SESSION['admin_id'])) {
   <!-- SIDEBAR -->
   <div id="sidebar">
     <header>
-      <a href="#"><img src="../images/covidlogo.png" alt="" style="width:120px ; height:120px;padding: 20px;"></a>
+      <a href="#"><img src="../assets/images/covidlogo.png" alt="logo" style="width:120px ; height:120px;padding: 20px;"></a>
     </header>
     <ul class="nav">
       <li>
@@ -61,12 +61,7 @@ if (!isset($_SESSION['admin_id'])) {
           <i class="fas fa-syringe"></i>Vaccine Availability
         </a>
       </li>
-
-
     </ul>
-  </div>
-  </div>
-  </div>
   </div>
   <!-- SIDEBAR END -->
   <!-- NAV STARTS -->
@@ -75,12 +70,12 @@ if (!isset($_SESSION['admin_id'])) {
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="../images/adminuser.png" alt="Admin Profile" class="adminpic">
+            <img src="../assets/images/adminuser.png" alt="Admin Profile" class="adminpic">
             <?php echo $_SESSION['username']; ?> <span class="caret"></span>
           </a>
 
           <ul class="dropdown-menu">
-            <li><a href="notification.php"><i class="zmdi zmdi-notifications"></i> Notifications</a></li>
+            <li><a href="notification.php"><i class="zmdi zmdi-notifications"></i>Approval</a></li>
             <li><a href="../login.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
 
           </ul>
