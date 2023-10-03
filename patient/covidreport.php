@@ -89,23 +89,17 @@ if (!isset($_SESSION['patient_id'])) {
                     if (isset($_SESSION['patient_id'])) {
                         $patient_id = $_SESSION['patient_id'];
                         $query = "SELECT appointment.app_date, appointment.app_time, appointment.test_name, appointment.status, hospital.hospital_name, 
-              CASE 
-                WHEN appointment.status = 1 THEN patient_vaccination_table.vac_suggest
-                ELSE 'No suggestion'
-              END AS vac_suggest
-              FROM appointment
-              JOIN hospital ON appointment.hospital_id = hospital.hospital_id
-              LEFT JOIN patient_vaccination_table ON appointment.patient_id = patient_vaccination_table.patient_id
-              WHERE appointment.patient_id = $patient_id";
-
+                        CASE WHEN appointment.status = 1 THEN patient_vaccination_table.vac_suggest
+                        ELSE 'No suggestion' END AS vac_suggest FROM appointment
+                        JOIN hospital ON appointment.hospital_id = hospital.hospital_id
+                        LEFT JOIN patient_vaccination_table ON appointment.patient_id = patient_vaccination_table.patient_id
+                        WHERE appointment.patient_id = $patient_id";
                         $result = mysqli_query($con, $query);
-
                         if (!$result) {
                             die("Error executing the query: " . mysqli_error($con));
                         }
                     }
                     ?>
-
                     <!-- PHP END -->
                     <?php while ($row = mysqli_fetch_assoc($result)): ?>
                         <tr>

@@ -99,12 +99,10 @@ if (!isset($_SESSION['patient_id'])) {
                     <?php echo $patient_name; ?>
                 </h1>
             </div>
-
         </div>
         <div class="row">
             <div class="col-12">
-                <h5>Address:
-                </h5>
+                <h5>Address:</h5>
                 <p>
                     <?php echo $address; ?>
                 </p>

@@ -90,7 +90,7 @@ if (!isset($_SESSION['hospital_id'])) {
             $row = $result->fetch_assoc();
             $selected_vac_name = $row['vac_name'];
             $sql = "INSERT INTO `patient_vaccination_table` (`patient_id`, `vac_id`, `vac_suggest`)
-                VALUES ($patient_id, $selected_vac_id, '$selected_vac_name')";
+        VALUES ($patient_id, $selected_vac_id, '$selected_vac_name')";
             if ($con->query($sql) === TRUE) {
                 echo '<script>alert("Vaccination successfully recorded.");</script>';
             }
@@ -100,16 +100,20 @@ if (!isset($_SESSION['hospital_id'])) {
     }
 
     $hospital_id = $_SESSION['hospital_id'];
-    //Patients
-    $sqlPatients = "SELECT  p.patient_id, p.patient_name FROM appointment a 
-                    INNER JOIN patient p ON a.patient_id = p.patient_id
-                    WHERE a.status = 1";
-    $resultPatients = mysqli_query($con, $sqlPatients);
-    //Vaccination
-    $sqlVaccinations = "SELECT  v.vac_id, v.vac_name FROM appointment a
-                        INNER JOIN vaccination v ON v.hospital_id = a.hospital_id
-                        WHERE a.status = 1 AND v.vac_status = 'Available'";
+
+    // Fetch the list of available vaccinations for the specific hospital
+    $sqlVaccinations = "SELECT DISTINCT v.vac_id, v.vac_name FROM vaccination v
+                    INNER JOIN appointment a ON v.hospital_id = a.hospital_id
+                    WHERE a.status = 1 AND v.vac_status = 'Available'
+                    AND v.hospital_id = $hospital_id";
     $resultVaccinations = mysqli_query($con, $sqlVaccinations);
+
+    // Fetch the list of patients for the specific hospital
+    $sqlPatients = "SELECT DISTINCT p.patient_id, p.patient_name FROM patient p
+                INNER JOIN appointment a ON p.patient_id = a.patient_id
+                WHERE a.status = 1
+                AND a.hospital_id = $hospital_id";
+    $resultPatients = mysqli_query($con, $sqlPatients);
     ?>
     <!-- PHP -->
     <h1 class="add-vaccine">Patient Vaccination</h1>

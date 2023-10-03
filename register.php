@@ -120,8 +120,8 @@ include("connection.php");
           $hospitallocation = $_POST["location"];
           $hospitalpassword = $_POST["hospital_password"];
           $hashedPassword = password_hash($hospitalpassword, PASSWORD_DEFAULT);
-          $query = "INSERT INTO hospital (hospital_name, location, password,status,approval_status) 
-              VALUES ('$hospitalname', '$hospitallocation', '$hashedPassword',0,'Pending')";
+          $query = "INSERT INTO hospital (hospital_name, location, password,approval_status) 
+              VALUES ('$hospitalname', '$hospitallocation', '$hashedPassword','Pending')";
         }
 
         if (mysqli_query($con, $query)) {

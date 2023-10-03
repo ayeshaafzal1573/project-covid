@@ -84,21 +84,18 @@ if (!isset($_SESSION['patient_id'])) {
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo '
-                      <div class="col-lg-4 col-md-6 mb-4">
-                      <div class="card" style="width: 18rem;">
-                      <a href="bookappointment.php">    
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card" style="width: 18rem;">
+                <a href="bookappointment.php">
                     <img src="../assets/images/hospital.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                    <h5 class="card-title">' . $row['hospital_name'] . '</h5>
-                    <p class="card-text">' . $row['location'] . '</p>
-                    
-                    <p class="card-text">Status: ' . ($row['status'] ? 'Active' : 'Inactive') . '</p>
-                           </a>
-  </div>
-</div>
-</div>';
-
-
+                        <h5 class="card-title">' . $row['hospital_name'] . '</h5>
+                        <p class="card-text">' . $row['location'] . '</p>
+                        <p class="card-text">Status: ' . ($row['approval_status'] == 'Approved' ? 'Available' : 'Unavailable') . '</p>
+                    </div>
+                </a>
+            </div>
+        </div>';
                 }
             } else {
                 echo '<div class="col-12"><p>No hospitals found.</p></div>';
