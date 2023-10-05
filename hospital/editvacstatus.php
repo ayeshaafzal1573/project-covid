@@ -87,7 +87,7 @@ if (!isset($_SESSION['hospital_id'])) {
         $result = mysqli_query($con, $query);
 
         if ($result && $row = mysqli_fetch_assoc($result)) {
-            $vac_name = $row['vac_name'];
+            $vac_name = $row  ['vac_name'];
             $vac_status = $row['vac_status'];
         } else {
             echo "Vaccination ID not found.";

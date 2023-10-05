@@ -105,7 +105,6 @@ if (!isset($_SESSION['patient_id'])) {
     </section>
     <!-- PHP -->
     <?php
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $testname = $_POST["test_name"];
         $patient_name = $_POST["patient_name"];

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2023 at 10:53 PM
+-- Generation Time: Oct 05, 2023 at 08:23 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -67,7 +67,10 @@ CREATE TABLE `appointment` (
 INSERT INTO `appointment` (`app_id`, `patient_id`, `hospital_id`, `app_date`, `status`, `app_time`, `test_name`, `approval_status`) VALUES
 (1, 1, 1, '2023-09-30', 1, '19:25:00', 'PCR', 'Approved'),
 (4, 2, 1, '2023-10-09', 1, '06:08:00', 'Naats', 'Approved'),
-(5, 4, 3, '2023-11-02', 1, '12:00:00', 'PCR', 'Approved');
+(5, 4, 3, '2023-11-02', 1, '12:00:00', 'PCR', 'Approved'),
+(6, 2, 4, '2023-10-12', 0, '02:00:00', 'Naats', 'Pending'),
+(7, 5, 1, '2023-10-09', 0, '22:26:00', 'PCR', 'Pending'),
+(8, 1, 3, '2023-10-13', 0, '22:49:00', 'PCR', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -89,9 +92,10 @@ CREATE TABLE `hospital` (
 
 INSERT INTO `hospital` (`hospital_id`, `hospital_name`, `location`, `password`, `approval_status`) VALUES
 (1, 'Agha Khan', 'Karachi', '$2y$10$MpkQ97qiwEi36mTzuhipcO8j6Gilcu5.Fu7bA6ND3djFGg0rM3NNm', 'Approved'),
-(2, 'Shamsi', 'Karachi', '$2y$10$PDQrI7tRhBdXkytG9arHpuYfbcQuabAOb05ZJOpKZG2X7gdrNHu1G', 'Rejected'),
+(2, 'Liaquat', 'Karachi', '$2y$10$PDQrI7tRhBdXkytG9arHpuYfbcQuabAOb05ZJOpKZG2X7gdrNHu1G', 'Rejected'),
 (3, 'Mothercare', 'Islamabad', '$2y$10$TPGeWG9o5MtdjSkIV1T8QOwQxJ.2pS5UWrgAkl2yfr73iyWYJ9pO2', 'Approved'),
-(4, 'Civil', 'Lahore', '$2y$10$27DI2Bvs9eCbe1LBu6xt4uLPlq9Zd5ha.wTmpSSt.bn.mBmdY47Yi', 'Approved');
+(4, 'Civil', 'Lahore', '$2y$10$27DI2Bvs9eCbe1LBu6xt4uLPlq9Zd5ha.wTmpSSt.bn.mBmdY47Yi', 'Approved'),
+(5, 'cardio', 'Karachi', '$2y$10$q/OwJq1XibBQIUdM9.KGLem4HKo8xRppkalNMyFMBoYlabDsv/nTu', 'Approved');
 
 -- --------------------------------------------------------
 
@@ -112,9 +116,10 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`patient_id`, `patient_name`, `address`, `email`, `password`) VALUES
-(1, 'Ayesha', 'Shamsi Society ', 'ayeshaafzal1573@gmail.com ', '$2y$10$mjCOLKl/RhACptOmCsbmN.wXXXLhwbeBEIeFReM1yDftdkBCzdaUi'),
-(2, 'flappy', 'lakhani', 'flappy@gmail.com', '$2y$10$E6DcMD/eoEc6xxknBMOHrOHLTgHaOHKnpKZRGF2jcKMnkzhaIIOiu'),
-(4, 'Arham', 'Dubai', 'arham@gmail.com', '$2y$10$EhcmvfrVmkyIupuN0OUoZuahYE0INdxBAPfDRCOQBTWvD3J99kmwm');
+(1, 'Aisha', 'Shamsi Society ', 'ayeshaafzal1573@gmail.com ', '$2y$10$mjCOLKl/RhACptOmCsbmN.wXXXLhwbeBEIeFReM1yDftdkBCzdaUi'),
+(2, 'flappy', 'lakhani presidency', 'flappy@gmail.com', '$2y$10$E6DcMD/eoEc6xxknBMOHrOHLTgHaOHKnpKZRGF2jcKMnkzhaIIOiu'),
+(4, 'Arham', 'Dubai', 'arham@gmail.com', '$2y$10$EhcmvfrVmkyIupuN0OUoZuahYE0INdxBAPfDRCOQBTWvD3J99kmwm'),
+(5, 'max', 'askari', 'max@gmail.com', '$2y$10$NjloGtsIQUu9aIeknqq2OOPE0G4CbMXgU1LJTD4tF7lLSktXl85Ha');
 
 -- --------------------------------------------------------
 
@@ -158,7 +163,8 @@ CREATE TABLE `vaccination` (
 INSERT INTO `vaccination` (`vac_id`, `vac_name`, `hospital_id`, `vac_status`) VALUES
 (1, 'Booster', 1, 'Available'),
 (2, 'Novavax ', 3, 'Available'),
-(3, 'Sinovac', 1, 'Available');
+(3, 'Sinovac', 1, 'Available'),
+(5, 'Pifizr', 1, 'Unavailable');
 
 --
 -- Indexes for dumped tables
@@ -219,31 +225,31 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `hospital`
 --
 ALTER TABLE `hospital`
-  MODIFY `hospital_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `hospital_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `patient_vaccination_table`
 --
 ALTER TABLE `patient_vaccination_table`
-  MODIFY `patient_vac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `patient_vac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `vaccination`
 --
 ALTER TABLE `vaccination`
-  MODIFY `vac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `vac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

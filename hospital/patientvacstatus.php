@@ -104,7 +104,7 @@ if (!isset($_SESSION['hospital_id'])) {
     // Fetch the list of available vaccinations for the specific hospital
     $sqlVaccinations = "SELECT DISTINCT v.vac_id, v.vac_name FROM vaccination v
                     INNER JOIN appointment a ON v.hospital_id = a.hospital_id
-                    WHERE a.status = 1 AND v.vac_status = 'Available'
+                    WHERE v.vac_status = 'Available'
                     AND v.hospital_id = $hospital_id";
     $resultVaccinations = mysqli_query($con, $sqlVaccinations);
 

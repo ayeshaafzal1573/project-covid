@@ -84,7 +84,6 @@ if (!isset($_SESSION['hospital_id'])) {
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Vaccination ID</th>
                         <th>Vaccination Name</th>
                         <th>Status</th>
 
@@ -110,9 +109,6 @@ if (!isset($_SESSION['hospital_id'])) {
                             $hospital_name = $hospital_data['hospital_name'];
                             ?>
                             <tr id="row_<?= $row['vac_id'] ?>">
-                                <td>
-                                    <?= $row['vac_id'] ?>
-                                </td>
                                 <td>
                                     <?= $row['vac_name'] ?>
                                 </td>
