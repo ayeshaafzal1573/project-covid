@@ -78,6 +78,7 @@ if (!isset($_SESSION['patient_id'])) {
                         <th>Hospital Name</th>
                         <th>Appointment Date</th>
                         <th>Appointment Time</th>
+                        <th>Appointment Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -86,7 +87,7 @@ if (!isset($_SESSION['patient_id'])) {
                     if (isset($_SESSION['patient_id'])) {
                         $patient_id = $_SESSION['patient_id'];
 
-                        $query = "SELECT appointment.app_date, appointment.app_time, patient.patient_name, hospital.hospital_name
+                        $query = "SELECT appointment.app_date,appointment.approval_status, appointment.app_time, patient.patient_name, hospital.hospital_name
                                   FROM appointment JOIN patient ON appointment.patient_id = patient.patient_id
                                   JOIN hospital ON appointment.hospital_id = hospital.hospital_id
                                   WHERE appointment.patient_id = $patient_id";
@@ -109,6 +110,9 @@ if (!isset($_SESSION['patient_id'])) {
                                 </td>
                                 <td>
                                     <?= $row['app_time'] ?>
+                                </td>
+                                <td>
+                                    <?= $row['approval_status'] ?>
                                 </td>
                             </tr>
                         <?php endwhile; ?>

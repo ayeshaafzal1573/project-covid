@@ -52,7 +52,7 @@ include("connection.php");
   <section class="wrapper">
     <div class="form signup">
       <header>Signup</header>
-      <form action="register.php" method="post">
+      <form action="register.php" method="post" id="registrationForm">
         <label for="user_type">User Type:</label>
         <select id="user_type" name="user_type" onchange="showFields(this.value)" required class="usertype">
           <option value="">Select User Type</option>
@@ -62,42 +62,59 @@ include("connection.php");
         </select>
         <!-- Admin Fields -->
         <div id="adminFields" style="display: none;" class="form signup">
-          <input type="text" name="username" placeholder="Username"><br><br>
-          <input type="text" name="admin_email" placeholder="Email"><br><br>
-          <input type="password" name="admin_password" placeholder="Password"><br><br>
-          <input type="submit" value="Register" name="submit" onclick="return validateForm();">
+          <input type="text" name="username" placeholder="Username" required pattern="^[a-zA-Z\-]+$"><br><br>
+          <input type="email" name="admin_email" placeholder="Email" required><br><br>
+          <input type="password" name="admin_password" placeholder="Password" required
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$"
+            title="Password must contain at least one lowercase letter, one uppercase letter, and be at least 8 characters long."><br><br>
+          <input type="hidden" id="actualSubmitTypeAdmin" name="actual_submit_type_admin" value="">
+          <input type="submit" value="Register" name="submit" onclick="setActualSubmitType('Admin')">
+
         </div>
         <!-- Hospital Fields -->
         <div id="hospitalFields" style="display: none;">
-          <input type="text" name="hospital_name" placeholder="Hospital Name"><br><br>
+          <input type="text" name="hospital_name" placeholder="Hospital Name" required pattern="^[a-zA-Z\-]+$"><br><br>
           <select name="location" class="location">
             <option value="Karachi">Karachi</option>
             <option value="Lahore">Lahore</option>
             <option value="Islamabad">Islamabad</option>
             <option value="Multan">Multan</option>
           </select><br><br>
-          <input type="password" name="hospital_password" placeholder="Password"><br><br>
-          <input type="submit" value="Register" name="submit" onclick="return validateForm();">
+          <input type="password" name="hospital_password" placeholder="Password" required
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$"
+            title="Password must contain at least one lowercase letter, one uppercase letter, and be at least 8 characters long."><br><br>
+          <input type="hidden" id="actualSubmitTypeHospital" name="actual_submit_type_hospital" value="">
+          <input type="submit" value="Register" name="submit" onclick="setActualSubmitType('Hospital')">
+
         </div>
         <!-- Patient Fields -->
         <div id="patientFields" style="display: none;">
-          <input type="text" id="patient_name" name="patient_name" placeholder="Patient Name"><br><br>
-          <input type="text" name="address" placeholder="Patient Address"><br><br>
-          <input type="text" name="email" placeholder="Patient Email"><br><br>
-          <input type="password" name="patient_password" placeholder="Patient Password"><br><br>
-          <input type="submit" value="Register" name="submit" onclick="return validateForm();"><br><br>
+          <input type="text" id="patient_name" name="patient_name" placeholder="Patient Name" required
+            pattern="^[a-zA-Z\-]+$"><br><br>
+          <input type="text" name="address" placeholder="Patient Address" required><br><br>
+          <input type="email" name="email" placeholder="Patient Email" required><br><br>
+          <input type="password" name="patient_password" placeholder="Patient Password" required
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$"
+            title="Password must contain at least one lowercase letter, one uppercase letter, and be at least 8 characters long."><br><br>
+          <input type="hidden" id="actualSubmitTypePatient" name="actual_submit_type_patient" value="">
+
+          <input type="submit" value="Register" name="submit" onclick="setActualSubmitType('Patient')">
+
         </div>
+
       </form>
     </div>
+
     <div class="form login">
       <header><a href="login.php">Login</header></a>
     </div>
     <!-- PHP -->
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      $userType = $_POST["user_type"];
+      $userType = $_POST["actual_submit_type"]; // Use the hidden field value to determine the user type
+    
       if (isset($_POST['submit'])) {
-        //ADMIN
+        // ADMIN
         if ($userType === "Admin") {
           $adminusername = $_POST["username"];
           $adminemail = $_POST["admin_email"];
@@ -105,7 +122,7 @@ include("connection.php");
           $hashedPassword = password_hash($adminpassword, PASSWORD_DEFAULT);
           $query = "INSERT INTO admin (username, email, password) VALUES ('$adminusername', '$adminemail', '$hashedPassword')";
         }
-        //PATIENT
+        // PATIENT
         elseif ($userType === "Patient") {
           $patientname = $_POST["patient_name"];
           $patientaddress = $_POST["address"];
@@ -114,24 +131,32 @@ include("connection.php");
           $hashedPassword = password_hash($patientpassword, PASSWORD_DEFAULT);
           $query = "INSERT INTO patient (patient_name, address, email, password) VALUES ('$patientname', '$patientaddress', '$patientemail', '$hashedPassword')";
         }
-        //HOSPITAL
+        // HOSPITAL
         elseif ($userType === "Hospital") {
           $hospitalname = $_POST["hospital_name"];
           $hospitallocation = $_POST["location"];
           $hospitalpassword = $_POST["hospital_password"];
           $hashedPassword = password_hash($hospitalpassword, PASSWORD_DEFAULT);
-          $query = "INSERT INTO hospital (hospital_name, location, password,approval_status) 
-              VALUES ('$hospitalname', '$hospitallocation', '$hashedPassword','Pending')";
+          $query = "INSERT INTO hospital (hospital_name, location, password, approval_status) 
+                VALUES ('$hospitalname', '$hospitallocation', '$hashedPassword','Pending')";
         }
 
         if (mysqli_query($con, $query)) {
-          echo "<script>alert('Admin will approve your request');</script>";
+          if ($userType === "Hospital") {
+            echo "<script>alert('Admin will approve your request');</script>";
+          }
+          if ($userType === "Patient" || $userType === "Admin") {
+            echo "<script>window.location.href='login.php';</script>";
+            exit();
+          }
         } else {
           echo "Error: " . mysqli_error($con);
         }
       }
     }
+
     ?>
+
     <!-- PHP END -->
 
   </section>
@@ -196,65 +221,25 @@ include("connection.php");
   </footer>
   <!-- end footer -->
   <!-- JAVASCRIPT -->
+
   <script>
-    function validateForm() {
-      var userType = document.getElementById("user_type").value;
-      var isValid = true;
-      var username = document.getElementById("username").value;
-      var email = document.getElementById("admin_email").value;
-      var password = document.getElementById("admin_password").value;
-      if (username === "" || email === "" || password === "") {
-        alert("Username, Email, and Password are required fields.");
-        isValid = false;
-      } else if (!isEmailValid(email)) {
-        alert("Invalid email format.");
-        isValid = false;
-      } else if (!isPasswordValid(password)) {
-        alert("Password must contain at least one lowercase letter, one uppercase letter, and be at least 8 characters long.");
-        isValid = false;
+    function setActualSubmitType() {
+      var userType = document.getElementById('user_type').value;
+      var actualSubmitType = document.getElementById('actualSubmitType');
+
+      // Check the selected user type and set the value accordingly
+      if (userType === 'Admin') {
+        actualSubmitType.value = 'Admin';
+      } else if (userType === 'Hospital') {
+        actualSubmitType.value = 'Hospital';
+      } else if (userType === 'Patient') {
+        actualSubmitType.value = 'Patient';
       }
-      if (userType === "Hospital") {
-        var hospitalName = document.getElementById("hospital_name").value;
-        var location = document.getElementById("location").value;
-        var hospitalPassword = document.getElementById("hospital_password").value;
-
-       else if (hospitalName === "" || location === "" || hospitalPassword === "") {
-          alert("Hospital Name, Location, and Password are required fields.");
-          isValid = false;
-        } else if (!isPasswordValid(hospitalPassword)) {
-          alert("Hospital Password must contain at least one lowercase letter, one uppercase letter, and be at least 8 characters long.");
-          isValid = false;
-        }
-      } else if (userType === "Patient") {
-        var patientName = document.getElementById("patient_name").value;
-        var address = document.getElementById("address").value;
-        var patientEmail = document.getElementById("email").value; // Assuming you renamed the input field
-        var patientPassword = document.getElementById("patient_password").value;
-
-        if (patientName === "" || address === "" || patientEmail === "" || patientPassword === "") {
-          alert("Patient Name, Address, Email, and Password are required fields.");
-          isValid = false;
-        } else if (!isPasswordValid(patientPassword)) {
-          alert("Patient Password must contain at least one lowercase letter, one uppercase letter, and be at least 8 characters long.");
-          isValid = false;
-        }
-      }
-
-      return isValid;
-    }
-    function isEmailValid(email) {
-      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
-    }
-    function isPasswordValid(password) {
-      // Password must contain at least one lowercase letter, one uppercase letter, and be at least 8 characters long
-      var lowercaseRegex = /[a-z]/;
-      var uppercaseRegex = /[A-Z]/;
-      return lowercaseRegex.test(password) && uppercaseRegex.test(password) && password.length >= 8;
     }
   </script>
-  <script src="assets/script.js"></script>
 
+
+  <script src="assets/script.js"></script>
 </body>
 
 </html>
